@@ -18,7 +18,7 @@
     echo   ¦
     echo   +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
     echo.
-    %color_echo%   #  {07}Geben Sie nun die URL oder Nummer der Webseite ein, auf welcher das Comic vorgestellt wird und bestätigen Sie diese mit Enter:{#}{\n}
+    %color_echo%   #  {07}Geben Sie nun die {0B}URL{07} oder {0B}Nummer{07} der Webseite ein, auf welcher das Comic vorgestellt wird und bestätigen Sie diese mit Enter:{#}{\n}
     %color_echo%         - {08}Sie können die URL der Webseite aus der Adressleiste/-zeile des Browsers kopieren und hier mit [strg] + [V] einfühen{#}{\n}
     %color_echo%          - {08}Beispiel: https://imhentai.xxx/gallery/598258/   oder   https://imhentai.xxx/gallery/000258/{#}{\n}
     %color_echo%          - {08}Beispiel: 598258 oder 000237{#}{\n}
