@@ -3,14 +3,14 @@
     set "main-url_input=https://imhentai.xxx/gallery/598258/" & ::set "comic-name_input=[thomas fischbach] Twokinds Reference Sheets"
     set restart_yn=restart_no
     
-    set "dl_folder=?"
-    set "main-url_num=?"
-    set "main-url=?"
-    set "dl-URL=?"
+    set "dl_folder=" 
+    set "main-url_num=" 
+    set "main-url=" 
+    set "dl-URL=" 
     set "pages=1
-    set "comic-name=?"
-    set "artist_input=?"
-    set "language_input=?"
+    set "comic-name="
+    set "artist_input="
+    set "language_input=" 
     
 
 :: ===============================================================================================
@@ -22,8 +22,15 @@
     CALL "resources/time.cmd"
 :: pages_start
     SET /a "pages_start=1"
-:: cecho
+REM SET VARIABLE for Software cecho -^> Colors in CMD 
     SET "color_echo=third_party_software\cecho%xxbit%.exe"
+REM DEBUG 
+    IF "%DEBUG%"=="ON" ( 
+        %color_echo% Color loading successful! 
+        third_party_software\cecho%xxbit% {00}00 - black{\n}{01}01 - navy{\n}{02}02 - green{\n}{03}03 - teal{\n}{04}04 - maroon{\n}{05}05 - purple{\n}{06}06 - olive{\n}{07}07 - silver{\n}{08}08 - gray{\n}{09}09 - blue{\n}{0A}0A - lime{\n}{0B}0B - aqua{\n}{0C}0C - red{\n}{0D}0D - fuchisa{\n}{0E}0E - yellow{\n}{0F}0F - white{\n}{#} 
+        choice /N /C 123 /T 3 /D 1 >NUL  
+    ) 
+
 
 
 :: ===============================================================================================

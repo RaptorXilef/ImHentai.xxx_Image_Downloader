@@ -14,13 +14,14 @@
 :: Load version number from file ### Lade Versionsnummer aus Datei
     if exist "resources\version.txt" FOR /f "usebackq delims=" %%f IN ("resources\version.txt") DO set "version=%%f"
     if not exist "resources\version.txt" set "version=BetaTestVersion
+    SET "DEBUG=OFF"
 
 
 :: ===============================================================================================
 ::      Voreinstellungen (Einmalig)
 :: ===============================================================================================
 :: Sprache w?hlen
-    CALL "resources\exist_lang.cmd"
+    CALL "resources\LanguageExistConfigfile.cmd"
     CALL "lang\%lang%.cmd"
 :: Fenstertitel
     TITLE RaptorXilef CMD Tools - ImHentai.xxx Downloader (%lang%) - %xxbit%bit - v%version% -^> https://inkbunny.net/RaptorXilef
