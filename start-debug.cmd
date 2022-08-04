@@ -5,7 +5,7 @@
 :: Fenstertitel f?r den Start
     TITLE RaptorXilef CMD Tools - ImHentai.xxx Downloader
 :: Fenstergr??e, Hintergrund- und Schriftarbe
-    mode con lines=55 cols=180 
+    mode con lines=55 cols=180
     color 0a
 ::Aktiviere Zeichen der ASCII Tabelle wie ??? ... (+Speichern im als ANSI Format)
     chcp 1252>nul

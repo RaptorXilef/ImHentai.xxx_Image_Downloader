@@ -5,7 +5,7 @@
     echo.
     echo.
 :: ===============================================================================================(äöü)
-::      Setze HTML Dokument Pfad und Name + temp Zwischenspeicher 
+::      Setze HTML Dokument Pfad und Name + temp Zwischenspeicher
 :: ===============================================================================================
     echo Erstelle einen temporären Ordner zur Verarbeitung der Variablen
         IF NOT EXIST "%save-to_tempfolder%" MD "%save-to_tempfolder%" && attrib +h "%save-to_tempfolder%"
@@ -26,17 +26,18 @@
 
     echo.
     echo.
-    if exist "%htmlVAR%" color 0b && echo Die Webseite wurde erfolgreich ausgelesen. Die Variablen werden nun gespeichert. && echo. && echo. && color 0e && ::choice /N /C 123 /T 1 /D 1 >NUL 
-    if not exist "%htmlVAR%" color 0c && echo Es ist ein Fehler bei der Verarbeitung aufgetreten. && echo Möglicherweise sind im Dateipfad Sonderzeichen wie "(" und ")" enthalten. && echo Mit diesen hat die Software noch schwierigkeiten. && echo Das Programm wird daher neu geladen. && echo. && echo Bitte bestätigen Sie den Ladevorgang mit [Enter] && pause && set restart_yn=restart_yes && choice /N /C 123 /T 1 /D 1 >NUL 
+    if exist "%htmlVAR%" %color_echo% {0A}Die Webseite wurde erfolgreich ausgelesen. Die Variablen werden nun gespeichert.{#}{\n}{\n}{\n}{#} && ::choice /N /C 123 /T 1 /D 1 >NUL
+    if not exist "%htmlVAR%" %color_echo% {0C} Es ist ein Fehler bei der Verarbeitung aufgetreten.{\n} {08} Der Vorgang wird daher zurückgesetzt.{\n}{\n}  Bitte bestätigen Sie den Vorgang mit {07}[Enter]{\n}{#} && pause && set restart_yn=restart_yes
     goto %restart_yn%
-    
+
 
 :restart_no
-    cls && echo. && echo Download-URL: "%dl-URL%" && echo.
-    echo. && echo Seiten: "%pages_input%" && echo.
-    echo. && echo Comicname: "%comic-name_input%" && echo.
-    echo. && echo Language: "%language_input%" && echo.
-    echo. && echo Artist: "%artist_input%" && echo. && ::choice /N /C 123 /T 1 /D 1 >NUL 
+cls
+    %color_echo% {\n}{07} Download-URL: "%dl-URL%"{\n}{\n}
+    %color_echo% {\n}{07} Seiten: "%pages_input%"{\n}{\n}
+    %color_echo% {\n}{07} Comicname: "%comic-name_input%"{\n}{\n}
+    %color_echo% {\n}{07} Language: "%language_input%"{\n}{\n} 
+    %color_echo% {\n}{07} Artist: "%artist_input%"{\n}{\n} && choice /N /C 123 /T 1 /D 1 >NUL
 :debugloop
 :: ===============================================================================================
 ::      Filter Variablen aus HTML Dokument
@@ -55,25 +56,25 @@
             set "temp=%temp:?=%"
             set "temp=%temp: =%"
             set "temp=%temp:	=%"
-            
+
             set "temp=%temp:cover.jpg=%"
             set "temp=%temp:cover.png=%"
-            
+
             set temp=%temp:"=;%
-            
+
             echo "%temp%">"%tempVAR%"
-            
+
         FOR /F "usebackq tokens=8 delims=;" %%A IN ("%tempVAR%") DO set dl-URL=%%A
 
         ::set "dl-URL=%temp:~131,39%"
-    ::DEBUG 
+    ::DEBUG
     cls && echo. && echo Download-URL: "%dl-URL%" * && echo.
     echo. && echo Seiten: "%pages_input%" && echo.
     echo. && echo Comicname: "%comic-name_input%" && echo.
     echo. && echo Language: "%language_input%" && echo.
-    echo. && echo Artist: "%artist_input%" && echo. && ::choice /N /C 123 /T 1 /D 1 >NUL 
-    
-    
+    echo. && echo Artist: "%artist_input%" && echo. && ::choice /N /C 123 /T 1 /D 1 >NUL
+
+
 
 :: ===============================================================================================
 ::      Filter Variablen aus HTML Dokument
@@ -92,21 +93,21 @@
             set "temp=%temp:?=%"
             set "temp=%temp: =%"
             set "temp=%temp:	=%"
-            
+
             set temp=%temp:"=;%
             set temp=%temp::=;%
             set temp=%temp:/=;%
-            
+
             echo "%temp%">"%tempVAR%"
-            
+
         FOR /F "usebackq tokens=4 delims=;" %%A IN ("%tempVAR%") DO set pages_input=%%A
-        
-    ::DEBUG 
+
+    ::DEBUG
     cls && echo. && echo Download-URL: "%dl-URL%" && echo.
     echo. && echo Seiten: "%pages_input%" * && echo.
     echo. && echo Comicname: "%comic-name_input%" && echo.
     echo. && echo Language: "%language_input%" && echo.
-    echo. && echo Artist: "%artist_input%" && echo. && ::choice /N /C 123 /T 1 /D 1 >NUL 
+    echo. && echo Artist: "%artist_input%" && echo. && ::choice /N /C 123 /T 1 /D 1 >NUL
 
 
 :: ===============================================================================================
@@ -114,9 +115,9 @@
 :: ===============================================================================================
 :: Comicname
     findstr /L "<h1>" "%htmlVAR%" >"%tempVAR%"
-    
+
         set /p temp=<"%tempVAR%"
-    
+
             set "temp=%temp:&lt;=(%"
             set "temp=%temp:&gt;=)%"
             set "temp=%temp:ï¼ˆ= (%"
@@ -125,14 +126,14 @@
             set "temp=%temp: <3=%"
             set "temp=%temp:<3 =%"
             set "temp=%temp:<3=%"
-            
+
                 set "temp=%temp:é=e%"
                 set "temp=%temp:é=e%"
                 set "temp=%temp:è=e%"
                 set "temp=%temp:Ã©=e%"
                 set "temp=%temp:#039;=-%
                 set "temp=%temp:&#039;=-%
-        
+
             set "temp=%temp:|=-%"
             ::set "temp=%temp:<=%"
             set "temp=%temp:>=%"
@@ -149,7 +150,7 @@
             set "temp=%temp:h1=%"
             set "temp=%temp:  = %"
             set "temp=%temp:	=%"
-            
+
                 set "temp=%temp:(English)=(english)%"
                 set "temp=%temp:[English]=(english)%"
                 set "temp=%temp:[english]=(english)%"
@@ -174,22 +175,22 @@
                 set "temp=%temp:(Russian)=(russian)%"
                 set "temp=%temp:[Russian]=(russian)%"
                 set "temp=%temp:[russian]=(russian)%"
-            
+
             set "temp=%temp::=-%"
             set "temp=%temp:";=%"
-            
+
 
         echo "%temp%">"%tempVAR%"
-        
+
         FOR /F "usebackq tokens=2 delims=<" %%A IN ("%tempVAR%") DO set comic-name_input=%%A
 
-        
-    ::DEBUG 
+
+    ::DEBUG
     cls && echo. && echo Download-URL: "%dl-URL%" && echo.
     echo. && echo Seiten: "%pages_input%" && echo.
     echo. && echo Comicname: "%comic-name_input%" * && echo.
     echo. && echo Language: "%language_input%" && echo.
-    echo. && echo Artist: "%artist_input%" && echo. && ::choice /N /C 123 /T 1 /D 1 >NUL 
+    echo. && echo Artist: "%artist_input%" && echo. && ::choice /N /C 123 /T 1 /D 1 >NUL
 
 
 :: ===============================================================================================
@@ -198,12 +199,12 @@
 :: Language
     findstr /L "Languages:" "%htmlVAR%" >"%tempVAR%"
         FOR /F "usebackq tokens=4 delims=/" %%A IN ("%tempVAR%") DO set language_input=%%A
-    ::DEBUG 
+    ::DEBUG
     cls && echo. && echo Download-URL: "%dl-URL%" && echo.
     echo. && echo Seiten: "%pages_input%" && echo.
     echo. && echo Comicname: "%comic-name_input%" && echo.
     echo. && echo Language: "%language_input%" * && echo.
-    echo. && echo Artist: "%artist_input%" && echo. && ::choice /N /C 123 /T 1 /D 1 >NUL 
+    echo. && echo Artist: "%artist_input%" && echo. && ::choice /N /C 123 /T 1 /D 1 >NUL
 
 
 :: ===============================================================================================
@@ -238,21 +239,21 @@
                 set "comic-name_input=%comic-name_input:"lt=(%"
                 set "comic-name_input=%comic-name_input:"gt=)%"
                 set "comic-name_input=%comic-name_input:";=%"
-        
-    ::DEBUG 
+
+    ::DEBUG
     cls && echo. && echo Download-URL: "%dl-URL%" && echo.
     echo. && echo Seiten: "%pages_input%" && echo.
     echo. && echo Comicname: "%comic-name_input%" && echo.
     echo. && echo Language: "%language_input%" && echo.
-    echo. && echo Artist: "%artist_input%" * && echo. && ::choice /N /C 123 /T 1 /D 1 >NUL 
+    echo. && echo Artist: "%artist_input%" * && echo. && ::choice /N /C 123 /T 1 /D 1 >NUL
         ::cls && goto debugloop
-    
-    
+
+
     cls && echo. && echo Download-URL: "%dl-URL%" && echo.
     echo. && echo Seiten: "%pages_input%" && echo.
     echo. && echo Comicname: "%comic-name_input%" && echo.
     echo. && echo Language: "%language_input%" && echo.
-    echo. && echo Artist: "%artist_input%" && echo. && ::choice /N /C 123 /T 1 /D 1 >NUL 
+    echo. && echo Artist: "%artist_input%" && echo. && ::choice /N /C 123 /T 1 /D 1 >NUL
 
 
 :: ===============================================================================================
