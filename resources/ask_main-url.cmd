@@ -2,15 +2,15 @@
     color 08
     cls
     echo.
-    %color_echo%    # {0B}Webseitenadresse / URL{#} # {\n}
+    %colorEcho%    # {0B}Webseitenadresse / URL{#} # {\n}
     echo   +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
     echo   ¦
-    %color_echo%   ¦  {0A}Bisherige Eingaben{#}{\n}
-    %color_echo%   ¦  {0A}=================={#}{\n}
+    %colorEcho%   ¦  {0A}Bisherige Eingaben{#}{\n}
+    %colorEcho%   ¦  {0A}=================={#}{\n}
     echo   ¦
     echo   ¦
-    %color_echo%   ¦    {02}Speichern unter: {#}{\n}
-    %color_echo%   ¦     {07}-^> %save-to%{#}\*{\n}
+    %colorEcho%   ¦    {02}Speichern unter: {#}{\n}
+    %colorEcho%   ¦     {07}-^> %save-to%{#}\*{\n}
     echo   ¦
 ::    echo   ¦    Aktueller Downloadordner/-unterordner: 
 ::    echo   ¦     -^> %dl_folder%
@@ -18,11 +18,11 @@
     echo   ¦
     echo   +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
     echo.
-    %color_echo%   #  {07}Geben Sie nun die {0B}URL{07} oder {0B}Nummer{07} der Webseite ein, auf welcher das Comic vorgestellt wird und bestätigen Sie diese mit Enter:{#}{\n}
-    %color_echo%         - {08}Sie können die URL der Webseite aus der Adressleiste/-zeile des Browsers kopieren und hier mit [strg] + [V] einfühen{#}{\n}
-    %color_echo%          - {08}Beispiel: https://imhentai.xxx/gallery/598258/   oder   https://imhentai.xxx/gallery/000258/{#}{\n}
-    %color_echo%          - {08}Beispiel: 598258 oder 000237{#}{\n}
-    %color_echo%         # {07}URL mit Enter bestätigen: {#}{\n}
+    %colorEcho%   #  {07}Geben Sie nun die {0B}URL{07} oder {0B}Nummer{07} der Webseite ein, auf welcher das Comic vorgestellt wird und bestätigen Sie diese mit Enter:{#}{\n}
+    %colorEcho%         - {08}Sie können die URL der Webseite aus der Adressleiste/-zeile des Browsers kopieren und hier mit [strg] + [V] einfühen{#}{\n}
+    %colorEcho%          - {08}Beispiel: https://imhentai.xxx/gallery/598258/   oder   https://imhentai.xxx/gallery/000258/{#}{\n}
+    %colorEcho%          - {08}Beispiel: 598258 oder 000237{#}{\n}
+    %colorEcho%         # {07}URL mit Enter bestätigen: {#}{\n}
     echo.
     set /p "main-url_input=------> URL: "
     
@@ -121,7 +121,7 @@
     echo.
     echo.
     echo.
-    echo Die angegebene URL entspricht den Bedingungen! Der Forgang wird fortgesetzt.
+    %colorEcho% {0A} Die angegebene URL entspricht den Bedingungen! Der Forgang wird fortgesetzt.{\n}{#}
     set "main-url=https://imhentai.xxx/gallery/%main-url_num%/"
         choice /N /C 123 /T 1 /D 1 >NUL
     ::aktiviere äöü

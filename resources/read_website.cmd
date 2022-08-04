@@ -1,4 +1,4 @@
-    color 0e
+    color 08
     cls
     echo.
     echo Lade variablen aus der Webseite hinter der angegebenen URL

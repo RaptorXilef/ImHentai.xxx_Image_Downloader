@@ -7,7 +7,7 @@
     set "main-url_num=" 
     set "main-url=" 
     set "dl-URL=" 
-    set "pages=1
+    set "pages="
     set "comic-name="
     set "artist_input="
     set "language_input=" 
@@ -23,7 +23,7 @@
 :: pages_start
     SET /a "pages_start=1"
 REM SET VARIABLE for Software cecho -^> Colors in CMD 
-    SET "color_echo=third_party_software\cecho%xxbit%.exe"
+    SET "colorEcho=third_party_software\cecho%xxbit%.exe"
 REM DEBUG 
     IF "%DEBUG%"=="ON" ( 
         %color_echo% Color loading successful! 
