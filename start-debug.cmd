@@ -36,7 +36,7 @@ REM Sprache wählen (Lade entsprechenden Code aus Datei)
     CALL "translations\%lang%.cmd"
 REM Windowtitel
 REM Fenstertitel
-    TITLE RaptorXilef CMD Tools - ImHentai.xxx Downloader (%lang%) - %xxbit%bit - v%version% -^> https://github.com/RaptorXilef  -  https://www.patreon.com/raptorxilef
+    TITLE RaptorXilef CMD Tools - ImHentai.xxx Downloader (%countrycode%) - %PROCESSOR_ARCHITECTURE:~-2%bit - v%version% -^> https://github.com/RaptorXilef  -  https://www.patreon.com/raptorxilef
 
 
 REM ===============================================================================================

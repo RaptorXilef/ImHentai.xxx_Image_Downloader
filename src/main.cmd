@@ -1,23 +1,7 @@
-:: ============================Main.cmd===========================================================
-:: Beispiel Laden
-    set "main-url_input=https://imhentai.xxx/gallery/598258/" & ::set "comic-name_input=[thomas fischbach] Twokinds Reference Sheets"
-    set restart_yn=restart_no
-
-    set "dl_folder="
-    set "main-url_num="
-    set "main-url="
-    set "dl-URL="
-    set "pages="
-    set "comic-name="
-    set "artist_input="
-    set "language_input="
-
-
 :: ===============================================================================================
 ::      Preload
 :: ===============================================================================================
-
-    color 0a
+    set restart_yn=restart_no
 :: Abfrage der aktuellen Zeit
     CALL "resources/time.cmd"
 :: pages_start

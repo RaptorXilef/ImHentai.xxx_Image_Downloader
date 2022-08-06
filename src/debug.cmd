@@ -8,8 +8,8 @@ echo Debug / leere Variablen können auf einen Fehler deuten
 echo ==================================================================
 echo.
 echo    version: "%version%"
-
-
+echo    outputMenue="%outputMenue%"
+echo    countrycode="%countrycode%"
 
 ::Sprache
 echo    lang: "%lang%"
