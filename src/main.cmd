@@ -2,16 +2,16 @@
 :: Beispiel Laden
     set "main-url_input=https://imhentai.xxx/gallery/598258/" & ::set "comic-name_input=[thomas fischbach] Twokinds Reference Sheets"
     set restart_yn=restart_no
-    
-    set "dl_folder=" 
-    set "main-url_num=" 
-    set "main-url=" 
-    set "dl-URL=" 
+
+    set "dl_folder="
+    set "main-url_num="
+    set "main-url="
+    set "dl-URL="
     set "pages="
     set "comic-name="
     set "artist_input="
-    set "language_input=" 
-    
+    set "language_input="
+
 
 :: ===============================================================================================
 ::      Preload
@@ -22,14 +22,14 @@
     CALL "resources/time.cmd"
 :: pages_start
     SET /a "pages_start=1"
-REM SET VARIABLE for Software cecho -^> Colors in CMD 
-    SET "colorEcho=third_party_software\cecho%xxbit%.exe"
-REM DEBUG 
-    IF "%DEBUG%"=="ON" ( 
-        %color_echo% Color loading successful! 
-        third_party_software\cecho%xxbit% {00}00 - black{\n}{01}01 - navy{\n}{02}02 - green{\n}{03}03 - teal{\n}{04}04 - maroon{\n}{05}05 - purple{\n}{06}06 - olive{\n}{07}07 - silver{\n}{08}08 - gray{\n}{09}09 - blue{\n}{0A}0A - lime{\n}{0B}0B - aqua{\n}{0C}0C - red{\n}{0D}0D - fuchisa{\n}{0E}0E - yellow{\n}{0F}0F - white{\n}{#} 
-        choice /N /C 123 /T 3 /D 1 >NUL  
-    ) 
+REM SET VARIABLE for Software cecho -^> Colors in CMD
+    SET "colorEcho=third_party_software\cecho%PROCESSOR_ARCHITECTURE:~-2%.exe"
+REM DEBUG
+    IF "%DEBUG%"=="ON" (
+        %color_echo% Color loading successful!
+        %colorEcho% {00}00 - black{\n}{01}01 - navy{\n}{02}02 - green{\n}{03}03 - teal{\n}{04}04 - maroon{\n}{05}05 - purple{\n}{06}06 - olive{\n}{07}07 - silver{\n}{08}08 - gray{\n}{09}09 - blue{\n}{0A}0A - lime{\n}{0B}0B - aqua{\n}{0C}0C - red{\n}{0D}0D - fuchisa{\n}{0E}0E - yellow{\n}{0F}0F - white{\n}{#}
+        choice /N /C 123 /T 3 /D 1 >NUL
+    )
 
 
 
@@ -51,7 +51,7 @@ REM DEBUG
 :: ===============================================================================================
 :: URL zum Auslesen der Werte wie Download-URL, Name, Seitenanzahl...
     CALL "resources\ask_main-url.cmd"
-    
+
     SET "save-to_tempfolder_num=%save-to_tempfolder%\%main-url_num%"
     SET "save-to_database_num=%save-to_database%\%main-url_num%"
     SET "save-to_backup_num=%save-to_backup%\%main-url_num%"
@@ -63,7 +63,7 @@ REM DEBUG
 :: ===============================================================================================
 :: Auslesen der Werte Download-URL, Name, Seitenanzahl...
     CALL "resources\read_website.cmd"
-    
+
     goto %restart_yn%
 :restart_no
 
@@ -77,10 +77,10 @@ REM DEBUG
 ::      Downloadfragen2
 :: ===============================================================================================
 :: Unterverzeichnis zum speichern der Downloads festlegen
-    if not exist "%save-to_database_num%\finished.txt" CALL "resources\ask_dl_folder.cmd"
+    IF not exist "%save-to_database_num%\finished.txt" CALL "resources\ask_dl_folder.cmd"
 :: Seitenanzahl festlegen oder bestätigen
-    if not exist "%save-to_database_num%\finished.txt" CALL "resources\ask_pages.cmd"
-    if exist "%save-to_database_num%\finished.txt" CALL "resources\ask_pages_renew_load.cmd"
+    IF not exist "%save-to_database_num%\finished.txt" CALL "resources\ask_pages.cmd"
+    IF exist "%save-to_database_num%\finished.txt" CALL "resources\ask_pages_renew_load.cmd"
     goto %restart_yn%
 :restart_no
 
@@ -88,10 +88,10 @@ REM DEBUG
 
     SET /a "pages_last=%pages%"
 :: Comicname festlegen oder bestätigen
-    if not exist "%save-to_database_num%\finished.txt" CALL "resources\ask_comic-name.cmd"
+    IF not exist "%save-to_database_num%\finished.txt" CALL "resources\ask_comic-name.cmd"
 :: Datenprüfung
-    if not exist "%save-to_database_num%\finished.txt" CALL "resources\ask_all_right.cmd"
-    if exist "%save-to_database_num%\finished.txt" CALL "resources\ask_all_right_renew.cmd"
+    IF not exist "%save-to_database_num%\finished.txt" CALL "resources\ask_all_right.cmd"
+    IF exist "%save-to_database_num%\finished.txt" CALL "resources\ask_all_right_renew.cmd"
     goto %restart_yn%
 :restart_no
     SET "save-to_comic_folder=%save-to_dl_folder%\%comic-name_%"
@@ -105,10 +105,10 @@ REM DEBUG
     set "dl_list_all=%dl_lists%\ALL_%xDateRTime%.txt"
     set "dl_list_jpg=%dl_lists%\JPG_%xDateRTime%.txt"
     set "dl_list_png=%dl_lists%\PNG_%xDateRTime%.txt"
-    set "dl_list_gif=%dl_lists%\GIF_%xDateRTime%.txt"
-    
+    set "dl_list_gIF=%dl_lists%\GIF_%xDateRTime%.txt"
+
 :: Erstelle Downloadliste und DB Ordner
-:: Füge die zu downloadenden Dateien in die NameDownloadliste ein (schleife)
+:: Füge die zu downloadenden Dateien in die NameDownloadliste ein (schleIFe)
     CALL "resources\wget_dl_lists.cmd"
 
 
@@ -118,15 +118,15 @@ REM DEBUG
 :: Erstelle Comicordner für den Download
 :: Starte Download mit WGet über 32 oder 64 bit
     CALL "resources\wget_start.cmd"
-    
-    
+
+
 :: ===============================================================================================
 ::      Bilder nummerrieren
 :: ===============================================================================================
 :: Bilder entsprechend der Anzahl mit vorstehenden Nullen durchnummerrieren.
     CALL "resources\rename_count.cmd"
-    
-    
+
+
 :: ===============================================================================================
 ::      Verknüpfung zur Webseite
 :: ===============================================================================================

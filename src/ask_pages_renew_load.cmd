@@ -1,19 +1,19 @@
 
-    if exist "%save-to_database_num%\dl_folder.txt" FOR /f "usebackq delims=" %%f IN ("%save-to_database_num%\dl_folder.txt") DO set "dl_folder_renew=%%f"
-    if exist "%save-to_database_num%\main-url_num.txt" FOR /f "usebackq delims=" %%f IN ("%save-to_database_num%\main-url_num.txt") DO set "main-url_num_renew=%%f"
-    if exist "%save-to_database_num%\main-url.txt" FOR /f "usebackq delims=" %%f IN ("%save-to_database_num%\main-url.txt") DO set "main-url_renew=%%f"
-    if exist "%save-to_database_num%\dl-URL.txt" FOR /f "usebackq delims=" %%f IN ("%save-to_database_num%\dl-URL.txt") DO set "dl-URL_renew=%%f"
-    if exist "%save-to_database_num%\pages.txt" FOR /f "usebackq delims=" %%f IN ("%save-to_database_num%\pages.txt") DO set "pages_input_renew=%%f"
-    if exist "%save-to_database_num%\comic-name.txt" FOR /f "usebackq delims=" %%f IN ("%save-to_database_num%\comic-name.txt") DO set "comic-name_renew=%%f"
-    if exist "%save-to_database_num%\save-to.txt" FOR /f "usebackq delims=" %%f IN ("%save-to_database_num%\save-to.txt") DO set "save-to_renew=%%f"
+    IF exist "%save-to_database_num%\dl_folder.txt" FOR /f "usebackq delims=" %%f IN ("%save-to_database_num%\dl_folder.txt") DO set "dl_folder_renew=%%f"
+    IF exist "%save-to_database_num%\main-url_num.txt" FOR /f "usebackq delims=" %%f IN ("%save-to_database_num%\main-url_num.txt") DO set "main-url_num_renew=%%f"
+    IF exist "%save-to_database_num%\main-url.txt" FOR /f "usebackq delims=" %%f IN ("%save-to_database_num%\main-url.txt") DO set "main-url_renew=%%f"
+    IF exist "%save-to_database_num%\dl-URL.txt" FOR /f "usebackq delims=" %%f IN ("%save-to_database_num%\dl-URL.txt") DO set "dl-URL_renew=%%f"
+    IF exist "%save-to_database_num%\pages.txt" FOR /f "usebackq delims=" %%f IN ("%save-to_database_num%\pages.txt") DO set "pages_input_renew=%%f"
+    IF exist "%save-to_database_num%\comic-name.txt" FOR /f "usebackq delims=" %%f IN ("%save-to_database_num%\comic-name.txt") DO set "comic-name_renew=%%f"
+    IF exist "%save-to_database_num%\save-to.txt" FOR /f "usebackq delims=" %%f IN ("%save-to_database_num%\save-to.txt") DO set "save-to_renew=%%f"
 
         SET "pages_input_renew=%pages_input_renew: =%"
         SET /a "pages_input_renew=%pages_input_renew%"
         SET "pages_input=%pages_input: =%"
         SET /a "pages_input=%pages_input%"
-        
+
         ::DEBUG echo "%pages_input_renew%" - "%pages_input%" && PAUSE
-        
+
     :AntiSonderzeichenName
     ::Entferne Sonderzeichen aus dem eingegebenen String
     set "comic-name_renew_input=%comic-name_renew:<=%"
@@ -41,6 +41,3 @@
     IF %pages_input_renew% LSS %pages_input% CALL "resources\ask_pages_renew.cmd"
 
     ::aktiviere הצü
-    
-    
-    

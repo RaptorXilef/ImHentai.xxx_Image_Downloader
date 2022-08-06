@@ -1,7 +1,13 @@
-    :: Wenn lang existiert, lese Sprache aus Datei (else) wenn nicht, erstelle Variable lang aus asksaveto
-    if not exist "config" MD "config"
-    if exist "config\lang.txt" FOR /f "usebackq delims=" %%f IN ("config\lang.txt") DO set "lang=%%f"
-    if not exist "config\lang.txt" call "resources\LanguageSelect.cmd"
-    :: Speicher Variabe lang in Datei lang
-    if not exist "config\lang.txt" echo %lang%>"config\lang.txt"
-::הצü Aktivieren
+    REM If config folder does not exist, create it / Wenn Ordner config nicht existiert, erstelle ihn
+    IF NOT EXIST "config" MD "config"
+    REM REM If language file exists... if not... / Wenn Sprachdatei existiert ... wenn nicht ...
+    IF EXIST "config\countrycode.txt" (
+      REM Read the first line of ... and store the content in the variable ... / Lese die erste Zeile von ... aus und speichere den Inhalt in die Variable ...
+      FOR /f "usebackq delims=" %%f IN ("config\countrycode.txt") DO set "countrycode=%%f"
+      ) else (
+      REM Starts the language selection / Startet die Sprachauswahl
+      CALL "resources\LanguageSelect.cmd"
+      REM Store variable in file long / Speichert Variable in Datei lang
+      ECHO %countrycode%>"config\countrycode.txt"
+      )
+::הצüß

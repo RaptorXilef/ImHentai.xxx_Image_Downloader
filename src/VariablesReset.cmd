@@ -1,5 +1,5 @@
 chcp 855>nul
-goto weiter
+goto continue
                 set "temp=%temp:Ð=a%"
                 set "temp=%temp:Ñ=b%"
                 set "temp=%temp:Ò=v%"
@@ -31,7 +31,7 @@ goto weiter
                 set "temp=%temp:ì=i%"
                 set "temp=%temp:î=iu%"
                 set "temp=%temp:ï=ja%"
-:weiter
+:continue
                 set "temp=%temp:Ð=%"
                 set "temp=%temp:Ñ=%"
                 set "temp=%temp:Ò=%"

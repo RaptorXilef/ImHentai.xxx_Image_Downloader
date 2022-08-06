@@ -14,13 +14,10 @@ REM Temporerer Fenstertitel
 REM Window size, background and font color
 REM Fenstergröße, Hintergrund- und SchrIFtfarbe
     MODE con lines=55 cols=180
-    color 08
+    COLOR 08
 REM Activate characters of the ASCII table like äöü ... (+ save file in ANSI)
 REM Aktiviere Zeichen der ASCII-Tabelle wie äöü ... (+ Datei in ANSI speichern)
-    chcp 1252>nul
-REM Load Processor architecture (32/64) in variable
-REM Lade Prozessorarchitektur (32bit/64bit) in eine Variable
-    set "xxbit=%PROCESSOR_ARCHITECTURE:~-2%"
+    CHCP 1252>nul
 REM Load version number from file
 REM Lade Versionsnummer aus Datei
     IF EXIST "resources\CurrentVersion.txt" FOR /f "usebackq delims=" %%f IN ("resources\CurrentVersion.txt") DO set "version=%%f"
@@ -36,7 +33,7 @@ REM ============================================================================
 REM Choose language (Load appropriate code from file)
 REM Sprache wählen (Lade entsprechenden Code aus Datei)
     CALL "resources\LanguageExistConfigfile.cmd"
-    CALL "lang\%lang%.cmd"
+    CALL "translations\%lang%.cmd"
 REM Windowtitel
 REM Fenstertitel
     TITLE RaptorXilef CMD Tools - ImHentai.xxx Downloader (%lang%) - %xxbit%bit - v%version% -^> https://github.com/RaptorXilef  -  https://www.patreon.com/raptorxilef
@@ -49,7 +46,7 @@ REM Start/Load the main part of the application
 REM Starte/Lade den Hauptteil der Anwendung
 :restart
     CALL "resources\main.cmd"
-    GOTO restart
+      GOTO restart
 
 
 REM ===============================================================================================

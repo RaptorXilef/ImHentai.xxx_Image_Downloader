@@ -20,14 +20,14 @@
 :: ===============================================================================================
 ::      Starte 64 oder 32 Bit Downlaoder für HTML Dokument
 :: ===============================================================================================
-    if exist "third_party_software\wget%xxbit%.exe" "third_party_software\wget%xxbit%.exe" -O "%htmlVAR%" "%main-url%"
-    if not exist "third_party_software\wget%xxbit%.exe" "third_party_software\wget.exe" -O "%htmlVAR%" "%main-url%"
+    IF exist "third_party_software\wget%PROCESSOR_ARCHITECTURE:~-2%.exe" "third_party_software\wget%PROCESSOR_ARCHITECTURE:~-2%.exe" -O "%htmlVAR%" "%main-url%"
+    IF not exist "third_party_software\wget%PROCESSOR_ARCHITECTURE:~-2%.exe" "third_party_software\wget.exe" -O "%htmlVAR%" "%main-url%"
 
 
     echo.
     echo.
-    if exist "%htmlVAR%" %color_echo% {0A}Die Webseite wurde erfolgreich ausgelesen. Die Variablen werden nun gespeichert.{#}{\n}{\n}{\n}{#} && ::choice /N /C 123 /T 1 /D 1 >NUL
-    if not exist "%htmlVAR%" %color_echo% {0C} Es ist ein Fehler bei der Verarbeitung aufgetreten.{\n} {08} Der Vorgang wird daher zurückgesetzt.{\n}{\n}  Bitte bestätigen Sie den Vorgang mit {07}[Enter]{\n}{#} && pause && set restart_yn=restart_yes
+    IF exist "%htmlVAR%" %color_echo% {0A}Die Webseite wurde erfolgreich ausgelesen. Die Variablen werden nun gespeichert.{#}{\n}{\n}{\n}{#} && ::choice /N /C 123 /T 1 /D 1 >NUL
+    IF not exist "%htmlVAR%" %color_echo% {0C} Es ist ein Fehler bei der Verarbeitung aufgetreten.{\n} {08} Der Vorgang wird daher zurückgesetzt.{\n}{\n}  Bitte bestätigen Sie den Vorgang mit {07}[Enter]{\n}{#} && pause && set restart_yn=restart_yes
     goto %restart_yn%
 
 
@@ -36,7 +36,7 @@ cls
     %color_echo% {\n}{07} Download-URL: "%dl-URL%"{\n}{\n}
     %color_echo% {\n}{07} Seiten: "%pages_input%"{\n}{\n}
     %color_echo% {\n}{07} Comicname: "%comic-name_input%"{\n}{\n}
-    %color_echo% {\n}{07} Language: "%language_input%"{\n}{\n} 
+    %color_echo% {\n}{07} Language: "%language_input%"{\n}{\n}
     %color_echo% {\n}{07} Artist: "%artist_input%"{\n}{\n} && choice /N /C 123 /T 1 /D 1 >NUL
 :debugloop
 :: ===============================================================================================

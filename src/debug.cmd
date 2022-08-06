@@ -1,19 +1,20 @@
 :: Variablen:
-mode con lines=155 cols=180 
+mode con lines=155 cols=180
 cls
-color 0e
+color 08
 echo.
-echo Debug / Variablenfehler finden (leere Variablen stehen für Fehler)
+echo Debug / empty variables can indicate an error
+echo Debug / leere Variablen können auf einen Fehler deuten
 echo ==================================================================
 echo.
-echo ^=^> Main
-echo    ====
-::Versionsnummer
 echo    version: "%version%"
+
+
+
 ::Sprache
 echo    lang: "%lang%"
 ::(32bit/64bit)
-echo    xxbit: "%xxbit%"
+echo    PROCESSOR_ARCHITECTURE:~-2: "%PROCESSOR_ARCHITECTURE:~-2%"
 ::Download-Hauptverzeichnis
 echo    save-to: "%save-to%"
 echo    dl_folder: "%dl_folder%"
