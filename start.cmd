@@ -6,47 +6,28 @@ REM Patreon https://www.patreon.com/raptorxilef
 REM InkBunny: https://inkbunny.net/RaptorXilef
 REM Lizens: GNU GENERAL PUBLIC LICENSE - Version 3, 29 June 2007
 REM ===============================================================================================
-REM      Preload  #  Vorladen
+REM      Load main part  #  Lade Hauptteil
 REM ===============================================================================================
 REM Temporary window title
 REM Temporerer Fenstertitel
-    TITLE RaptorXilef CMD Tools - ImHentai.xxx Image Downloader
-REM Window size, background and font color
-REM Fenstergröße, Hintergrund- und SchrIFtfarbe
-    MODE con lines=55 cols=180
-    COLOR 08
-REM Activate characters of the ASCII table like äöü ... (+ save file in ANSI)
-REM Aktiviere Zeichen der ASCII-Tabelle wie äöü ... (+ Datei in ANSI speichern)
-    CHCP 1252>nul
-REM Load version number from file
-REM Lade Versionsnummer aus Datei
-    IF EXIST "resources\CurrentVersion.txt" FOR /f "usebackq delims=" %%f IN ("resources\CurrentVersion.txt") DO set "version=%%f"
-    IF NOT EXIST "resources\CurrentVersion.txt" set "version=BetaTestVersion
-REM Debug modus off
-REM Debug Modus aus
-    SET "DEBUG=OFF"
-
-
-REM ===============================================================================================
-REM      Presets (One Time)  #  Voreinstellungen (Einmalig)
-REM ===============================================================================================
-REM Choose language (Load appropriate code from file)
-REM Sprache wählen (Lade entsprechenden Code aus Datei)
-    CALL "resources\LanguageExistConfigfile.cmd"
-    CALL "translations\%lang%.cmd"
-REM Windowtitel
-REM Fenstertitel
-    TITLE RaptorXilef CMD Tools - ImHentai.xxx Downloader (%countrycode%) - %PROCESSOR_ARCHITECTURE:~-2%bit - v%version% -^> https://github.com/RaptorXilef  -  https://www.patreon.com/raptorxilef
-
-
-REM ===============================================================================================
-REM      Load main part  #  Lade Hauptteil
-REM ===============================================================================================
+    TITLE RaptorXilef CMD Tools - ImHentai.xxx Downloader
 REM Start/Load the main part of the application
 REM Starte/Lade den Hauptteil der Anwendung
-:restart
-    CALL "resources\main.cmd"
-      GOTO restart
+SETLOCAL ENABLEDELAYEDEXPANSION
+:Restart
+REM Debug modus off
+REM Debug Modus aus
+    SET "DEBUG=DebugOFF"
+    IF EXIST "src\MainPart.cmd" (
+      CALL "src\MainPart.cmd"
+    ) ELSE (
+      CLS
+      COLOR 0C
+      ECHO Fatal ERROR by loading "src\MainPart.cmd", file do not exist.
+      PAUSE
+      EXIT
+    )
+      GOTO Restart
 
 
 REM ===============================================================================================

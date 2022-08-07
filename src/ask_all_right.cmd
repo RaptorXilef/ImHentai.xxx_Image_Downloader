@@ -9,7 +9,7 @@
     echo   ¦
     echo   ¦
     echo   ¦    Speichern unter:
-    echo   ¦     -^> %save-to%
+    echo   ¦     -^> %savePath%
     echo   ¦
     echo   ¦    Aktueller Downloadordner/-unterordner:
     echo   ¦     -^> %dl_folder%
@@ -41,10 +41,10 @@
 
     IF "%all_right_input%"=="j" goto continue
     IF "%all_right_input%"=="y" goto continue
-    IF "%all_right_input%"=="n" color 0c && echo. && echo. && echo Mit dem Klick auf [Enter] werden alle Eingaben gelöscht und Sie können die richtigen Daten angeben. && pause && set restart_yn=restart_yes
-    goto %restart_yn%
+    IF "%all_right_input%"=="n" color 0c && echo. && echo. && echo Mit dem Klick auf [Enter] werden alle Eingaben gelöscht und Sie können die richtigen Daten angeben. && pause && set errorRestart=errorRestartYES
+    goto %errorRestart%
 :restart_no
     goto all_right_input
-:restart_yes
+:errorRestartYES
 :continue
     ::aktiviere äöü

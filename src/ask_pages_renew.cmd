@@ -6,7 +6,7 @@ set /a pages_tobig=%pages_input%
     echo Das Comic/Die Bildreihe auf der angegebenen Seite wurden bereits heruntergeladen!
     echo  Jedoch wurde eine Änderung an der Seite erkannt. Es gibt folgende unterschiede:
     echo =================================================================================
-    
+
     echo    Nummer der letzten Seite
     echo   +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
     echo   ¦
@@ -15,17 +15,17 @@ set /a pages_tobig=%pages_input%
     echo   ¦  Neue Werte von der Webseite oder manueller Eingabe= "Neu->"
     echo   ¦
     echo   ¦    Speichern unter:
-    echo   ¦     DB-^> %save-to_renew%
-    echo   ¦  ^*  Neu-^> %save-to_renew%
+    echo   ¦     DB-^> %savePath_renew%
+    echo   ¦  ^*  Neu-^> %savePath_renew%
     echo   ¦
-    echo   ¦    Aktueller Downloadordner/-unterordner: 
+    echo   ¦    Aktueller Downloadordner/-unterordner:
     echo   ¦     DB-^> %dl_folder_renew%
     echo   ¦  ^*  Neu-^> %dl_folder%
     echo   ¦
-::    echo   ¦    Comic-Identifikationsnummer: 
+::    echo   ¦    Comic-Identifikationsnummer:
 ::    echo   ¦  ^*  DB-^> %main-url_num_renew%
 ::    echo   ¦
-::    echo   ¦    Comic-URL: 
+::    echo   ¦    Comic-URL:
 ::    echo   ¦  ^*  DB-^> %main-url_renew%
 ::    echo   ¦
 ::    echo   ¦    Download-URL (Basis):
@@ -55,24 +55,24 @@ SET /a "pages_count=%pages_input%-%pages_input_renew%"
     echo   #  Geben Sie die Nummer der letzten Seiten an, bis zu welcher heruntergeladen werden sollen:
     echo         - Die angegebene Zahl muss größer sein als "%pages_input_renew%".
     echo         - Möchten Sie die vorgeschlagene Seitenanzahl übernehmen, drücken Sie nur [Enter] ohne Eingabe einer anderen Zahl.
-    echo         # Eingabe mit [Enter] bestätigen: 
+    echo         # Eingabe mit [Enter] bestätigen:
     echo.
     set /p "pages_input=------> Letzte Seite: "
-    
+
 
     SET /a "pages=%pages_input%"
-    
+
     IF %pages_tobig% GTR %pages_input% SET /a "pages_input=%pages_tobig%"
-    
-    
+
+
     IF %pages% LEQ %pages_input_renew% color 0c && echo %pages% ist kleiner als %pages_input_renew% und damit ungültig. && echo Bitte versuchen Sie es erneut! && pause && goto pages_input
-    
-    SET "save-to=%save-to_renew%"
+
+    SET "savePath=%savePath_renew%"
     SET "dl_folder=%dl_folder_renew%"
     SET "main-url_num=%main-url_num_renew%"
     SET "main-url=%main-url_renew%"
-    
-    
+
+
     :AntiSonderzeichenName
     ::Entferne Sonderzeichen aus dem eingegebenen String
     set "comic-name_input=%comic-name_renew:<=%"
@@ -93,11 +93,8 @@ SET /a "pages_count=%pages_input%-%pages_input_renew%"
     set "comic-name=%comic-name_input:è=e%"
 
     set "comic-name_=%comic-name: =_%"
-    
-    
-        IF NOT EXIST "%save-to%\%dl_folder%\%comic-name_%" SET /a "pages_start=1"
+
+
+        IF NOT EXIST "%savePath%\%dl_folder%\%comic-name_%" SET /a "pages_start=1"
 
     ::aktiviere äöü
-    
-    
-    

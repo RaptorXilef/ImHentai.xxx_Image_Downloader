@@ -8,11 +8,11 @@
 ::      Setze HTML Dokument Pfad und Name + temp Zwischenspeicher
 :: ===============================================================================================
     echo Erstelle einen temporären Ordner zur Verarbeitung der Variablen
-        IF NOT EXIST "%save-to_tempfolder%" MD "%save-to_tempfolder%" && attrib +h "%save-to_tempfolder%"
+        IF NOT EXIST "%savePath_tempfolder%" MD "%savePath_tempfolder%" && attrib +h "%savePath_tempfolder%"
 
-        IF NOT EXIST "%save-to_tempfolder_num%" MD "%save-to_tempfolder_num%"
-            set "htmlVAR=%save-to_tempfolder_num%\temp.html"
-            set "tempVAR=%save-to_tempfolder_num%\temp.txt"
+        IF NOT EXIST "%savePath_tempfolder_num%" MD "%savePath_tempfolder_num%"
+            set "htmlVAR=%savePath_tempfolder_num%\temp.html"
+            set "tempVAR=%savePath_tempfolder_num%\temp.txt"
     echo.
     echo.
 
@@ -20,15 +20,15 @@
 :: ===============================================================================================
 ::      Starte 64 oder 32 Bit Downlaoder für HTML Dokument
 :: ===============================================================================================
-    IF exist "third_party_software\wget%PROCESSOR_ARCHITECTURE:~-2%.exe" "third_party_software\wget%PROCESSOR_ARCHITECTURE:~-2%.exe" -O "%htmlVAR%" "%main-url%"
-    IF not exist "third_party_software\wget%PROCESSOR_ARCHITECTURE:~-2%.exe" "third_party_software\wget.exe" -O "%htmlVAR%" "%main-url%"
+    IF exist "bin\ThirdPartySoftware\wget%PROCESSOR_ARCHITECTURE:~-2%.exe" "bin\ThirdPartySoftware\wget%PROCESSOR_ARCHITECTURE:~-2%.exe" -O "%htmlVAR%" "%main-url%"
+    IF not exist "bin\ThirdPartySoftware\wget%PROCESSOR_ARCHITECTURE:~-2%.exe" "bin\ThirdPartySoftware\wget.exe" -O "%htmlVAR%" "%main-url%"
 
 
     echo.
     echo.
     IF exist "%htmlVAR%" %color_echo% {0A}Die Webseite wurde erfolgreich ausgelesen. Die Variablen werden nun gespeichert.{#}{\n}{\n}{\n}{#} && ::choice /N /C 123 /T 1 /D 1 >NUL
-    IF not exist "%htmlVAR%" %color_echo% {0C} Es ist ein Fehler bei der Verarbeitung aufgetreten.{\n} {08} Der Vorgang wird daher zurückgesetzt.{\n}{\n}  Bitte bestätigen Sie den Vorgang mit {07}[Enter]{\n}{#} && pause && set restart_yn=restart_yes
-    goto %restart_yn%
+    IF not exist "%htmlVAR%" %color_echo% {0C} Es ist ein Fehler bei der Verarbeitung aufgetreten.{\n} {08} Der Vorgang wird daher zurückgesetzt.{\n}{\n}  Bitte bestätigen Sie den Vorgang mit {07}[Enter]{\n}{#} && pause && set errorRestart=errorRestartYES
+    goto %errorRestart%
 
 
 :restart_no
@@ -263,6 +263,6 @@ cls
     echo Die Temprären Dateien werden nun wieder entfernt.
         del "%htmlVAR%"
         del "%tempVAR%"
-    rd /s /q "%save-to_tempfolder_num%"
+    rd /s /q "%savePath_tempfolder_num%"
     ::choice /N /C 123 /T 1 /D 1 >NUL
-:restart_yes
+:errorRestartYES

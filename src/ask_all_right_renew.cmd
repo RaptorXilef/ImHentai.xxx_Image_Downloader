@@ -9,7 +9,7 @@
     echo   ¦
     echo   ¦
     echo   ¦    Speichern unter:
-    echo   ¦     -^> %save-to%
+    echo   ¦     -^> %savePath%
     echo   ¦
     echo   ¦    Aktueller Downloadordner/-unterordner:
     echo   ¦     -^> %dl_folder%

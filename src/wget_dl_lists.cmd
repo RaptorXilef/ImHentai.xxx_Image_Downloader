@@ -1,6 +1,6 @@
 :: Erstelle Downloadliste und DB Ordner
     echo Erstelle Flatfile-Datenbankeintrag des Comics
-    MD "%save-to_database_num%\dl_lists"
+    MD "%savePath_database_num%\dl_lists"
         echo Erstelle Downloadliste/n
         echo von Seite %pages_start% bis Seite %pages_last%
 :: Füge die zu downloadenden Dateien in die NameDownloadliste ein (schleIFe)

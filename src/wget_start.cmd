@@ -2,12 +2,12 @@
     cls
     echo.
     echo Erstelle Downloadordner
-    md "%save-to_comic_folder%"
+    md "%savePath_comic_folder%"
 :: Starte Download mit WGet über 32 oder 64 bit
     cls
     color 0e
-    IF exist "third_party_software\wget%PROCESSOR_ARCHITECTURE:~-2%.exe" "third_party_software\wget%PROCESSOR_ARCHITECTURE:~-2%.exe" -i "%dl_list_all%" -P "%save-to_comic_folder%"
-    IF not exist "third_party_software\wget%PROCESSOR_ARCHITECTURE:~-2%.exe" "third_party_software\wget.exe" -i "%dl_list_all%" -P "%save-to_comic_folder%"
+    IF exist "third_party_software\wget%PROCESSOR_ARCHITECTURE:~-2%.exe" "third_party_software\wget%PROCESSOR_ARCHITECTURE:~-2%.exe" -i "%dl_list_all%" -P "%savePath_comic_folder%"
+    IF not exist "third_party_software\wget%PROCESSOR_ARCHITECTURE:~-2%.exe" "third_party_software\wget.exe" -i "%dl_list_all%" -P "%savePath_comic_folder%"
 
     ::color 0F
     ::cls

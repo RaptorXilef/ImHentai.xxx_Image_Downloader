@@ -27,7 +27,7 @@
     echo   ¦
     echo   ¦
     echo   ¦    Speichern unter:
-    echo   ¦     -^> %save-to%
+    echo   ¦     -^> %savePath%
     echo   ¦
     echo   ¦    Aktueller Downloadordner/-unterordner:
     echo   ¦     -^> %dl_folder%
@@ -100,7 +100,7 @@
     ::set "comic-name_short=%comic-name_:~0,99%"
 
 
-        IF exist "%save-to%\%dl-theme%\%comic-name_%" cls & echo. & echo     Der Name %comic-name% ist bereist vergeben! & echo     Bitte wählen Sie einen anderen Namen. & choice /N /C 123 /T 1 /D 1 /M "" >NUL & goto comic-name_input
+        IF exist "%savePath%\%dl-theme%\%comic-name_%" cls & echo. & echo     Der Name %comic-name% ist bereist vergeben! & echo     Bitte wählen Sie einen anderen Namen. & choice /N /C 123 /T 1 /D 1 /M "" >NUL & goto comic-name_input
 
 
 

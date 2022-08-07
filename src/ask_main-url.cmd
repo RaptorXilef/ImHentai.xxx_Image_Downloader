@@ -9,7 +9,7 @@
     echo   ¦
     echo   ¦
     %colorEcho%   ¦    {02}Speichern unter: {#}{\n}
-    %colorEcho%   ¦     {07}-^> %save-to%{#}\*{\n}
+    %colorEcho%   ¦     {07}-^> %savePath%{#}\*{\n}
     echo   ¦
 ::    echo   ¦    Aktueller Downloadordner/-unterordner:
 ::    echo   ¦     -^> %dl_folder%

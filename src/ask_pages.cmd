@@ -9,16 +9,16 @@ set /a pages_tobig=%pages_input%
     echo   ¦  ==================
     echo   ¦
     echo   ¦
-    echo   ¦    Speichern unter: 
-    echo   ¦     -^> %save-to%
+    echo   ¦    Speichern unter:
+    echo   ¦     -^> %savePath%
     echo   ¦
-    echo   ¦    Aktueller Downloadordner/-unterordner: 
+    echo   ¦    Aktueller Downloadordner/-unterordner:
     echo   ¦     -^> %dl_folder%
     echo   ¦
-    echo   ¦    Comic-Identifikationsnummer: 
+    echo   ¦    Comic-Identifikationsnummer:
     echo   ¦     -^> %main-url_num%
     echo   ¦
-    echo   ¦    Comic-URL: 
+    echo   ¦    Comic-URL:
     echo   ¦     -^> %main-url%
     echo   ¦
     echo   ¦    Download-URL (Basis): (Von der Webseite übernummen)
@@ -33,17 +33,14 @@ set /a pages_tobig=%pages_input%
     echo.
     echo   #  Geben Sie die Anzahl der Seiten an, welche heruntergeladen werden sollen:
     echo         - Möchten Sie die vorgeschlagene Seitenanzahl übernehmen, drücken Sie nur [Enter] ohne Eingabe einer anderen Zahl.
-    echo         # Eingabe mit [Enter] bestätigen: 
+    echo         # Eingabe mit [Enter] bestätigen:
     echo.
     set /p "pages_input=------> Seitenanzahl: "
-    
+
 
     SET /a "pages=%pages_input%"
-    
+
     IF %pages_tobig% GTR %pages_input% SET /a "pages_input=%pages_tobig%"
 
 
     ::aktiviere äöü
-    
-    
-    
