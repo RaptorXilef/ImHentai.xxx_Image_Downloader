@@ -111,23 +111,28 @@ IF EXIST "src\SavePathLoadOrCreateConfigfile.cmd" (
   EXIT
 )
         IF NOT EXIST "%savePath%" MD "%savePath%"
-    SET "savePath_tempfolder=%savePath%\_database\_temp"
-    SET "savePath_database=%savePath%\_database"
-    SET "savePath_backup=%savePath%\_database"
 
 
-
-
-:: ===============================================================================================
-::      Downloadfragen1
-:: ===============================================================================================
-:: URL zum Auslesen der Werte wie Download-URL, Name, Seitenanzahl...
+REM ===============================================================================================
+REM      Start of the data query from the user and from the website  /  Start der Datenabfrage vom User und von der Webseite
+REM ===============================================================================================
+REM URL for reading out the values such as download URL, name, number of pages...
+REM URL zum Auslesen der Werte wie Download-URL, Name, Seitenanzahl...
     CALL "src\ask_main-url.cmd"
 
-    SET "savePath_tempfolder_num=%savePath_tempfolder%\%main-url_num%"
-    SET "savePath_database_num=%savePath_database%\%main-url_num%"
-    SET "savePath_backup_num=%savePath_backup%\%main-url_num%"
-    SET "savePath_backup_file=%savePath_backup_num%\%main-url_num%.zip"
+REM Set different storage paths as variables
+REM Setze verschiedene Speicherpfade als Variablen
+    SET "savePathDatabaseFolder=%savePath%\_database"
+    SET "savePathDatabaseFolderComicID=%savePathDatabaseFolder%\%main-url_num%"
+    SET "savePathTempFolder=%savePathDatabaseFolder%\_temp"
+    SET "savePathTempFolderComicID=%savePathTempFolder%\%main-url_num%"
+    SET "savePathBackupFile=%savePathBackupFolder%\%main-url_num%.zip"
+
+
+
+
+
+
 
 
 :: ===============================================================================================
@@ -149,10 +154,10 @@ IF EXIST "src\SavePathLoadOrCreateConfigfile.cmd" (
 ::      Downloadfragen2
 :: ===============================================================================================
 :: Unterverzeichnis zum speichern der Downloads festlegen
-    IF not exist "%savePath_database_num%\finished.txt" CALL "src\ask_dl_folder.cmd"
+    IF not exist "%savePathDatabaseFolderComicID%\finished.txt" CALL "src\ask_dl_folder.cmd"
 :: Seitenanzahl festlegen oder bestätigen
-    IF not exist "%savePath_database_num%\finished.txt" CALL "src\ask_pages.cmd"
-    IF exist "%savePath_database_num%\finished.txt" CALL "src\ask_pages_renew_load.cmd"
+    IF not exist "%savePathDatabaseFolderComicID%\finished.txt" CALL "src\ask_pages.cmd"
+    IF exist "%savePathDatabaseFolderComicID%\finished.txt" CALL "src\ask_pages_renew_load.cmd"
     GOTO %errorRestart%
 :errorRestartNO
 
@@ -160,10 +165,10 @@ IF EXIST "src\SavePathLoadOrCreateConfigfile.cmd" (
 
     SET /a "pages_last=%pages%"
 :: Comicname festlegen oder bestätigen
-    IF not exist "%savePath_database_num%\finished.txt" CALL "src\ask_comic-name.cmd"
+    IF not exist "%savePathDatabaseFolderComicID%\finished.txt" CALL "src\ask_comic-name.cmd"
 :: Datenprüfung
-    IF not exist "%savePath_database_num%\finished.txt" CALL "src\ask_all_right.cmd"
-    IF exist "%savePath_database_num%\finished.txt" CALL "src\ask_all_right_renew.cmd"
+    IF not exist "%savePathDatabaseFolderComicID%\finished.txt" CALL "src\ask_all_right.cmd"
+    IF exist "%savePathDatabaseFolderComicID%\finished.txt" CALL "src\ask_all_right_renew.cmd"
     GOTO %errorRestart%
 :errorRestartNO
     SET "savePath_comic_folder=%savePath_dl_folder%\%comic-name_%"
@@ -173,7 +178,7 @@ IF EXIST "src\SavePathLoadOrCreateConfigfile.cmd" (
 ::      Download vorbereiten
 :: ===============================================================================================
 :: Variablen für WGet Downloader
-    SET "dl_lists=%savePath_database_num%\dl_lists"
+    SET "dl_lists=%savePathDatabaseFolderComicID%\dl_lists"
     SET "dl_list_all=%dl_lists%\ALL_%xDateRTime%.txt"
     SET "dl_list_jpg=%dl_lists%\JPG_%xDateRTime%.txt"
     SET "dl_list_png=%dl_lists%\PNG_%xDateRTime%.txt"
@@ -210,7 +215,7 @@ IF EXIST "src\SavePathLoadOrCreateConfigfile.cmd" (
 ::      Download abschließen / Script Beenden
 :: ===============================================================================================
 :: SETze Datanbank auf fertig
-    IF NOT EXIST "%savePath_database%" MD "%savePath_database%" && attrib +h "%savePath_database%"
+    IF NOT EXIST "%savePathDatabaseFolder%" MD "%savePathDatabaseFolder%" && attrib +h "%savePathDatabaseFolder%"
     CALL "src\save_var_to_database.cmd"
 
 
@@ -219,7 +224,6 @@ IF EXIST "src\SavePathLoadOrCreateConfigfile.cmd" (
 :: ===============================================================================================
 :: Erstelle ein Backup der heruntergeladenen Bilder
 :: Zippe die Downloadlisten um Speicherplatz zu spaaren
-    IF NOT EXIST "%savePath_backup%" MD "%savePath_backup%"
     CALL "src\7zr_start.cmd"
 
 

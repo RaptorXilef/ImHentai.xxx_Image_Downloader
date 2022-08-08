@@ -1,26 +1,26 @@
-::md "%savePath_database_num%"
+::md "%savePathDatabaseFolderComicID%"
 SET "temp_comic_folder=..\..\%dl_folder%\%comic-name_%"
 SET "temp_database_num=..\..\_database\%main-url_num%"
 
 ::Database
-    echo %xDateRTime%>"%savePath_database_num%\finished.txt"
-    echo %comic-name%>"%savePath_database_num%\comic-name.txt"
-    echo %dl_folder%>"%savePath_database_num%\dl_folder.txt"
-    echo %pages_last% >"%savePath_database_num%\pages.txt"
-    echo %main-url%>"%savePath_database_num%\main-url.txt"
-    echo %main-url_num%>"%savePath_database_num%\main-url_num.txt"
-    echo %dl-url%>"%savePath_database_num%\dl-url.txt"
-    echo %savePath%>"%savePath_database_num%\savePath.txt"
+    echo %xDateRTime%>"%savePathDatabaseFolderComicID%\finished.txt"
+    echo %comic-name%>"%savePathDatabaseFolderComicID%\comic-name.txt"
+    echo %dl_folder%>"%savePathDatabaseFolderComicID%\dl_folder.txt"
+    echo %pages_last% >"%savePathDatabaseFolderComicID%\pages.txt"
+    echo %main-url%>"%savePathDatabaseFolderComicID%\main-url.txt"
+    echo %main-url_num%>"%savePathDatabaseFolderComicID%\main-url_num.txt"
+    echo %dl-url%>"%savePathDatabaseFolderComicID%\dl-url.txt"
+    echo %savePath%>"%savePathDatabaseFolderComicID%\savePath.txt"
     ::pause
 ::Comicordner öffnen
-    echo IF EXIST "%temp_comic_folder%" EXPLORER "%temp_comic_folder%" >"%savePath_database_num%\_Goto_Comicordner.cmd"
-    echo IF EXIST "%temp_comic_folder%_#" EXPLORER "%temp_comic_folder%_#" >>"%savePath_database_num%\_Goto_Comicordner.cmd"
+    echo IF EXIST "%temp_comic_folder%" EXPLORER "%temp_comic_folder%" >"%savePathDatabaseFolderComicID%\_Goto_Comicordner.cmd"
+    echo IF EXIST "%temp_comic_folder%_#" EXPLORER "%temp_comic_folder%_#" >>"%savePathDatabaseFolderComicID%\_Goto_Comicordner.cmd"
     ::pause
 ::Backup öffnen
-    echo %savePath_backup_file%>"%savePath_comic_folder%\Comic-ID_%main-url_num%.txt"
+    echo %savePathBackupFile%>"%savePath_comic_folder%\Comic-ID_%main-url_num%.txt"
 
 ::Comicfolder
-    echo %savePath_database_num%>"%savePath_comic_folder%\Comic-ID_%main-url_num%.txt"
+    echo %savePathDatabaseFolderComicID%>"%savePath_comic_folder%\Comic-ID_%main-url_num%.txt"
 
 ::Comicfolder-Deletfile
     echo IF EXIST "%temp_database_num%" EXPLORER "%temp_database_num%" >"%savePath_comic_folder%\Goto_Databasefiles_and_Backup.cmd"
@@ -29,15 +29,15 @@ SET "temp_database_num=..\..\_database\%main-url_num%"
     echo DEL "Delete_the_Databasefiles_with_this.cmd" >>"%savePath_comic_folder%\Delete_the_Databasefiles_and_Backup_with_this.cmd"
     ::pause
 ::Verknüpfung zur Webseite in der Datanbank anlegen
-    echo Set objShell = CreateObject("WScript.Shell")>"%savePath_database_num%\MakeShortCut.vbs"
-    echo sShortcut = "%savePath_database_num%\Webseite.lnk">>"%savePath_database_num%\MakeShortCut.vbs"
-    echo set objLink = objShell.CreateShortcut(sShortcut)>>"%savePath_database_num%\MakeShortCut.vbs"
-    echo 	objLink.TargetPath = "%main-url%">>"%savePath_database_num%\MakeShortCut.vbs"
-    echo objLink.Save>>"%savePath_database_num%\MakeShortCut.vbs"
+    echo Set objShell = CreateObject("WScript.Shell")>"%savePathDatabaseFolderComicID%\MakeShortCut.vbs"
+    echo sShortcut = "%savePathDatabaseFolderComicID%\Webseite.lnk">>"%savePathDatabaseFolderComicID%\MakeShortCut.vbs"
+    echo set objLink = objShell.CreateShortcut(sShortcut)>>"%savePathDatabaseFolderComicID%\MakeShortCut.vbs"
+    echo 	objLink.TargetPath = "%main-url%">>"%savePathDatabaseFolderComicID%\MakeShortCut.vbs"
+    echo objLink.Save>>"%savePathDatabaseFolderComicID%\MakeShortCut.vbs"
     ::... ausfuhren ...
-    cscript //nologo "%savePath_database_num%\MakeShortCut.vbs"
+    cscript //nologo "%savePathDatabaseFolderComicID%\MakeShortCut.vbs"
     ::... und wieder loschen.
-    del "%savePath_database_num%\MakeShortCut.vbs"
+    del "%savePathDatabaseFolderComicID%\MakeShortCut.vbs"
     ::pause
 
 ::??? Aktivieren

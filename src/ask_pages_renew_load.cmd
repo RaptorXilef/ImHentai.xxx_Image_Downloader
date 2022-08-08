@@ -1,11 +1,11 @@
 
-    IF exist "%savePath_database_num%\dl_folder.txt" FOR /f "usebackq delims=" %%f IN ("%savePath_database_num%\dl_folder.txt") DO set "dl_folder_renew=%%f"
-    IF exist "%savePath_database_num%\main-url_num.txt" FOR /f "usebackq delims=" %%f IN ("%savePath_database_num%\main-url_num.txt") DO set "main-url_num_renew=%%f"
-    IF exist "%savePath_database_num%\main-url.txt" FOR /f "usebackq delims=" %%f IN ("%savePath_database_num%\main-url.txt") DO set "main-url_renew=%%f"
-    IF exist "%savePath_database_num%\dl-URL.txt" FOR /f "usebackq delims=" %%f IN ("%savePath_database_num%\dl-URL.txt") DO set "dl-URL_renew=%%f"
-    IF exist "%savePath_database_num%\pages.txt" FOR /f "usebackq delims=" %%f IN ("%savePath_database_num%\pages.txt") DO set "pages_input_renew=%%f"
-    IF exist "%savePath_database_num%\comic-name.txt" FOR /f "usebackq delims=" %%f IN ("%savePath_database_num%\comic-name.txt") DO set "comic-name_renew=%%f"
-    IF exist "%savePath_database_num%\savePath.txt" FOR /f "usebackq delims=" %%f IN ("%savePath_database_num%\savePath.txt") DO set "savePath_renew=%%f"
+    IF exist "%savePathDatabaseFolderComicID%\dl_folder.txt" FOR /f "usebackq delims=" %%f IN ("%savePathDatabaseFolderComicID%\dl_folder.txt") DO set "dl_folder_renew=%%f"
+    IF exist "%savePathDatabaseFolderComicID%\main-url_num.txt" FOR /f "usebackq delims=" %%f IN ("%savePathDatabaseFolderComicID%\main-url_num.txt") DO set "main-url_num_renew=%%f"
+    IF exist "%savePathDatabaseFolderComicID%\main-url.txt" FOR /f "usebackq delims=" %%f IN ("%savePathDatabaseFolderComicID%\main-url.txt") DO set "main-url_renew=%%f"
+    IF exist "%savePathDatabaseFolderComicID%\dl-URL.txt" FOR /f "usebackq delims=" %%f IN ("%savePathDatabaseFolderComicID%\dl-URL.txt") DO set "dl-URL_renew=%%f"
+    IF exist "%savePathDatabaseFolderComicID%\pages.txt" FOR /f "usebackq delims=" %%f IN ("%savePathDatabaseFolderComicID%\pages.txt") DO set "pages_input_renew=%%f"
+    IF exist "%savePathDatabaseFolderComicID%\comic-name.txt" FOR /f "usebackq delims=" %%f IN ("%savePathDatabaseFolderComicID%\comic-name.txt") DO set "comic-name_renew=%%f"
+    IF exist "%savePathDatabaseFolderComicID%\savePath.txt" FOR /f "usebackq delims=" %%f IN ("%savePathDatabaseFolderComicID%\savePath.txt") DO set "savePath_renew=%%f"
 
         SET "pages_input_renew=%pages_input_renew: =%"
         SET /a "pages_input_renew=%pages_input_renew%"

@@ -61,14 +61,13 @@ ECHO.
 ECHO ^=^> Pfade
 ECHO    =====
 ::Ordner
-ECHO    savePath_tempfolder: "%savePath_tempfolder%" & ::= %savePath% +
-ECHO    savePath_tempfolder_num: "%savePath_tempfolder_num%" & ::= %savePath_tempfolder% + %main-url_num%
-ECHO    savePath_database: "%savePath_database%" & ::= %savePath% +
-ECHO    savePath_database_num: "%savePath_database_num%" & ::= %savePath_database + %main-url_num%
+ECHO    savePathTempFolder: "%savePathTempFolder%" & ::= %savePath% +
+ECHO    savePathTempFolderComicID: "%savePathTempFolderComicID%" & ::= %savePathTempFolder% + %main-url_num%
+ECHO    savePathDatabaseFolder: "%savePathDatabaseFolder%" & ::= %savePath% +
+ECHO    savePathDatabaseFolderComicID: "%savePathDatabaseFolderComicID%" & ::= %savePathDatabaseFolder + %main-url_num%
 ECHO    savePath_dl_folder: "%savePath_dl_folder%" & ::= %savePath% + %dl_folder%
 ECHO    savePath_comic_folder: "%savePath_comic_folder%" & ::= %savePath% + %dl_folder% + %comic-name_%
-ECHO    savePath_backup: "%savePath_backup%" & ::= %savePath% + %_backup%
-ECHO    savePath_backup_num: "%savePath_backup_num%" & ::= %savePath% + %_backup% + %main-url_num%
+::ECHO    savePath_backup_num: "%savePath_backup_num%" & ::= %savePath% + %_backup% + %main-url_num%
 ECHO    dl_lists: "%dl_lists%" & ::= %savePath% + dl_lists
 ECHO.
 ECHO.

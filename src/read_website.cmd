@@ -8,11 +8,11 @@
 ::      Setze HTML Dokument Pfad und Name + temp Zwischenspeicher
 :: ===============================================================================================
     echo Erstelle einen temporären Ordner zur Verarbeitung der Variablen
-        IF NOT EXIST "%savePath_tempfolder%" MD "%savePath_tempfolder%" && attrib +h "%savePath_tempfolder%"
+        IF NOT EXIST "%savePathTempFolder%" MD "%savePathTempFolder%" && attrib +h "%savePathTempFolder%"
 
-        IF NOT EXIST "%savePath_tempfolder_num%" MD "%savePath_tempfolder_num%"
-            set "htmlVAR=%savePath_tempfolder_num%\temp.html"
-            set "tempVAR=%savePath_tempfolder_num%\temp.txt"
+        IF NOT EXIST "%savePathTempFolderComicID%" MD "%savePathTempFolderComicID%"
+            set "htmlVAR=%savePathTempFolderComicID%\temp.html"
+            set "tempVAR=%savePathTempFolderComicID%\temp.txt"
     echo.
     echo.
 
@@ -263,6 +263,6 @@ cls
     echo Die Temprären Dateien werden nun wieder entfernt.
         del "%htmlVAR%"
         del "%tempVAR%"
-    rd /s /q "%savePath_tempfolder_num%"
+    rd /s /q "%savePathTempFolderComicID%"
     ::choice /N /C 123 /T 1 /D 1 >NUL
 :errorRestartYES
