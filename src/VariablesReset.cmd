@@ -4,8 +4,8 @@ SET errorRestart=errorRestartNO
 SET /a "pages_start=1"
 
 SET "dl_folder="
-SET "main-url_num="
-SET "main-url="
+SET "comicId="
+SET "mainUrl="
 SET "dl-URL="
 SET "pages="
 SET "comic-name="
@@ -14,4 +14,4 @@ SET "artist_input="
 SET "language_input="
 :: ============================Main.cmd===========================================================
 :: Beispiel Laden
-SET "main-url_input=https://imhentai.xxx/gallery/598258/" & REM SET "comic-name_input=[thomas fischbach] Twokinds Reference Sheets"
+SET "mainUrlInput=https://imhentai.xxx/gallery/598258/" & REM SET "comic-name_input=[thomas fischbach] Twokinds Reference Sheets"

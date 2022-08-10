@@ -1,7 +1,7 @@
 
     IF exist "%savePathDatabaseFolderComicID%\dl_folder.txt" FOR /f "usebackq delims=" %%f IN ("%savePathDatabaseFolderComicID%\dl_folder.txt") DO set "dl_folder_renew=%%f"
-    IF exist "%savePathDatabaseFolderComicID%\main-url_num.txt" FOR /f "usebackq delims=" %%f IN ("%savePathDatabaseFolderComicID%\main-url_num.txt") DO set "main-url_num_renew=%%f"
-    IF exist "%savePathDatabaseFolderComicID%\main-url.txt" FOR /f "usebackq delims=" %%f IN ("%savePathDatabaseFolderComicID%\main-url.txt") DO set "main-url_renew=%%f"
+    IF exist "%savePathDatabaseFolderComicID%\comicId.txt" FOR /f "usebackq delims=" %%f IN ("%savePathDatabaseFolderComicID%\comicId.txt") DO set "comicId_renew=%%f"
+    IF exist "%savePathDatabaseFolderComicID%\mainUrl.txt" FOR /f "usebackq delims=" %%f IN ("%savePathDatabaseFolderComicID%\mainUrl.txt") DO set "mainUrl_renew=%%f"
     IF exist "%savePathDatabaseFolderComicID%\dl-URL.txt" FOR /f "usebackq delims=" %%f IN ("%savePathDatabaseFolderComicID%\dl-URL.txt") DO set "dl-URL_renew=%%f"
     IF exist "%savePathDatabaseFolderComicID%\pages.txt" FOR /f "usebackq delims=" %%f IN ("%savePathDatabaseFolderComicID%\pages.txt") DO set "pages_input_renew=%%f"
     IF exist "%savePathDatabaseFolderComicID%\comic-name.txt" FOR /f "usebackq delims=" %%f IN ("%savePathDatabaseFolderComicID%\comic-name.txt") DO set "comic-name_renew=%%f"
@@ -36,7 +36,7 @@
 
 
 
-    IF %pages_input_renew% GEQ %pages_input% cls && color 0c && echo. && echo. && echo   "%comic-name_renew%" wurde bereits vollständig heruntergeladen. && echo. && echo. && echo    Sie finden "%comic-name_renew%" unter: && echo. && echo      - Bilddateien/Comic:  %savePath_renew%\%dl_folder_renew%\%comic-name_renew_input%\ && echo      - Backup:             %savePath_renew%\_backup\%main-url_num_renew%.zip && echo      - Datenbankeintrag:   %savePath_renew%\_database\%main-url_num_renew%\ && echo. && echo. && echo. && echo   Mit einem Klick auf [Enter] werden alle Eingaben zurückgesetzt und Sie können mit einem anderen Download beginnen. && echo. && echo. && PAUSE && set errorRestart=restart_yes
+    IF %pages_input_renew% GEQ %pages_input% cls && color 0c && echo. && echo. && echo   "%comic-name_renew%" wurde bereits vollständig heruntergeladen. && echo. && echo. && echo    Sie finden "%comic-name_renew%" unter: && echo. && echo      - Bilddateien/Comic:  %savePath_renew%\%dl_folder_renew%\%comic-name_renew_input%\ && echo      - Backup:             %savePath_renew%\_backup\%comicId_renew%.zip && echo      - Datenbankeintrag:   %savePath_renew%\_database\%comicId_renew%\ && echo. && echo. && echo. && echo   Mit einem Klick auf [Enter] werden alle Eingaben zurückgesetzt und Sie können mit einem anderen Download beginnen. && echo. && echo. && PAUSE && set errorRestart=restart_yes
 goto %errorRestart%
     IF %pages_input_renew% LSS %pages_input% CALL "src\ask_pages_renew.cmd"
 :errorRestartYES

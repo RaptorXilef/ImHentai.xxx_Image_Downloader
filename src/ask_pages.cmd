@@ -16,10 +16,10 @@ set /a pages_tobig=%pages_input%
     echo   ¦     -^> %dl_folder%
     echo   ¦
     echo   ¦    Comic-Identifikationsnummer:
-    echo   ¦     -^> %main-url_num%
+    echo   ¦     -^> %comicId%
     echo   ¦
     echo   ¦    Comic-URL:
-    echo   ¦     -^> %main-url%
+    echo   ¦     -^> %mainUrl%
     echo   ¦
     echo   ¦    Download-URL (Basis): (Von der Webseite übernummen)
     echo   ¦     -^> %dl-URL%*.*

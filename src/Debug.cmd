@@ -35,8 +35,8 @@ ECHO.
 ECHO ^=^> URLs
 ECHO    ====
 ::URL
-ECHO    main-url: "%main-url%" & ::Webseite
-ECHO    main-url_num: "%main-url_num%" & ::Nur Webseitennummer / Comic-ID
+ECHO    mainUrl: "%mainUrl%" & ::Webseite
+ECHO    comicId: "%comicId%" & ::Nur Webseitennummer / Comic-ID
 ECHO    (Comic-ID-als-Ganzzahl) main_url_temp: "%main_url_temp%"
 ECHO    (Comic-ID-länge) strlen: "%strlen%"
 ECHO.
@@ -62,12 +62,12 @@ ECHO ^=^> Pfade
 ECHO    =====
 ::Ordner
 ECHO    savePathTempFolder: "%savePathTempFolder%" & ::= %savePath% +
-ECHO    savePathTempFolderComicID: "%savePathTempFolderComicID%" & ::= %savePathTempFolder% + %main-url_num%
+ECHO    savePathTempFolderComicID: "%savePathTempFolderComicID%" & ::= %savePathTempFolder% + %comicId%
 ECHO    savePathDatabaseFolder: "%savePathDatabaseFolder%" & ::= %savePath% +
-ECHO    savePathDatabaseFolderComicID: "%savePathDatabaseFolderComicID%" & ::= %savePathDatabaseFolder + %main-url_num%
+ECHO    savePathDatabaseFolderComicID: "%savePathDatabaseFolderComicID%" & ::= %savePathDatabaseFolder + %comicId%
 ECHO    savePath_dl_folder: "%savePath_dl_folder%" & ::= %savePath% + %dl_folder%
 ECHO    savePath_comic_folder: "%savePath_comic_folder%" & ::= %savePath% + %dl_folder% + %comic-name_%
-::ECHO    savePath_backup_num: "%savePath_backup_num%" & ::= %savePath% + %_backup% + %main-url_num%
+::ECHO    savePath_backup_num: "%savePath_backup_num%" & ::= %savePath% + %_backup% + %comicId%
 ECHO    dl_lists: "%dl_lists%" & ::= %savePath% + dl_lists
 ECHO.
 ECHO.
@@ -83,7 +83,7 @@ ECHO ^=^> Andere
 ECHO    ======
 ECHO    htmlVAR: "%htmlVAR%"
 ECHO    tempVAR: "%tempVAR%"
-ECHO    main-url_temp: "%main-url_temp%"
+ECHO    mainUrlTemp: "%mainUrlTemp%"
 ECHO    restart_yn: "%restart_yn%"
 ECHO    artist_input: "%artist_input%"
 
@@ -95,8 +95,8 @@ ECHO ^=^> Diese Variablen werden nur gefüllt, wenn ein Comic bereits existierte 
 ECHO    ========================================================================================================
 ECHO    savePath_renew: "%savePath_renew%"
 ECHO    dl_folder_renew: "%dl_folder_renew%"
-ECHO    main-url_num_renew: "%main-url_num_renew%"
-ECHO    main-url_renew: "%main-url_renew%"
+ECHO    comicId_renew: "%comicId_renew%"
+ECHO    mainUrl_renew: "%mainUrl_renew%"
 ECHO    dl-URL_renew: "%dl-URL_renew%"
 ECHO    pages_input_renew: "%pages_input_renew%"
 ECHO    comic-name_renew: "%comic-name_renew%"

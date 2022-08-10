@@ -23,10 +23,10 @@ set /a pages_tobig=%pages_input%
     echo   ¦  ^*  Neu-^> %dl_folder%
     echo   ¦
 ::    echo   ¦    Comic-Identifikationsnummer:
-::    echo   ¦  ^*  DB-^> %main-url_num_renew%
+::    echo   ¦  ^*  DB-^> %comicId_renew%
 ::    echo   ¦
 ::    echo   ¦    Comic-URL:
-::    echo   ¦  ^*  DB-^> %main-url_renew%
+::    echo   ¦  ^*  DB-^> %mainUrl_renew%
 ::    echo   ¦
 ::    echo   ¦    Download-URL (Basis):
 ::    echo   ¦     DB-^> %dl-URL_renew%*.*
@@ -69,8 +69,8 @@ SET /a "pages_count=%pages_input%-%pages_input_renew%"
 
     SET "savePath=%savePath_renew%"
     SET "dl_folder=%dl_folder_renew%"
-    SET "main-url_num=%main-url_num_renew%"
-    SET "main-url=%main-url_renew%"
+    SET "comicId=%comicId_renew%"
+    SET "mainUrl=%mainUrl_renew%"
 
 
     :AntiSonderzeichenName

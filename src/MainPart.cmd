@@ -18,12 +18,10 @@ REM Load version number from file
 REM Lade Versionsnummer aus Datei
     IF EXIST "src\CurrentVersion.txt" (
       FOR /f "usebackq delims=" %%f IN ("src\CurrentVersion.txt") DO set "CurrentVersion=%%f"
-    ) ELSE (
-      CLS
-      COLOR 0C
-      ECHO Fatal ERROR by loading "src\CurrentVersion.txt", file do not exist.
-      PAUSE
-      EXIT
+      ) ELSE (
+        CLS & COLOR 0C
+        ECHO Fatal ERROR by loading "src\CurrentVersion.txt", file do not exist.
+        PAUSE & EXIT
     )
 REM SET VARIABLE for Software cecho -^> Colors in CMD
 REM Setze Variable für die Software cecho -^> Farben in CMD
@@ -32,12 +30,10 @@ REM Setze Variable für die Software cecho -^> Farben in CMD
       ) ELSE (
         IF EXIST "bin\ThirdPartySoftware\cecho.exe" (
           SET "colorEcho=bin\ThirdPartySoftware\cecho.exe"
-        ) ELSE (
-          CLS
-          COLOR 0C
-          ECHO Fatal ERROR by loading "bin\ThirdPartySoftware\cecho.exe", file do not exist.
-          PAUSE
-          EXIT
+          ) ELSE (
+            CLS & COLOR 0C
+            ECHO Fatal ERROR by loading "bin\ThirdPartySoftware\cecho.exe", file do not exist.
+            PAUSE & EXIT
         )
       )
 REM DEBUG
@@ -51,12 +47,10 @@ REM Current time query
 REM Abfrage der aktuellen Zeit
     IF EXIST "src/TimeQuery.cmd" (
       CALL "src/TimeQuery.cmd"
-    ) ELSE (
-      CLS
-      COLOR 0C
-      ECHO Fatal ERROR by loading "src/TimeQuery.cmd", file do not exist.
-      PAUSE
-      EXIT
+      ) ELSE (
+        CLS & COLOR 0C
+        ECHO Fatal ERROR by loading "src/TimeQuery.cmd", file do not exist.
+        PAUSE & EXIT
     )
 REM DEBUG
     IF "%DEBUG%"=="DebugON" (
@@ -72,16 +66,21 @@ REM DEBUG
 REM ===============================================================================================
 REM      Presets (One Time)  #  Voreinstellungen (Einmalig)
 REM ===============================================================================================
+REM Test if ConsoleOutputMenus.cmd exists
+REM Teste, ob ConsoleOutputMenus.cmd existiert
+    IF NOT EXIST "src\ConsoleOutputMenus.cmd" (
+    CLS & COLOR 0C
+    ECHO Fatal ERROR by loading "src\ConsoleOutputMenus.cmd", file do not exist.
+    PAUSE & EXIT
+    )
 REM Choose language (Load appropriate code from file)
 REM Sprache wählen (Lade entsprechenden Code aus Datei)
     IF EXIST "src\LanguageLoadOrCreateConfigfile.cmd" (
       CALL "src\LanguageLoadOrCreateConfigfile.cmd"
-    ) ELSE (
-      CLS
-      COLOR 0C
-      ECHO Fatal ERROR by loading "src\LanguageLoadOrCreateConfigfile.cmd", file do not exist.
-      PAUSE
-      EXIT
+      ) ELSE (
+        CLS & COLOR 0C
+        ECHO Fatal ERROR by loading "src\LanguageLoadOrCreateConfigfile.cmd", file do not exist.
+        PAUSE & EXIT
     )
 REM DEBUG
     IF "%DEBUG%"=="DebugON" ( ECHO DEBUG: countrycode= "%countrycode%" & CHOICE /N /C 123 /T 2 /D 1 >NUL )
@@ -89,28 +88,24 @@ REM Load language file
 REM Lade Sprachdatei
     IF EXIST "translations\%countrycode%.cmd" (
       CALL "translations\%countrycode%.cmd"
-    ) ELSE (
-      CLS
-      COLOR 0C
-      ECHO Fatal ERROR by loading "translations\%countrycode%.cmd", file do not exist.
-      PAUSE
-      EXIT
+      ) ELSE (
+        CLS & COLOR 0C
+        ECHO Fatal ERROR by loading "translations\%countrycode%.cmd", file do not exist.
+        PAUSE & EXIT
     )
 REM Windowtitel
 REM Fenstertitel
     TITLE RaptorXilef CMD Tools - ImHentai.xxx Downloader (%countrycode%) - %PROCESSOR_ARCHITECTURE:~-2%bit - v%CurrentVersion% -^> https://github.com/RaptorXilef  -  https://www.patreon.com/raptorxilef
 REM Specify/query root directory for storing downloads
 REM Hauptverzeichnis zum Speichern der Downloads festlegen/abfragen
-IF EXIST "src\SavePathLoadOrCreateConfigfile.cmd" (
-  CALL "src\SavePathLoadOrCreateConfigfile.cmd"
-) ELSE (
-  CLS
-  COLOR 0C
-  ECHO Fatal ERROR by loading "src\SavePathLoadOrCreateConfigfile.cmd", file do not exist.
-  PAUSE
-  EXIT
-)
-        IF NOT EXIST "%savePath%" MD "%savePath%"
+    IF EXIST "src\SavePathLoadOrCreateConfigfile.cmd" (
+      CALL "src\SavePathLoadOrCreateConfigfile.cmd"
+      ) ELSE (
+        CLS & COLOR 0C
+        ECHO Fatal ERROR by loading "src\SavePathLoadOrCreateConfigfile.cmd", file do not exist.
+        PAUSE & EXIT
+    )
+    IF NOT EXIST "%savePath%" MD "%savePath%"
 
 
 REM ===============================================================================================
@@ -118,15 +113,26 @@ REM      Start of the data query from the user and from the website  /  Start de
 REM ===============================================================================================
 REM URL for reading out the values such as download URL, name, number of pages...
 REM URL zum Auslesen der Werte wie Download-URL, Name, Seitenanzahl...
-    CALL "src\ask_main-url.cmd"
+REM Load url query
+REM Lade URL-Abfrage
+    SET "outputMenue=OutputMenueMainUrl"
+    CALL "src\ConsoleOutputMenus.cmd"
+
+    IF EXIST "src\UrlNumberFilter.cmd" (
+      CALL "src\UrlNumberFilter.cmd"
+      ) ELSE (
+        CLS & COLOR 0C
+        ECHO Fatal ERROR by loading "src\UrlNumberFilter.cmd", file do not exist.
+        PAUSE & EXIT
+    )
 
 REM Set different storage paths as variables
 REM Setze verschiedene Speicherpfade als Variablen
     SET "savePathDatabaseFolder=%savePath%\_database"
-    SET "savePathDatabaseFolderComicID=%savePathDatabaseFolder%\%main-url_num%"
+    SET "savePathDatabaseFolderComicID=%savePathDatabaseFolder%\%comicId%"
     SET "savePathTempFolder=%savePathDatabaseFolder%\_temp"
-    SET "savePathTempFolderComicID=%savePathTempFolder%\%main-url_num%"
-    SET "savePathBackupFile=%savePathBackupFolder%\%main-url_num%.zip"
+    SET "savePathTempFolderComicID=%savePathTempFolder%\%comicId%"
+    SET "savePathBackupFile=%savePathBackupFolder%\%comicId%.zip"
 
 
 
