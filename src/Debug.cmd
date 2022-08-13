@@ -9,7 +9,7 @@ ECHO.
 ECHO DEBUG: "%DEBUG%"
 ECHO CurrentVersion: "%CurrentVersion%"
 ECHO colorEcho: "%colorEcho%"
-ECHO outputMenue="%outputMenue%"
+ECHO outputMenu="%outputMenu%"
 ECHO countrycode="%countrycode%"
 ECHO xTime: "%xTime%"
 ECHO xDate: "%xDate%"

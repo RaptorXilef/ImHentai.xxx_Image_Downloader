@@ -9,14 +9,14 @@
 :: ===============================================================================================
     echo Erstelle einen temporären Ordner zur Verarbeitung der Variablen
         IF NOT EXIST "%savePathTempFolder%" MD "%savePathTempFolder%" && attrib +h "%savePathTempFolder%"
-
         IF NOT EXIST "%savePathTempFolderComicID%" MD "%savePathTempFolderComicID%"
+        pause
             set "htmlVAR=%savePathTempFolderComicID%\temp.html"
             set "tempVAR=%savePathTempFolderComicID%\temp.txt"
     echo.
     echo.
 
-
+pause
 :: ===============================================================================================
 ::      Starte 64 oder 32 Bit Downlaoder für HTML Dokument
 :: ===============================================================================================

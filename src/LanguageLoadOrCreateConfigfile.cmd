@@ -6,9 +6,11 @@ REM Read the first line of ... and store the content in the variable ... / Lese 
       FOR /f "usebackq delims=" %%f IN ("config\Countrycode.txt") DO set "countrycode=%%f"
     ) ELSE (
 REM Starts the language selection / Startet die Sprachauswahl
-      :ReloadOutputMenueCountrycode
-      SET "outputMenue=OutputMenueCountrycode"
+      :ReloadOutputMenuCountrycode
+      SET "outputMenu=OutputMenuCountrycode"
+      @echo off
       CALL "src\ConsoleOutputMenus.cmd"
+      @echo on
         SET /p "countrycode=------> Countrycode: "
 REM DEBUG
       IF "%DEBUG%"=="DebugON" ( ECHO DEBUG: countrycode= "!countrycode!" & CHOICE /N /C 123 /T 2 /D 1 >NUL )
@@ -16,7 +18,7 @@ REM Check whether input is correct
 REM Prüfung ob Eingabe korrekt
         IF "!countrycode!"=="de" goto BackToMainCode
         IF "!countrycode!"=="en" goto BackToMainCode
-        goto ReloadOutputMenueCountrycode
+        goto ReloadOutputMenuCountrycode
         :BackToMainCode
 REM Store variable in file / Speichert Variable in Datei
       ECHO !countrycode!>"config\Countrycode.txt"

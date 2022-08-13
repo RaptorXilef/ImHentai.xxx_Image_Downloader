@@ -1,4 +1,4 @@
-@echo off
+@ECHO ON
 REM Autor: RaptorXilef
 REM Git: https://github.com/RaptorXilef
 REM Projekt: https://github.com/RaptorXilef/ImHentai.xxx_Image_Downloader.git

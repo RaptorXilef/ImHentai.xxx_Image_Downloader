@@ -10,6 +10,7 @@ REM ============================================================================
 REM Window size, background and font color
 REM Fenstergröße, Hintergrund- und SchrIFtfarbe
     MODE con lines=55 cols=180
+      IF "%DEBUG%"=="DebugON" MODE con lines=999 cols=240
     COLOR 08
 REM Activate characters of the ASCII table like äöü ... (+ save file in ANSI)
 REM Aktiviere Zeichen der ASCII-Tabelle wie äöü ... (+ Datei in ANSI speichern)
@@ -20,7 +21,7 @@ REM Lade Versionsnummer aus Datei
       FOR /f "usebackq delims=" %%f IN ("src\CurrentVersion.txt") DO set "CurrentVersion=%%f"
       ) ELSE (
         CLS & COLOR 0C
-        ECHO Fatal ERROR by loading "src\CurrentVersion.txt", file do not exist.
+        ECHO Fatal ERROR by loading "src\CurrentVersion.txt", file do not exist & echo Downloads the missing file or the latest version of the software from: & echo https://github.com/RaptorXilef/ImHentai.xxx_Image_Downloader.
         PAUSE & EXIT
     )
 REM SET VARIABLE for Software cecho -^> Colors in CMD
@@ -32,7 +33,7 @@ REM Setze Variable für die Software cecho -^> Farben in CMD
           SET "colorEcho=bin\ThirdPartySoftware\cecho.exe"
           ) ELSE (
             CLS & COLOR 0C
-            ECHO Fatal ERROR by loading "bin\ThirdPartySoftware\cecho.exe", file do not exist.
+            ECHO Fatal ERROR by loading "bin\ThirdPartySoftware\cecho.exe", file do not exist & echo Downloads the missing file or the latest version of the software from: & echo https://github.com/RaptorXilef/ImHentai.xxx_Image_Downloader.
             PAUSE & EXIT
         )
       )
@@ -49,7 +50,7 @@ REM Abfrage der aktuellen Zeit
       CALL "src/TimeQuery.cmd"
       ) ELSE (
         CLS & COLOR 0C
-        ECHO Fatal ERROR by loading "src/TimeQuery.cmd", file do not exist.
+        ECHO Fatal ERROR by loading "src/TimeQuery.cmd", file do not exist & echo Downloads the missing file or the latest version of the software from: & echo https://github.com/RaptorXilef/ImHentai.xxx_Image_Downloader.
         PAUSE & EXIT
     )
 REM DEBUG
@@ -70,7 +71,7 @@ REM Test if ConsoleOutputMenus.cmd exists
 REM Teste, ob ConsoleOutputMenus.cmd existiert
     IF NOT EXIST "src\ConsoleOutputMenus.cmd" (
     CLS & COLOR 0C
-    ECHO Fatal ERROR by loading "src\ConsoleOutputMenus.cmd", file do not exist.
+    ECHO Fatal ERROR by loading "src\ConsoleOutputMenus.cmd", file do not exist & echo Downloads the missing file or the latest version of the software from: & echo https://github.com/RaptorXilef/ImHentai.xxx_Image_Downloader.
     PAUSE & EXIT
     )
 REM Choose language (Load appropriate code from file)
@@ -79,7 +80,7 @@ REM Sprache wählen (Lade entsprechenden Code aus Datei)
       CALL "src\LanguageLoadOrCreateConfigfile.cmd"
       ) ELSE (
         CLS & COLOR 0C
-        ECHO Fatal ERROR by loading "src\LanguageLoadOrCreateConfigfile.cmd", file do not exist.
+        ECHO Fatal ERROR by loading "src\LanguageLoadOrCreateConfigfile.cmd", file do not exist & echo Downloads the missing file or the latest version of the software from: & echo https://github.com/RaptorXilef/ImHentai.xxx_Image_Downloader.
         PAUSE & EXIT
     )
 REM DEBUG
@@ -90,7 +91,7 @@ REM Lade Sprachdatei
       CALL "translations\%countrycode%.cmd"
       ) ELSE (
         CLS & COLOR 0C
-        ECHO Fatal ERROR by loading "translations\%countrycode%.cmd", file do not exist.
+        ECHO Fatal ERROR by loading "translations\%countrycode%.cmd", file do not exist & echo Downloads the missing file or the latest version of the software from: & echo https://github.com/RaptorXilef/ImHentai.xxx_Image_Downloader.
         PAUSE & EXIT
     )
 REM Windowtitel
@@ -102,7 +103,7 @@ REM Hauptverzeichnis zum Speichern der Downloads festlegen/abfragen
       CALL "src\SavePathLoadOrCreateConfigfile.cmd"
       ) ELSE (
         CLS & COLOR 0C
-        ECHO Fatal ERROR by loading "src\SavePathLoadOrCreateConfigfile.cmd", file do not exist.
+        ECHO Fatal ERROR by loading "src\SavePathLoadOrCreateConfigfile.cmd", file do not exist & echo Downloads the missing file or the latest version of the software from: & echo https://github.com/RaptorXilef/ImHentai.xxx_Image_Downloader.
         PAUSE & EXIT
     )
     IF NOT EXIST "%savePath%" MD "%savePath%"
@@ -115,14 +116,14 @@ REM URL for reading out the values such as download URL, name, number of pages..
 REM URL zum Auslesen der Werte wie Download-URL, Name, Seitenanzahl...
 REM Load url query
 REM Lade URL-Abfrage
-    SET "outputMenue=OutputMenueMainUrl"
+    SET "outputMenu=OutputMenuMainUrl"
     CALL "src\ConsoleOutputMenus.cmd"
 
     IF EXIST "src\UrlNumberFilter.cmd" (
       CALL "src\UrlNumberFilter.cmd"
       ) ELSE (
         CLS & COLOR 0C
-        ECHO Fatal ERROR by loading "src\UrlNumberFilter.cmd", file do not exist.
+        ECHO Fatal ERROR by loading "src\UrlNumberFilter.cmd", file do not exist & echo Downloads the missing file or the latest version of the software from: & echo https://github.com/RaptorXilef/ImHentai.xxx_Image_Downloader.
         PAUSE & EXIT
     )
 
@@ -135,18 +136,18 @@ REM Setze verschiedene Speicherpfade als Variablen
     SET "savePathBackupFile=%savePathBackupFolder%\%comicId%.zip"
 
 
-
-
-
-
-
-
 :: ===============================================================================================
-::      Webseite auslesen
+::      Read website  /  Webseite auslesen
 :: ===============================================================================================
+REM Reading out the values download URL, name, number of pages...
 :: Auslesen der Werte Download-URL, Name, Seitenanzahl...
-    CALL "src\read_website.cmd"
-
+    IF EXIST "src\ReadingDataFromURL.cmd" (
+      CALL "src\ReadingDataFromURL.cmd"
+      ) ELSE (
+        CLS & COLOR 0C
+        ECHO Fatal ERROR by loading "src\ReadingDataFromURL.cmd", file do not exist & echo Downloads the missing file or the latest version of the software from: & echo https://github.com/RaptorXilef/ImHentai.xxx_Image_Downloader.
+        PAUSE & EXIT
+    )
     GOTO %errorRestart%
 :errorRestartNO
 
