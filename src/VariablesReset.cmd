@@ -17,6 +17,7 @@ SET "htmlFile="
 SET "tempFile="
 
 SET "chcpCodeNumber=chcp1252"
+SET "countrycode=en"
 :: ============================Main.cmd===========================================================
 :: Beispiel Laden
 SET "mainUrlInput=https://imhentai.xxx/gallery/598258/" & REM SET "comicNameInput=[thomas fischbach] Twokinds Reference Sheets"

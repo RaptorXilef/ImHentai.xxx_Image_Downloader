@@ -48,7 +48,7 @@ goto %chcpCodeNumber%
     echo   ^>    Seitenanzahl:
     echo   ^>     -^> %pages%
     echo   ^>
-    echo   ^>    Name des Comics / Der Bildreihe: (Von der Webseite übernummen)
+    echo   ^>    Name des Comics / Der Bildreihe: (Von der Webseite übernummen)(Koreanische und Japanische Zeichen werden nicht unterstützt!)
     echo   ^>     ^*-^> 1 = %comicNameInput%
     echo   ^>     ^*-^> 2 = %comicNameInput% (%languageInput%)
     echo   ^>     ^*-^> 3 = [%artistInput%] %comicNameInput%

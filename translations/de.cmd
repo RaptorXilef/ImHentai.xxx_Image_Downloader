@@ -54,18 +54,17 @@ SET "outputUrlNumberFilter4=Bitte versuchen Sie eine andere URL"
 SET "outputUrlNumberFilter5=Die angegebene URL entspricht den Bedingungen! Der Fortgang wird fortgesetzt"
 
 
-
-
-
-
-
-
-
-
-
-
-
 :: ===============================================================================================
-::     DEBUGs
+::     ReadingDataFromURL.cmd
 :: ===============================================================================================
-SET "outputUrlNumberFilter1=ist keine gültige URL oder Zahl"
+SET "outputReadingDataFromURL1=Lade variablen aus der Webseite hinter der angegebenen URL"
+SET "outputReadingDataFromURL2=Erstelle einen temporären Ordner zur Verarbeitung der Variablen"
+SET "outputReadingDataFromURL3=Die Webseite wurde erfolgreich zwischengespeichert. Nun werden die nötigen Informationen ausgelesen und in Variablen gespeichert."
+SET "outputReadingDataFromURL4=Es ist ein Fehler bei der Verarbeitung aufgetreten."
+SET "outputReadingDataFromURL5=Die Webseite konnte nicht zwischengespeichert werden."
+SET "outputReadingDataFromURL6=Der Vorgang wird daher zurückgesetzt."
+SET "outputReadingDataFromURL7=Bitte bestätigen Sie das zurücksetzen, dazu"
+SET "outputReadingDataFromURL8=Warte auf Benutzer"
+SET "outputReadingDataFromURL9=Im nächsten Schritt wird der Konsoleninhalt geleert. Wenn Sie bereit sind und das Auslesen der Variablen starten möchten,"
+SET "outputReadingDataFromURL10=Die Variablen wurden erfolgreich gespeichert!"
+SET "outputReadingDataFromURL11=Die temporären Dateien werden nun wieder entfernt."

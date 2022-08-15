@@ -57,8 +57,14 @@ SET "outputUrlNumberFilter5=The specified URL meets the conditions! Continue to 
 :: ===============================================================================================
 ::     ReadingDataFromURL.cmd
 :: ===============================================================================================
-SET "outputReadingDataFromURL1=is not a valid URL or number"
-SET "outputReadingDataFromURL2=Please try again! To continue"
-SET "outputReadingDataFromURL3=The specified URL does not match the conditions"
-SET "outputReadingDataFromURL4=Please try another URL"
-SET "outputReadingDataFromURL5=The specified URL meets the conditions! Continue to proceed"
+SET "outputReadingDataFromURL1=Load variables from the website behind the specified URL"
+SET "outputReadingDataFromURL2=Create a temporary folder for processing the variables"
+SET "outputReadingDataFromURL3=The website was cached successfully. Now the necessary information is read out and stored in variables."
+SET "outputReadingDataFromURL4=An error occurred while processing."
+SET "outputReadingDataFromURL5=The webpage could not be cached."
+SET "outputReadingDataFromURL6=The operation will therefore be rolled back."
+SET "outputReadingDataFromURL7=Please confirm the reset to do"
+SET "outputReadingDataFromURL8=Waiting for user"
+SET "outputReadingDataFromURL9=The next step is to clear the console content. When you are ready and want to start reading the variables,"
+SET "outputReadingDataFromURL10=The variables were saved successfully!"
+SET "outputReadingDataFromURL11=The temporary files will now be removed again."

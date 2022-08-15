@@ -1,10 +1,10 @@
 :: DEBUG
   IF "%DEBUG%"=="DebugON" (
     ECHO.
-    ECHO DEBUG: Lade variablen aus der Webseite hinter der angegebenen URL
+    ECHO DEBUG: %outputReadingDataFromURL1%
     ECHO.
     ECHO.
-    ECHO DEBUG: Erstelle einen temporären Ordner zur Verarbeitung der Variablen
+    ECHO DEBUG: %outputReadingDataFromURL2%
   ) else (CLS)
 REM ===============================================================================================(äöü)
 REM      Setze HTML Dokument Pfad und Name + temp Zwischenspeicher
@@ -31,15 +31,15 @@ REM ============================================================================
     IF not exist "bin\ThirdPartySoftware\wget%PROCESSOR_ARCHITECTURE:~-2%.exe" "bin\ThirdPartySoftware\wget.exe" -O "%htmlFile%" "%mainUrl%"
 
     ECHO. & ECHO.
-    IF exist "%htmlFile%" %colorEcho% {0A}Die Webseite wurde erfolgreich zwischengespeichert. Nun werden die nötigen Informationen ausgelesen und in Variablen gespeichert.{#}{\n}{\n}{\n} && CHOICE /N /C 123 /T 1 /D 1 >NUL
-    IF not exist "%htmlFile%" %colorEcho% {0C} Es ist ein Fehler bei der Verarbeitung aufgetreten.{\n} Die Webseite konnte nicht zwischengespeichert werden.{\n} {08} Der Vorgang wird daher zurückgesetzt.{\n}{\n}  Bitte bestätigen Sie das zurücksetzen, dazu{#}{\n} && pause && SET errorRestart=errorRestartYES
+    IF exist "%htmlFile%" %colorEcho% {0A} %outputReadingDataFromURL3%{#}{\n}{\n}{\n} && CHOICE /N /C 123 /T 1 /D 1 >NUL
+    IF not exist "%htmlFile%" %colorEcho% {0C} %outputReadingDataFromURL4%{\n} %outputReadingDataFromURL5%{\n} {08} %outputReadingDataFromURL6%{\n}{\n} %outputReadingDataFromURL7%{#}{\n} && pause && SET errorRestart=errorRestartYES
     goto %errorRestart%
 
 :errorRestartNO
 :debugloop
 REM DEBUG
   IF "%DEBUG%"=="DebugON" (
-    %colorEcho% DEBUG: {0c}Warte auf Benutzer: {0e}Im nächsten Schritt wird der Konsoleninhalt geleehrt. Wenn Sie bereit sind und das Auslesen der Variablen starten möchten, && PAUSE
+    %colorEcho% DEBUG: {0c}%outputReadingDataFromURL8%: {0e}%outputReadingDataFromURL9% && PAUSE
       CLS & ECHO. & ECHO.
       COLOR 08
         %colorEcho% {08}DEBUG: {07}Download-URL: "%imageDownloadFolderURL%"{#}{\n}{\n}
@@ -132,10 +132,8 @@ REM DEBUG
   )
 
 IF "%languageInput%"=="russian" SET "chcpCodeNumber=chcp65001"
-IF "%languageInput%"=="korean" SET "chcpCodeNumber=chcp65001"
-IF "%languageInput%"=="japanese" SET "chcpCodeNumber=chcp65001"
 
-goto %chcpCodeNumber%
+GOTO %chcpCodeNumber%
 :chcp65001
     IF "%DEBUG%"=="DebugON" (CHCP 65001) else (CHCP 65001>nul)
 :chcp1252
@@ -183,6 +181,7 @@ REM DEBUG
 
   REM Comicname
       findstr /L "<h1>" "%htmlFile%" >"%tempFile%"
+      CHCP 51932
         SET /p tempVar=<"%tempFile%"
           SET "tempVar=%tempVar:&lt;=(%"
           SET "tempVar=%tempVar:&gt;=)%"
@@ -266,13 +265,12 @@ REM DEBUG
     REM CLS && goto debugloop
   )
 
-
 REM ===============================================================================================
 REM      Lösche temp Dateien
 REM ===============================================================================================
 IF "%DEBUG%"=="DebugON" (CHCP 1252) else (CHCP 1252>nul)
-    %colorEcho% {\n}{0A} Die Variablen wurden erfolgreich gespeichert!{#}{\n}
-    %colorEcho% {\n}{0A} Die Temprären Dateien werden nun wieder entfernt.{#}{\n}
+    %colorEcho% {\n}{0A} %outputReadingDataFromURL10%{#}{\n}
+    %colorEcho% {\n}{0A} %outputReadingDataFromURL11%{#}{\n}
         del "%htmlFile%"
         del "%tempFile%"
     rd /s /q "%savePathTempFolderComicID%"
