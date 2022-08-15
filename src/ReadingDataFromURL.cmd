@@ -1,268 +1,280 @@
-    color 08
-    cls
-    echo.
-    echo Lade variablen aus der Webseite hinter der angegebenen URL
-    echo.
-    echo.
-:: ===============================================================================================(äöü)
-::      Setze HTML Dokument Pfad und Name + temp Zwischenspeicher
-:: ===============================================================================================
-    echo Erstelle einen temporären Ordner zur Verarbeitung der Variablen
-        IF NOT EXIST "%savePathTempFolder%" MD "%savePathTempFolder%" && attrib +h "%savePathTempFolder%"
-        IF NOT EXIST "%savePathTempFolderComicID%" MD "%savePathTempFolderComicID%"
-        pause
-            set "htmlVAR=%savePathTempFolderComicID%\temp.html"
-            set "tempVAR=%savePathTempFolderComicID%\temp.txt"
-    echo.
-    echo.
+:: DEBUG
+  IF "%DEBUG%"=="DebugON" (
+    ECHO.
+    ECHO DEBUG: Lade variablen aus der Webseite hinter der angegebenen URL
+    ECHO.
+    ECHO.
+    ECHO DEBUG: Erstelle einen temporären Ordner zur Verarbeitung der Variablen
+  ) else (CLS)
+REM ===============================================================================================(äöü)
+REM      Setze HTML Dokument Pfad und Name + temp Zwischenspeicher
+REM ===============================================================================================
+    IF NOT EXIST "%savePathTempFolder%" (
+      MD "%savePathTempFolder%"
+      attrib +h "%savePathTempFolder%"
+    )
+    IF NOT EXIST "%savePathTempFolderComicID%" MD "%savePathTempFolderComicID%"
 
-pause
-:: ===============================================================================================
-::      Starte 64 oder 32 Bit Downlaoder für HTML Dokument
-:: ===============================================================================================
-    IF exist "bin\ThirdPartySoftware\wget%PROCESSOR_ARCHITECTURE:~-2%.exe" "bin\ThirdPartySoftware\wget%PROCESSOR_ARCHITECTURE:~-2%.exe" -O "%htmlVAR%" "%main-url%"
-    IF not exist "bin\ThirdPartySoftware\wget%PROCESSOR_ARCHITECTURE:~-2%.exe" "bin\ThirdPartySoftware\wget.exe" -O "%htmlVAR%" "%main-url%"
+    SET "htmlFile=%savePathTempFolderComicID%\temphtml.txt"
+    SET "tempFile=%savePathTempFolderComicID%\temp.txt"
+REM DEBUG
+  IF "%DEBUG%"=="DebugON" (
+    ECHO DEBUG: htmlFile= "%htmlFile%"
+    ECHO DEBUG: htmlFile= "%tempFile%"
+    CHOICE /N /C 123 /T 1 /D 1 >NUL
+  )
+    ECHO. & ECHO.
+REM ===============================================================================================
+REM      Starte 64 oder 32 Bit Downlaoder für HTML Dokument
+REM ===============================================================================================
+    IF exist "bin\ThirdPartySoftware\wget%PROCESSOR_ARCHITECTURE:~-2%.exe" "bin\ThirdPartySoftware\wget%PROCESSOR_ARCHITECTURE:~-2%.exe" -O "%htmlFile%" "%mainUrl%"
+    IF not exist "bin\ThirdPartySoftware\wget%PROCESSOR_ARCHITECTURE:~-2%.exe" "bin\ThirdPartySoftware\wget.exe" -O "%htmlFile%" "%mainUrl%"
 
-
-    echo.
-    echo.
-    IF exist "%htmlVAR%" %color_echo% {0A}Die Webseite wurde erfolgreich ausgelesen. Die Variablen werden nun gespeichert.{#}{\n}{\n}{\n}{#} && ::choice /N /C 123 /T 1 /D 1 >NUL
-    IF not exist "%htmlVAR%" %color_echo% {0C} Es ist ein Fehler bei der Verarbeitung aufgetreten.{\n} {08} Der Vorgang wird daher zurückgesetzt.{\n}{\n}  Bitte bestätigen Sie den Vorgang mit {07}[Enter]{\n}{#} && pause && set errorRestart=errorRestartYES
+    ECHO. & ECHO.
+    IF exist "%htmlFile%" %colorEcho% {0A}Die Webseite wurde erfolgreich zwischengespeichert. Nun werden die nötigen Informationen ausgelesen und in Variablen gespeichert.{#}{\n}{\n}{\n} && CHOICE /N /C 123 /T 1 /D 1 >NUL
+    IF not exist "%htmlFile%" %colorEcho% {0C} Es ist ein Fehler bei der Verarbeitung aufgetreten.{\n} Die Webseite konnte nicht zwischengespeichert werden.{\n} {08} Der Vorgang wird daher zurückgesetzt.{\n}{\n}  Bitte bestätigen Sie das zurücksetzen, dazu{#}{\n} && pause && SET errorRestart=errorRestartYES
     goto %errorRestart%
 
-
-:restart_no
-cls
-    %color_echo% {\n}{07} Download-URL: "%dl-URL%"{\n}{\n}
-    %color_echo% {\n}{07} Seiten: "%pages_input%"{\n}{\n}
-    %color_echo% {\n}{07} Comicname: "%comic-name_input%"{\n}{\n}
-    %color_echo% {\n}{07} Language: "%language_input%"{\n}{\n}
-    %color_echo% {\n}{07} Artist: "%artist_input%"{\n}{\n} && choice /N /C 123 /T 1 /D 1 >NUL
+:errorRestartNO
 :debugloop
-:: ===============================================================================================
-::      Filter Variablen aus HTML Dokument
-:: ===============================================================================================
-:: Download-URL
-    findstr /L "cover.jpg" "%htmlVAR%" >"%tempVAR%"
-            set /p temp=<"%tempVAR%"
-            set "temp=%temp:|=%"
-            set "temp=%temp:<=%"
-            set "temp=%temp:>=%"
-            set "temp=%temp:&=%"
-            set "temp=%temp:^=%"
-            set "temp=%temp:?=%"
-            set "temp=%temp:\=%"
-            set "temp=%temp:!=%"
-            set "temp=%temp:?=%"
-            set "temp=%temp: =%"
-            set "temp=%temp:	=%"
-
-            set "temp=%temp:cover.jpg=%"
-            set "temp=%temp:cover.png=%"
-
-            set temp=%temp:"=;%
-
-            echo "%temp%">"%tempVAR%"
-
-        FOR /F "usebackq tokens=8 delims=;" %%A IN ("%tempVAR%") DO set dl-URL=%%A
-
-        ::set "dl-URL=%temp:~131,39%"
-    ::DEBUG
-    cls && echo. && echo Download-URL: "%dl-URL%" * && echo.
-    echo. && echo Seiten: "%pages_input%" && echo.
-    echo. && echo Comicname: "%comic-name_input%" && echo.
-    echo. && echo Language: "%language_input%" && echo.
-    echo. && echo Artist: "%artist_input%" && echo. && ::choice /N /C 123 /T 1 /D 1 >NUL
-
-
-
-:: ===============================================================================================
-::      Filter Variablen aus HTML Dokument
-:: ===============================================================================================
-:: Seitenanzahl
-    findstr /L "Pages:" "%htmlVAR%" >"%tempVAR%"
-            set /p temp=<"%tempVAR%"
-            set "temp=%temp:|=%"
-            set "temp=%temp:<=%"
-            set "temp=%temp:>=%"
-            set "temp=%temp:&=%"
-            set "temp=%temp:^=%"
-            set "temp=%temp:?=%"
-            set "temp=%temp:\=%"
-            set "temp=%temp:!=%"
-            set "temp=%temp:?=%"
-            set "temp=%temp: =%"
-            set "temp=%temp:	=%"
-
-            set temp=%temp:"=;%
-            set temp=%temp::=;%
-            set temp=%temp:/=;%
-
-            echo "%temp%">"%tempVAR%"
-
-        FOR /F "usebackq tokens=4 delims=;" %%A IN ("%tempVAR%") DO set pages_input=%%A
-
-    ::DEBUG
-    cls && echo. && echo Download-URL: "%dl-URL%" && echo.
-    echo. && echo Seiten: "%pages_input%" * && echo.
-    echo. && echo Comicname: "%comic-name_input%" && echo.
-    echo. && echo Language: "%language_input%" && echo.
-    echo. && echo Artist: "%artist_input%" && echo. && ::choice /N /C 123 /T 1 /D 1 >NUL
+REM DEBUG
+  IF "%DEBUG%"=="DebugON" (
+    %colorEcho% DEBUG: {0c}Warte auf Benutzer: {0e}Im nächsten Schritt wird der Konsoleninhalt geleehrt. Wenn Sie bereit sind und das Auslesen der Variablen starten möchten, && PAUSE
+      CLS & ECHO. & ECHO.
+      COLOR 08
+        %colorEcho% {08}DEBUG: {07}Download-URL: "%imageDownloadFolderURL%"{#}{\n}{\n}
+        %colorEcho% DEBUG: {07}Seiten: "%pageCountInput%"{#}{\n}{\n}
+        %colorEcho% DEBUG: {07}Language: "%languageInput%"{#}{\n}{\n}
+        %colorEcho% DEBUG: {07}Artist: "%artistInput%"{#}{\n}{\n}
+        %colorEcho% DEBUG: {07}Comicname: "%comicNameInput%"{#}{\n}{\n}
+      CHOICE /N /C 123 /T 1 /D 1 >NUL
+  )
+REM ===============================================================================================
+REM      Filter Variablen aus HTML Dokument
+REM ===============================================================================================
+REM Download-URL
+    findstr /L "cover.jpg" "%htmlFile%" >"%tempFile%"
+      SET /p tempVar=<"%tempFile%"
+      SET "tempVar=%tempVar:|=%"
+      SET "tempVar=%tempVar:<=%"
+      SET "tempVar=%tempVar:>=%"
+      SET "tempVar=%tempVar:&=%"
+      SET "tempVar=%tempVar:^=%"
+      SET "tempVar=%tempVar:?=%"
+      SET "tempVar=%tempVar:\=%"
+      SET "tempVar=%tempVar:!=%"
+      SET "tempVar=%tempVar:?=%"
+      SET "tempVar=%tempVar: =%"
+      SET "tempVar=%tempVar:	=%"
+        SET "tempVar=%tempVar:cover.jpg=%"
+        SET "tempVar=%tempVar:cover.png=%"
+          SET tempVar=%tempVar:"=;%
+      ECHO "%tempVar%">"%tempFile%"
+        SET "tempVar="
+        FOR /F "usebackq tokens=8 delims=;" %%A IN ("%tempFile%") DO SET imageDownloadFolderURL=%%A
+        REM SET "imageDownloadFolderURL=%tempVar:~131,39%"
+REM DEBUG
+  IF "%DEBUG%"=="DebugON" (
+    CLS & ECHO. & ECHO.
+      %colorEcho% DEBUG: {07}Download-URL: {0A}"%imageDownloadFolderURL%"{#}{\n}{\n}
+      %colorEcho% DEBUG: {07}Seiten: "%pageCountInput%"{#}{\n}{\n}
+      %colorEcho% DEBUG: {07}Language: "%languageInput%"{#}{\n}{\n}
+      %colorEcho% DEBUG: {07}Artist: "%artistInput%"{#}{\n}{\n}
+      %colorEcho% DEBUG: {07}Comicname: "%comicNameInput%"{#}{\n}{\n}
+    CHOICE /N /C 123 /T 1 /D 1 >NUL
+  )
 
 
-:: ===============================================================================================
-::      Filter Variablen aus HTML Dokument
-:: ===============================================================================================
-:: Comicname
-    findstr /L "<h1>" "%htmlVAR%" >"%tempVAR%"
-
-        set /p temp=<"%tempVAR%"
-
-            set "temp=%temp:&lt;=(%"
-            set "temp=%temp:&gt;=)%"
-            set "temp=%temp:ï¼ˆ= (%"
-            set "temp=%temp:ï¼‰=)%"
-            set "temp=%temp: <3 =%"
-            set "temp=%temp: <3=%"
-            set "temp=%temp:<3 =%"
-            set "temp=%temp:<3=%"
-
-                set "temp=%temp:é=e%"
-                set "temp=%temp:é=e%"
-                set "temp=%temp:è=e%"
-                set "temp=%temp:Ã©=e%"
-                set "temp=%temp:#039;=-%
-                set "temp=%temp:&#039;=-%
-
-            set "temp=%temp:|=-%"
-            ::set "temp=%temp:<=%"
-            set "temp=%temp:>=%"
-            set "temp=%temp:&=%"
-            set "temp=%temp:^=%"
-            set "temp=%temp:"=%"
-            set "temp=%temp:?=%"
-            set "temp=%temp:\=%"
-            set "temp=%temp:/=%"
-            set "temp=%temp:!=%"
-            set "temp=%temp:?=%"
-            set "temp=%temp:.=%"
-            set "temp=%temp:'=%"
-            set "temp=%temp:h1=%"
-            set "temp=%temp:  = %"
-            set "temp=%temp:	=%"
-
-                set "temp=%temp:(English)=(english)%"
-                set "temp=%temp:[English]=(english)%"
-                set "temp=%temp:[english]=(english)%"
-                set "temp=%temp:(Japanese)=(japanese)%"
-                set "temp=%temp:[Japanese]=(japanese)%"
-                set "temp=%temp:[japanese]=(japanese)%"
-                set "temp=%temp:(Deutsch)=(deutsch)%"
-                set "temp=%temp:[Deutsch]=(deutsch)%"
-                set "temp=%temp:[deutsch]=(deutsch)%"
-                set "temp=%temp:(German)=(german)%"
-                set "temp=%temp:[German]=(german)%"
-                set "temp=%temp:[german]=(german)%"
-                set "temp=%temp:(Spanish)=(spanish)%"
-                set "temp=%temp:[Spanish]=(spanish)%"
-                set "temp=%temp:[spanish]=(spanish)%"
-                set "temp=%temp:(Korean)=(korean)%"
-                set "temp=%temp:[Korean]=(korean)%"
-                set "temp=%temp:[korean]=(korean)%"
-                set "temp=%temp:(French)=(french)%"
-                set "temp=%temp:[French]=(french)%"
-                set "temp=%temp:[french]=(french)%"
-                set "temp=%temp:(Russian)=(russian)%"
-                set "temp=%temp:[Russian]=(russian)%"
-                set "temp=%temp:[russian]=(russian)%"
-
-            set "temp=%temp::=-%"
-            set "temp=%temp:";=%"
+REM number of pages / Seitenanzahl
+    findstr /L "Pages:" "%htmlFile%" >"%tempFile%"
+      SET /p tempVar=<"%tempFile%"
+      SET "tempVar=%tempVar:|=%"
+      SET "tempVar=%tempVar:<=%"
+      SET "tempVar=%tempVar:>=%"
+      SET "tempVar=%tempVar:&=%"
+      SET "tempVar=%tempVar:^=%"
+      SET "tempVar=%tempVar:?=%"
+      SET "tempVar=%tempVar:\=%"
+      SET "tempVar=%tempVar:!=%"
+      SET "tempVar=%tempVar:?=%"
+      SET "tempVar=%tempVar: =%"
+      SET "tempVar=%tempVar:	=%"
+        SET tempVar=%tempVar:"=;%
+        SET tempVar=%tempVar::=;%
+        SET tempVar=%tempVar:/=;%
+      ECHO "%tempVar%">"%tempFile%"
+        SET "tempVar="
+        FOR /F "usebackq tokens=4 delims=;" %%A IN ("%tempFile%") DO SET pageCountInput=%%A
+REM DEBUG
+  IF "%DEBUG%"=="DebugON" (
+    CLS & ECHO. & ECHO.
+      %colorEcho% DEBUG: {07}Download-URL: "%imageDownloadFolderURL%"{#}{\n}{\n}
+      %colorEcho% DEBUG: {07}Seiten: {0A}"%pageCountInput%"{#}{\n}{\n}
+      %colorEcho% DEBUG: {07}Language: "%languageInput%"{#}{\n}{\n}
+      %colorEcho% DEBUG: {07}Artist: "%artistInput%"{#}{\n}{\n}
+      %colorEcho% DEBUG: {07}Comicname: "%comicNameInput%"{#}{\n}{\n}
+    CHOICE /N /C 123 /T 1 /D 1 >NUL
+  )
 
 
-        echo "%temp%">"%tempVAR%"
+REM Language
+    findstr /L "Languages:" "%htmlFile%" >"%tempFile%"
+      FOR /F "usebackq tokens=4 delims=/" %%A IN ("%tempFile%") DO SET languageInput=%%A
+REM DEBUG
+  IF "%DEBUG%"=="DebugON" (
+    CLS & ECHO. & ECHO.
+      %colorEcho% DEBUG: {07}Download-URL: "%imageDownloadFolderURL%"{#}{\n}{\n}
+      %colorEcho% DEBUG: {07}Seiten: "%pageCountInput%"{#}{\n}{\n}
+      %colorEcho% DEBUG: {07}Language: {0A}"%languageInput%"{#}{\n}{\n}
+      %colorEcho% DEBUG: {07}Artist: "%artistInput%"{#}{\n}{\n}
+      %colorEcho% DEBUG: {07}Comicname: "%comicNameInput%"{#}{\n}{\n}
+    CHOICE /N /C 123 /T 1 /D 1 >NUL
+  )
 
-        FOR /F "usebackq tokens=2 delims=<" %%A IN ("%tempVAR%") DO set comic-name_input=%%A
+IF "%languageInput%"=="russian" SET "chcpCodeNumber=chcp65001"
+IF "%languageInput%"=="korean" SET "chcpCodeNumber=chcp65001"
+IF "%languageInput%"=="japanese" SET "chcpCodeNumber=chcp65001"
 
-
-    ::DEBUG
-    cls && echo. && echo Download-URL: "%dl-URL%" && echo.
-    echo. && echo Seiten: "%pages_input%" && echo.
-    echo. && echo Comicname: "%comic-name_input%" * && echo.
-    echo. && echo Language: "%language_input%" && echo.
-    echo. && echo Artist: "%artist_input%" && echo. && ::choice /N /C 123 /T 1 /D 1 >NUL
-
-
-:: ===============================================================================================
-::      Filter Variablen aus HTML Dokument
-:: ===============================================================================================
-:: Language
-    findstr /L "Languages:" "%htmlVAR%" >"%tempVAR%"
-        FOR /F "usebackq tokens=4 delims=/" %%A IN ("%tempVAR%") DO set language_input=%%A
-    ::DEBUG
-    cls && echo. && echo Download-URL: "%dl-URL%" && echo.
-    echo. && echo Seiten: "%pages_input%" && echo.
-    echo. && echo Comicname: "%comic-name_input%" && echo.
-    echo. && echo Language: "%language_input%" * && echo.
-    echo. && echo Artist: "%artist_input%" && echo. && ::choice /N /C 123 /T 1 /D 1 >NUL
-
-
-:: ===============================================================================================
-::      Filter Variablen aus HTML Dokument
-:: ===============================================================================================
-:: Artist
-    findstr /L "Artists:" "%htmlVAR%" >"%tempVAR%"
-        FOR /F "usebackq tokens=4 delims=/" %%A IN ("%tempVAR%") DO set artist_input=%%A
-        set "artist_input=%artist_input:-= %"
-            set "comic-name_input=%comic-name_input:|=-%"
-            set "comic-name_input=%comic-name_input:<=%"
-            set "comic-name_input=%comic-name_input:>=%"
-            set "comic-name_input=%comic-name_input:&=%"
-            set "comic-name_input=%comic-name_input:^=%"
-            set "comic-name_input=%comic-name_input:"=%"
-            set "comic-name_input=%comic-name_input:?=%"
-            set "comic-name_input=%comic-name_input:\=%"
-            set "comic-name_input=%comic-name_input:!=%"
-            set "comic-name_input=%comic-name_input:?=%"
-            set "comic-name_input=%comic-name_input:.=%"
-            set "comic-name_input=%comic-name_input:'=%"
-            set "comic-name_input=%comic-name_input:  = %"
-            set "comic-name_input=%comic-name_input:	=%"
-                set "comic-name_input=%comic-name_input::=-%"
-                set "comic-name_input=%comic-name_input:/=%"
-                set "comic-name_input=%comic-name_input:'=-%"
-                set "comic-name_input=%comic-name_input:é=e%"
-                set "comic-name_input=%comic-name_input:é=e%"
-                set "comic-name_input=%comic-name_input:è=e%"
-                set "comic-name_input=%comic-name_input:Ã©=e%"
-                set "comic-name_input=%comic-name_input:#039;=-%
-                set "comic-name_input=%comic-name_input:"lt=(%"
-                set "comic-name_input=%comic-name_input:"gt=)%"
-                set "comic-name_input=%comic-name_input:";=%"
-
-    ::DEBUG
-    cls && echo. && echo Download-URL: "%dl-URL%" && echo.
-    echo. && echo Seiten: "%pages_input%" && echo.
-    echo. && echo Comicname: "%comic-name_input%" && echo.
-    echo. && echo Language: "%language_input%" && echo.
-    echo. && echo Artist: "%artist_input%" * && echo. && ::choice /N /C 123 /T 1 /D 1 >NUL
-        ::cls && goto debugloop
+goto %chcpCodeNumber%
+:chcp65001
+    IF "%DEBUG%"=="DebugON" (CHCP 65001) else (CHCP 65001>nul)
+:chcp1252
+REM Artist
+    findstr /L "Artists:" "%htmlFile%" >"%tempFile%"
+      FOR /F "usebackq tokens=4 delims=/" %%A IN ("%tempFile%") DO SET tempVar=%%A
+        SET "tempVar=%tempVar:-= %"
+          SET "tempVar=%tempVar:|=-%"
+          SET "tempVar=%tempVar:<=%"
+          SET "tempVar=%tempVar:>=%"
+          SET "tempVar=%tempVar:&=%"
+          SET "tempVar=%tempVar:^=%"
+          SET "tempVar=%tempVar:"=%"
+          SET "tempVar=%tempVar:?=%"
+          SET "tempVar=%tempVar:\=%"
+          SET "tempVar=%tempVar:!=%"
+          SET "tempVar=%tempVar:?=%"
+          SET "tempVar=%tempVar:.=%"
+          SET "tempVar=%tempVar:'=%"
+          SET "tempVar=%tempVar:  = %"
+          SET "tempVar=%tempVar:	=%"
+        SET "tempVar=%tempVar::=-%"
+        SET "tempVar=%tempVar:/=%"
+        SET "tempVar=%tempVar:'=-%"
+        SET "tempVar=%tempVar:é=e%"
+        SET "tempVar=%tempVar:é=e%"
+        SET "tempVar=%tempVar:è=e%"
+        SET "tempVar=%tempVar:Ã©=e%"
+        SET "tempVar=%tempVar:#039;=-%
+        SET "tempVar=%tempVar:"lt=(%"
+        SET "tempVar=%tempVar:"gt=)%"
+        SET "artistInput=%tempVar:";=%"
+          SET "tempVar="
+REM DEBUG
+  IF "%DEBUG%"=="DebugON" (
+    CLS & ECHO. & ECHO.
+      %colorEcho% DEBUG: {07}Download-URL: "%imageDownloadFolderURL%"{#}{\n}{\n}
+      %colorEcho% DEBUG: {07}Seiten: "%pageCountInput%"{#}{\n}{\n}
+      %colorEcho% DEBUG: {07}Language: "%languageInput%"{#}{\n}{\n}
+      %colorEcho% DEBUG: {07}Artist: {0A}"%artistInput%"{#}{\n}{\n}
+      %colorEcho% DEBUG: {07}Comicname: "%comicNameInput%"{#}{\n}{\n}
+    CHOICE /N /C 123 /T 1 /D 1 >NUL
+  )
 
 
-    cls && echo. && echo Download-URL: "%dl-URL%" && echo.
-    echo. && echo Seiten: "%pages_input%" && echo.
-    echo. && echo Comicname: "%comic-name_input%" && echo.
-    echo. && echo Language: "%language_input%" && echo.
-    echo. && echo Artist: "%artist_input%" && echo. && ::choice /N /C 123 /T 1 /D 1 >NUL
+  REM Comicname
+      findstr /L "<h1>" "%htmlFile%" >"%tempFile%"
+        SET /p tempVar=<"%tempFile%"
+          SET "tempVar=%tempVar:&lt;=(%"
+          SET "tempVar=%tempVar:&gt;=)%"
+          SET "tempVar=%tempVar:ï¼ˆ= (%"
+          SET "tempVar=%tempVar:ï¼‰=)%"
+          SET "tempVar=%tempVar: <3 =%"
+          SET "tempVar=%tempVar: <3=%"
+          SET "tempVar=%tempVar:<3 =%"
+          SET "tempVar=%tempVar:<3=%"
+        SET "tempVar=%tempVar:é=e%"
+        SET "tempVar=%tempVar:é=e%"
+        SET "tempVar=%tempVar:è=e%"
+        SET "tempVar=%tempVar:Ã©=e%"
+        SET "tempVar=%tempVar:#039;=-%
+        SET "tempVar=%tempVar:&#039;=-%
+          SET "tempVar=%tempVar:|=-%"
+          REM SET "tempVar=%tempVar:<=%"
+          SET "tempVar=%tempVar:>=%"
+          SET "tempVar=%tempVar:&=%"
+          SET "tempVar=%tempVar:^=%"
+          SET "tempVar=%tempVar:"=%"
+          SET "tempVar=%tempVar:?=%"
+          SET "tempVar=%tempVar:\=%"
+          SET "tempVar=%tempVar:/=%"
+          SET "tempVar=%tempVar:!=%"
+          SET "tempVar=%tempVar:?=%"
+          SET "tempVar=%tempVar:.=%"
+          SET "tempVar=%tempVar:'=%"
+          SET "tempVar=%tempVar:h1=%"
+          SET "tempVar=%tempVar:  = %"
+          SET "tempVar=%tempVar:	=%"
+        SET "tempVar=%tempVar:(English)=(english)%"
+        SET "tempVar=%tempVar:[English]=(english)%"
+        SET "tempVar=%tempVar:[english]=(english)%"
+        SET "tempVar=%tempVar:(Japanese)=(japanese)%"
+        SET "tempVar=%tempVar:[Japanese]=(japanese)%"
+        SET "tempVar=%tempVar:[japanese]=(japanese)%"
+        SET "tempVar=%tempVar:(Deutsch)=(deutsch)%"
+        SET "tempVar=%tempVar:[Deutsch]=(deutsch)%"
+        SET "tempVar=%tempVar:[deutsch]=(deutsch)%"
+        SET "tempVar=%tempVar:(German)=(german)%"
+        SET "tempVar=%tempVar:[German]=(german)%"
+        SET "tempVar=%tempVar:[german]=(german)%"
+        SET "tempVar=%tempVar:(Spanish)=(spanish)%"
+        SET "tempVar=%tempVar:[Spanish]=(spanish)%"
+        SET "tempVar=%tempVar:[spanish]=(spanish)%"
+        SET "tempVar=%tempVar:(Korean)=(korean)%"
+        SET "tempVar=%tempVar:[Korean]=(korean)%"
+        SET "tempVar=%tempVar:[korean]=(korean)%"
+        SET "tempVar=%tempVar:(French)=(french)%"
+        SET "tempVar=%tempVar:[French]=(french)%"
+        SET "tempVar=%tempVar:[french]=(french)%"
+        SET "tempVar=%tempVar:(Russian)=(russian)%"
+        SET "tempVar=%tempVar:[Russian]=(russian)%"
+        SET "tempVar=%tempVar:[russian]=(russian)%"
+          SET "tempVar=%tempVar::=-%"
+          SET "tempVar=%tempVar:";=%"
+        ECHO "%tempVar%">"%tempFile%"
+          SET "tempVar="
+          FOR /F "usebackq tokens=2 delims=<" %%A IN ("%tempFile%") DO SET comicNameInput=%%A
+  REM DEBUG
+    IF "%DEBUG%"=="DebugON" (
+      CLS & ECHO. & ECHO.
+        %colorEcho% DEBUG: {07}Download-URL: "%imageDownloadFolderURL%"{#}{\n}{\n}
+        %colorEcho% DEBUG: {07}Seiten: "%pageCountInput%"{#}{\n}{\n}
+        %colorEcho% DEBUG: {07}Language: "%languageInput%"{#}{\n}{\n}
+        %colorEcho% DEBUG: {07}Artist: "%artistInput%"{#}{\n}{\n}
+        %colorEcho% DEBUG: {07}Comicname: {0A}"%comicNameInput%"{#}{\n}{\n}
+      CHOICE /N /C 123 /T 1 /D 1 >NUL
+    )
+
+REM DEBUG
+  IF "%DEBUG%"=="DebugON" (
+    CLS & ECHO. & ECHO.
+      %colorEcho% DEBUG: {07}Download-URL: "%imageDownloadFolderURL%"{#}{\n}{\n}
+      %colorEcho% DEBUG: {07}Seiten: "%pageCountInput%"{#}{\n}{\n}
+      %colorEcho% DEBUG: {07}Language: "%languageInput%"{#}{\n}{\n}
+      %colorEcho% DEBUG: {07}Artist: "%artistInput%"{#}{\n}{\n}
+      %colorEcho% DEBUG: {07}Comicname: "%comicNameInput%"{#}{\n}{\n}
+    CHOICE /N /C 123 /T 1 /D 1 >NUL
+    REM CLS && goto debugloop
+  )
 
 
-:: ===============================================================================================
-::      Lösche temp Dateien
-:: ===============================================================================================
-    echo Die Variablen wurden erfolgreich gespeichert!
-    echo Die Temprären Dateien werden nun wieder entfernt.
-        del "%htmlVAR%"
-        del "%tempVAR%"
+REM ===============================================================================================
+REM      Lösche temp Dateien
+REM ===============================================================================================
+IF "%DEBUG%"=="DebugON" (CHCP 1252) else (CHCP 1252>nul)
+    %colorEcho% {\n}{0A} Die Variablen wurden erfolgreich gespeichert!{#}{\n}
+    %colorEcho% {\n}{0A} Die Temprären Dateien werden nun wieder entfernt.{#}{\n}
+        del "%htmlFile%"
+        del "%tempFile%"
     rd /s /q "%savePathTempFolderComicID%"
-    ::choice /N /C 123 /T 1 /D 1 >NUL
+    IF "%DEBUG%"=="DebugON" ( CHOICE /N /C 123 /T 1 /D 1 >NUL )
 :errorRestartYES

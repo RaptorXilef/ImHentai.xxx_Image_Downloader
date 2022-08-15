@@ -1,3 +1,4 @@
 
 config/
-debug_logs\
+debug_logs/
+notes/

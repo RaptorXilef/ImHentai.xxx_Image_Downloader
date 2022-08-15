@@ -2,50 +2,50 @@
     color 0a
     cls
     echo    Unterordner wählen / Thema wählen
-    echo   +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    echo   ¦
-    echo   ¦  Downloadthema
-    echo   ¦  =============
-    echo   ¦
-    echo   ¦
-    echo   ¦    Eingabe ^| Unter-Ordnername
-    echo   ¦    --------^|----------------------
-    echo   ¦       d    ^| Downloads_Allgemein
-    echo   ¦       a    ^| Animals_-_Feral
-    echo   ¦       dr   ^| Dragon
-    echo   ¦       f    ^| Furry
-    echo   ¦       c    ^| Furry_Cub
-    echo   ¦       h    ^| Human /Menschen
-    echo   ¦       hc   ^| Human Children
-    echo   ¦       k    ^| Kids_movies
-    echo   ¦       p    ^| Pokemon
-    echo   ¦       di   ^| Digimon
-    echo   ¦       s    ^| Spezial
-    echo   ¦       z    ^| Zootopia
-    echo   ¦       an   ^| Anime
-    echo   ¦       de   ^| Deutsch
-    echo   ¦      mlp   ^| MyLittlePony
-    echo   ¦      pic   ^| Pictures_only
-    echo   ¦       tk   ^| TwoKinds
-    echo   ¦      tlk   ^| The_Lion_King
-    echo   ¦       o    ^| Other
-    echo   ¦
-    echo   ¦      sfw   ^| SFW
-    echo   ¦
-    echo   ¦       f    ^| Favouriten
-    echo   ¦
-    echo   ¦            ^| Manuelle Eingabe eines eigenen Ordnernamen (Der Inhalt des Ordners wird nur bei dessen Auswahl geprüft) (In dieser Version nicht empfohlen)
-    echo   ¦
-    echo   ¦
-    echo   ¦       i    ^| ImHentai.xxx öffnen
-    echo   ¦       e    ^| Exit / Anwendung beenden
-    echo   +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    echo   +=======================================================================================================================================================================
+    echo   ^>
+    echo   ^>  Downloadthema
+    echo   ^>  =============
+    echo   ^>
+    echo   ^>
+    echo   ^>    Eingabe ^| Unter-Ordnername
+    echo   ^>    --------^|----------------------
+    echo   ^>       d    ^| Downloads_Allgemein
+    echo   ^>       a    ^| Animals_-_Feral
+    echo   ^>       dr   ^| Dragon
+    echo   ^>       f    ^| Furry
+    echo   ^>       c    ^| Furry_Cub
+    echo   ^>       h    ^| Human /Menschen
+    echo   ^>       hc   ^| Human Children
+    echo   ^>       k    ^| Kids_movies
+    echo   ^>       p    ^| Pokemon
+    echo   ^>       di   ^| Digimon
+    echo   ^>       s    ^| Spezial
+    echo   ^>       z    ^| Zootopia
+    echo   ^>       an   ^| Anime
+    echo   ^>       de   ^| Deutsch
+    echo   ^>      mlp   ^| MyLittlePony
+    echo   ^>      pic   ^| Pictures_only
+    echo   ^>       tk   ^| TwoKinds
+    echo   ^>      tlk   ^| The_Lion_King
+    echo   ^>       o    ^| Other
+    echo   ^>
+    echo   ^>      sfw   ^| SFW
+    echo   ^>
+    echo   ^>       f    ^| Favouriten
+    echo   ^>
+    echo   ^>            ^| Manuelle Eingabe eines eigenen Ordnernamen (Der Inhalt des Ordners wird nur bei dessen Auswahl geprüft) (In dieser Version nicht empfohlen)
+    echo   ^>
+    echo   ^>
+    echo   ^>       i    ^| ImHentai.xxx öffnen
+    echo   ^>       e    ^| Exit / Anwendung beenden
+    echo   +=======================================================================================================================================================================
     echo.
     echo   #  In welchen Ordner soll der Comic gedownloadet werden?
     echo         - Beispiel: tk
     echo         # Eingabe mit Enter bestätigen:
     echo.
-    set "dl_folder_input=da"
+    set "dl_folder_input=d"
     set /p "dl_folder_input=------> Ordner: "
     ::if "%dl_folder_input%"=="" set "dl_folder_input=da"
 

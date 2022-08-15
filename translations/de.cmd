@@ -52,3 +52,20 @@ SET "outputUrlNumberFilter2=Wiederholen Sie den Vorgang! Um fortzufahren"
 SET "outputUrlNumberFilter3=Die angegebene URL entspricht nicht den Bedingungen"
 SET "outputUrlNumberFilter4=Bitte versuchen Sie eine andere URL"
 SET "outputUrlNumberFilter5=Die angegebene URL entspricht den Bedingungen! Der Fortgang wird fortgesetzt"
+
+
+
+
+
+
+
+
+
+
+
+
+
+:: ===============================================================================================
+::     DEBUGs
+:: ===============================================================================================
+SET "outputUrlNumberFilter1=ist keine gültige URL oder Zahl"

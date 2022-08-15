@@ -7,6 +7,15 @@ REM Lizens: GNU GENERAL PUBLIC LICENSE - Version 3, 29 June 2007
 REM ===============================================================================================
 REM      Preload  #  Vorladen
 REM ===============================================================================================
+REM Reset Variables
+REM Resete Variablen
+    IF EXIST "src\VariablesReset.cmd" (
+      CALL "src\VariablesReset.cmd"
+      ) ELSE (
+        CLS & COLOR 0C
+        ECHO Fatal ERROR by loading "src\VariablesReset.cmd", file do not exist & echo Downloads the missing file or the latest version of the software from: & echo https://github.com/RaptorXilef/ImHentai.xxx_Image_Downloader.
+        PAUSE & EXIT
+    )
 REM Window size, background and font color
 REM Fenstergröße, Hintergrund- und SchrIFtfarbe
     MODE con lines=55 cols=180
@@ -40,7 +49,7 @@ REM Setze Variable für die Software cecho -^> Farben in CMD
 REM DEBUG
   IF "%DEBUG%"=="DebugON" (
     %colorEcho% DEBUG: {0a}ColorEcho loading successful!{#}{\n} || echo DEBUG: ColorEcho loading ERROR
-    %colorEcho% {00}00 - black{\n}{01}01 - navy{\n}{02}02 - green{\n}{03}03 - teal{\n}{04}04 - maroon{\n}{05}05 - purple{\n}{06}06 - olive{\n}{07}07 - silver{\n}{08}08 - gray{\n}{09}09 - blue{\n}{0A}0A - lime{\n}{0B}0B - aqua{\n}{0C}0C - red{\n}{0D}0D - fuchisa{\n}{0E}0E - yellow{\n}{0F}0F - white{\n}{#} || echo DEBUG: ColorEcho loading ERROR
+    %colorEcho% {00}00 - black{\n}{81}01 - navy{\n}{02}02 - green{\n}{03}03 - teal{\n}{04}04 - maroon{\n}{05}05 - purple{\n}{06}06 - olive{\n}{07}07 - silver{\n}{08}08 - gray{\n}{09}09 - blue{\n}{0A}0A - lime{\n}{0B}0B - aqua{\n}{0C}0C - red{\n}{0D}0D - fuchisa{\n}{0E}0E - yellow{\n}{0F}0F - white{\n}{#} || echo DEBUG: ColorEcho loading ERROR
     ECHO.
     CHOICE /N /C 123 /T 2 /D 1 >NUL
   )
@@ -84,7 +93,7 @@ REM Sprache wählen (Lade entsprechenden Code aus Datei)
         PAUSE & EXIT
     )
 REM DEBUG
-    IF "%DEBUG%"=="DebugON" ( ECHO DEBUG: countrycode= "%countrycode%" & CHOICE /N /C 123 /T 2 /D 1 >NUL )
+    IF "%DEBUG%"=="DebugON" ( ECHO. & ECHO DEBUG: countrycode= "%countrycode%" & CHOICE /N /C 123 /T 2 /D 1 >NUL )
 REM Load language file
 REM Lade Sprachdatei
     IF EXIST "translations\%countrycode%.cmd" (
@@ -118,7 +127,6 @@ REM Load url query
 REM Lade URL-Abfrage
     SET "outputMenu=OutputMenuMainUrl"
     CALL "src\ConsoleOutputMenus.cmd"
-
     IF EXIST "src\UrlNumberFilter.cmd" (
       CALL "src\UrlNumberFilter.cmd"
       ) ELSE (
@@ -133,7 +141,16 @@ REM Setze verschiedene Speicherpfade als Variablen
     SET "savePathDatabaseFolderComicID=%savePathDatabaseFolder%\%comicId%"
     SET "savePathTempFolder=%savePathDatabaseFolder%\_temp"
     SET "savePathTempFolderComicID=%savePathTempFolder%\%comicId%"
-    SET "savePathBackupFile=%savePathBackupFolder%\%comicId%.zip"
+    SET "savePathBackupFile=%savePathDatabaseFolderComicID%\%comicId%.zip"
+    IF "%DEBUG%"=="DebugON" (
+      ECHO. & ECHO.
+      ECHO DEBUG: savePathDatabaseFolder= "%savePathDatabaseFolder%"
+      ECHO DEBUG: savePathDatabaseFolderComicID= "%savePathDatabaseFolderComicID%"
+      ECHO DEBUG: savePathTempFolder= "%savePathTempFolder%"
+      ECHO DEBUG: savePathTempFolderComicID= "%savePathTempFolderComicID%"
+      ECHO DEBUG: savePathBackupFile= "%savePathBackupFile%"
+      choice /N /C 123 /T 2 /D 1 >NUL
+    )
 
 
 :: ===============================================================================================
@@ -150,7 +167,7 @@ REM Reading out the values download URL, name, number of pages...
     )
     GOTO %errorRestart%
 :errorRestartNO
-
+pause
 
 :: ===============================================================================================
 ::      Prüfen: Bereits heruntergeladen / Seiten fehlen? / History + Name des Comics #

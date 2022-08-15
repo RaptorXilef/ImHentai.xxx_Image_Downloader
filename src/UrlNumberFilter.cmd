@@ -22,11 +22,11 @@ REM Entferne alle Bestandteile der URL außer der Comic-ID
       SET "mainUrlInputRemove=%mainUrlInputRemove:l=%"
       SET "mainUrlInputRemove=%mainUrlInputRemove:r=%"
       SET "mainUrlInputRemove=%mainUrlInputRemove:y=%"
-      SET "ComicIdTest=%mainUrlInputRemove: =%"
+      SET "comicIdTest=%mainUrlInputRemove: =%"
 REM Repeat the prompt if input is not a number or a valid URL.
 REM Wiederhole die Eingabeaufforderung, wenn die Eingabe keine Zahl oder gültige URL ist.
-        SET /a "ComicIdTest2=%ComicIdTest%+0
-        IF %ComicIdTest% NEQ %ComicIdTest2% (
+        SET /a "comicIdTest2=%comicIdTest%+0
+        IF %comicIdTest% NEQ %comicIdTest2% (
           ECHO "%mainUrlInput%" %outputUrlNumberFilter1%!
           ECHO %outputUrlNumberFilter2%
           PAUSE
@@ -34,13 +34,13 @@ REM Wiederhole die Eingabeaufforderung, wenn die Eingabe keine Zahl oder gültige
           CALL "src\ConsoleOutputMenus.cmd"
           GOTO ReloadUserInput
         )
-      SET "ComicId=%ComicIdTest%"
+      SET "comicId=%comicIdTest%"
 
 
 REM ######################################################################################################################################
 REM Check whether the comic ID determined has 6 digits (Code-part by https://www.geeksforgeeks.org/batch-script-string-length/)
 REM Prüfung, ob die ermittelte Comic-ID 6 Stellen hat (Code-part by https://www.geeksforgeeks.org/batch-script-string-length/)
-          SET str=%ComicId%
+          SET str=%comicId%
           call :strLen str strlen
           GOTO continue
           :strLen
@@ -57,17 +57,17 @@ REM ############################################################################
 
 REM If strlen less than 6, complete string (old site support)
 REM Wenn strlen kleiner 6, vervollständige String (Support der alten Seiten)
-      IF %strlen% EQU 5 SET "ComicId=0%ComicId%"
-      IF %strlen% EQU 4 SET "ComicId=00%ComicId%"
-      IF %strlen% EQU 3 SET "ComicId=000%ComicId%"
-      IF %strlen% EQU 2 SET "ComicId=0000%ComicId%"
-      IF %strlen% EQU 1 SET "ComicId=00000%ComicId%"
+      IF %strlen% EQU 5 SET "comicId=0%comicId%"
+      IF %strlen% EQU 4 SET "comicId=00%comicId%"
+      IF %strlen% EQU 3 SET "comicId=000%comicId%"
+      IF %strlen% EQU 2 SET "comicId=0000%comicId%"
+      IF %strlen% EQU 1 SET "comicId=00000%comicId%"
 
 
 REM ######################################################################################################################################
 REM Check whether the comic ID determined has 6 digits (Code-part by https://www.geeksforgeeks.org/batch-script-string-length/)
 REM Prüfung, ob die ermittelte Comic-ID 6 Stellen hat (Code-part by https://www.geeksforgeeks.org/batch-script-string-length/)
-          SET str=%ComicId%
+          SET str=%comicId%
           call :strLen str strlen
           GOTO continue
           :strLen
@@ -80,15 +80,15 @@ REM ############################################################################
 
   :continue
       SET /a "strlen=%strlen%"
-          IF "%DEBUG%"=="DebugON" (ECHO strlen: "%strlen%")
+          IF "%DEBUG%"=="DebugON" (ECHO. & ECHO. & ECHO DEBUG: strlen: "%strlen%")
 
 
 REM Checking whether the determined comic ID is in the searched area
 REM Prüfung, ob die ermittelte Comic-ID im gesuchten Bereich liegt
-      SET /a "ComicIdTemp=%ComicId%"
-          IF "%DEBUG%"=="DebugON" (ECHO %main_url_temp%)
+      SET /a "comicIdTemp=%comicId%"
+          IF "%DEBUG%"=="DebugON" (ECHO. & ECHO DEBUG: comicIdTemp= "%comicIdTemp%" & ECHO DEBUG: comicId= "%comicId%")
 
-      IF %strlen% EQU 6 IF %ComicIdTemp% GEQ 1 IF %ComicIdTemp% LEQ 999999 GOTO continue
+      IF %strlen% EQU 6 IF %comicIdTemp% GEQ 1 IF %comicIdTemp% LEQ 999999 GOTO continue
       ECHO.
       ECHO.
       ECHO.
@@ -107,6 +107,7 @@ REM Prüfung, ob die ermittelte Comic-ID im gesuchten Bereich liegt
       ECHO.
       ECHO.
       %colorEcho% {0A} %outputUrlNumberFilter5%.{\n}{#}
-      SET "mainUrl=https://imhentai.xxx/gallery/%ComicId%/"
+      SET "mainUrl=https://imhentai.xxx/gallery/%comicId%/"
+          IF "%DEBUG%"=="DebugON" (ECHO. & ECHO DEBUG: mainUrl= "%mainUrl%")
           CHOICE /N /C 123 /T 1 /D 1 >NUL
       ::aktiviere äöü

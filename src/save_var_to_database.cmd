@@ -9,7 +9,7 @@ SET "temp_database_num=..\..\_database\%comicId%"
     echo %pages_last% >"%savePathDatabaseFolderComicID%\pages.txt"
     echo %mainUrl%>"%savePathDatabaseFolderComicID%\mainUrl.txt"
     echo %comicId%>"%savePathDatabaseFolderComicID%\comicId.txt"
-    echo %dl-url%>"%savePathDatabaseFolderComicID%\dl-url.txt"
+    echo %imageDownloadFolderURL%>"%savePathDatabaseFolderComicID%\imageDownloadFolderURL.txt"
     echo %savePath%>"%savePathDatabaseFolderComicID%\savePath.txt"
     ::pause
 ::Comicordner öffnen

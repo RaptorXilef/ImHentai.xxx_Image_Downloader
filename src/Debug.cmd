@@ -41,7 +41,7 @@ ECHO    (Comic-ID-als-Ganzzahl) main_url_temp: "%main_url_temp%"
 ECHO    (Comic-ID-länge) strlen: "%strlen%"
 ECHO.
 ECHO ^=^> Ausgelesen
-ECHO    dl-URL: "%dl-URL%" & ::Comic Download
+ECHO    imageDownloadFolderURL: "%imageDownloadFolderURL%" & ::Comic Download
 
 
 
@@ -85,7 +85,7 @@ ECHO    htmlVAR: "%htmlVAR%"
 ECHO    tempVAR: "%tempVAR%"
 ECHO    mainUrlTemp: "%mainUrlTemp%"
 ECHO    restart_yn: "%restart_yn%"
-ECHO    artist_input: "%artist_input%"
+ECHO    artistInput: "%artistInput%"
 
 
 ECHO.
@@ -97,8 +97,8 @@ ECHO    savePath_renew: "%savePath_renew%"
 ECHO    dl_folder_renew: "%dl_folder_renew%"
 ECHO    comicId_renew: "%comicId_renew%"
 ECHO    mainUrl_renew: "%mainUrl_renew%"
-ECHO    dl-URL_renew: "%dl-URL_renew%"
-ECHO    pages_input_renew: "%pages_input_renew%"
+ECHO    imageDownloadFolderURL_renew: "%imageDownloadFolderURL_renew%"
+ECHO    pageCountInput_renew: "%pageCountInput_renew%"
 ECHO    comic-name_renew: "%comic-name_renew%"
 ::ECHO    : "%%"
 

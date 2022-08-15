@@ -13,7 +13,7 @@ REM Starts the language selection / Startet die Sprachauswahl
       @echo on
         SET /p "countrycode=------> Countrycode: "
 REM DEBUG
-      IF "%DEBUG%"=="DebugON" ( ECHO DEBUG: countrycode= "!countrycode!" & CHOICE /N /C 123 /T 2 /D 1 >NUL )
+      IF "%DEBUG%"=="DebugON" ( ECHOo. & ECHO DEBUG: countrycode= "!countrycode!" & CHOICE /N /C 123 /T 2 /D 1 >NUL )
 REM Check whether input is correct
 REM Prüfung ob Eingabe korrekt
         IF "!countrycode!"=="de" goto BackToMainCode
