@@ -18,9 +18,9 @@ SETLOCAL ENABLEDELAYEDEXPANSION
 REM Debug modus off
 REM Debug Modus aus
     SET "DEBUG=DebugON"
-    ECHO DEBUG: DEBUG= %DEBUG%
+    ECHO DEBUG: "%DEBUG%"
     IF EXIST "src\MainPart.cmd" (
-      CALL "src\MainPart.cmd"
+      CALL "src\MainPart.cmd" 1
     ) ELSE (
       CLS
       COLOR 0C
@@ -36,8 +36,8 @@ REM Debug Modus aus
 :: Load all variables and write them to debug.log
 :: Lade alle Variableninhalte und schreibe Sie in die debug.log
     IF NOT EXIST "debug_logs" (MD "debug_logs")
-      CALL "src/debug.cmd" >debug\debug_%xDateRTime%.txt
-      CALL "src/debug.cmd"
+      CALL "src/Debug.cmd" 1 >debug_logs\debug_%xDateRTime%.txt
+      CALL "src/Debug.cmd" 1
         PAUSE
         GOTO Restart
 

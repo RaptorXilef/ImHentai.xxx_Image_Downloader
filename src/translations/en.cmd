@@ -1,3 +1,14 @@
+REM Check whether the programme was started via Start.cmd, if not, start it automatically via Start.cmd.
+REM Prüfe ob Programm über Start.cmd gestartet wurde, wenn nicht starte es automatisch über Start.cmd.
+IF "%~1"=="" (
+  SET "STARTED_CORRECTLY=0"
+) ELSE (
+  SET "STARTED_CORRECTLY=%1"
+)
+IF %STARTED_CORRECTLY%==0 (CD.. && CD.. && START start.cmd && ECHO Restart! & Exit)
+IF %STARTED_CORRECTLY%==1 (IF "%DEBUG%"=="DebugON" CLS & ECHO translations\en.cmd load successful! & ECHO.)
+IF "%DEBUG%"=="DebugON" CHOICE /N /C 123 /T 3 /D 1 >NUL
+
 :: ============================ de.cmd ===========================================================
 ::chcp 1252>nul
 
@@ -68,3 +79,5 @@ SET "outputReadingDataFromURL8=Waiting for user"
 SET "outputReadingDataFromURL9=The next step is to clear the console content. When you are ready and want to start reading the variables,"
 SET "outputReadingDataFromURL10=The variables were saved successfully!"
 SET "outputReadingDataFromURL11=The temporary files will now be removed again."
+
+EXIT /B

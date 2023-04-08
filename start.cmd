@@ -19,7 +19,7 @@ REM Debug modus off
 REM Debug Modus aus
     SET "DEBUG=DebugOFF"
     IF EXIST "src\MainPart.cmd" (
-      CALL "src\MainPart.cmd"
+      CALL "src\MainPart.cmd" 1
     ) ELSE (
       CLS
       COLOR 0C
