@@ -6,14 +6,14 @@ IF "%~1"=="" (
   SET "STARTED_CORRECTLY=%1"
 )
 IF %STARTED_CORRECTLY%==0 (CD.. && START start.cmd && ECHO Restart! & Exit)
-IF %STARTED_CORRECTLY%==1 (IF "%DEBUG%"=="DebugON" CLS & ECHO ConsoleOutputMenus load successful! & ECHO.)
+IF %STARTED_CORRECTLY%==1 (IF "%DEBUG%"=="DebugON" CLS & ECHO. & ECHO DEBUG-Info: ConsoleOutputMenus.cmd load successful! & ECHO.)
 IF "%DEBUG%"=="DebugON" CHOICE /N /C 123 /T 3 /D 1 >NUL
 
 REM display in the console
 REM Anzeige in der Konsole
+IF "%DEBUG%"=="DebugON" ( ECHO Debug-Info: Var-outputMenu=%outputMenu% & CHOICE /N /C 123 /T 3 /D 1 >NUL )
 GOTO %outputMenu%
 :OutputMenuCountrycode
-    REM IF "%DEBUG%"=="DebugON" (ECHO. & ECHO. & ECHO Debug: ConsoleOutputMenus.cmd is found & ECHO. & ECHO.) else (CLS)
     %colorEcho%    # {0B}Choose Language / Sprache wählen{#} # {\n}
     ECHO   +=======================================================================================================================================================================
     ECHO   ^>
@@ -33,7 +33,6 @@ GOTO %outputMenu%
     GOTO BackToMainCode
 
 :OutputMenuSavePath
-    IF "%DEBUG%"=="DebugON" (ECHO. & ECHO. & ECHO Debug: ConsoleOutputMenus.cmd is found & ECHO. & ECHO.) else (CLS)
     %colorEcho%    # {0B}%outputMenuSavePath_header%{#} # {\n}
     ECHO   +=======================================================================================================================================================================
     ECHO   ^>
@@ -62,7 +61,6 @@ GOTO %outputMenu%
     GOTO BackToMainCode
 
 :OutputMenuMainUrl
-    IF "%DEBUG%"=="DebugON" (ECHO. & ECHO. & ECHO Debug: ConsoleOutputMenus.cmd is found & ECHO. & ECHO.) else (CLS)
     ECHO.
     %colorEcho%    # {0B}%outputMenuMainUrl_header%{#} # {\n}
     ECHO   +=======================================================================================================================================================================

@@ -6,7 +6,7 @@ IF "%~1"=="" (
   SET "STARTED_CORRECTLY=%1"
 )
 IF %STARTED_CORRECTLY%==0 (CD.. && CD.. && START start.cmd && ECHO Restart! & Exit)
-IF %STARTED_CORRECTLY%==1 (IF "%DEBUG%"=="DebugON" CLS & ECHO presets\LanguageLoadOrCreateConfigfile.cmd load successful! & ECHO.)
+IF %STARTED_CORRECTLY%==1 (IF "%DEBUG%"=="DebugON" CLS & ECHO. & ECHO DEBUG-Info: presets\LanguageLoadOrCreateConfigfile.cmd load successful! & ECHO.)
 IF "%DEBUG%"=="DebugON" CHOICE /N /C 123 /T 3 /D 1 >NUL
 
 REM If config folder does not exist, create it / Wenn Ordner config nicht existiert, erstelle ihn

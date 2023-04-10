@@ -18,7 +18,7 @@ IF "%~1"=="" (
   SET "STARTED_CORRECTLY=%1"
 )
 IF %STARTED_CORRECTLY%==0 (CD.. && START start.cmd && ECHO Restart! & Exit)
-IF %STARTED_CORRECTLY%==1 (ECHO MainPart.cmd load successful! & ECHO.)
+IF %STARTED_CORRECTLY%==1 (CLS & ECHO. & ECHO DEBUG-Info: MainPart.cmd load successful! & ECHO.)
 IF "%DEBUG%"=="DebugON" CHOICE /N /C 123 /T 3 /D 1 >NUL
 REM Reset Variables
 REM Resete Variablen
@@ -62,8 +62,8 @@ IF EXIST "bin\ThirdPartySoftware\cecho%PROCESSOR_ARCHITECTURE:~-2%.exe" (
     )
   )
 REM DEBUG
-IF "%DEBUG%"=="DebugON" (
-%colorEcho% DEBUG: {0a}ColorEcho loading successful!{#}{\n} || echo DEBUG: ColorEcho loading ERROR
+IF "%DEBUG%"=="DebugON" ( ECHO.
+%colorEcho% DEBUG-Info: {0a}ColorEcho loading successful!{#}{\n} || echo DEBUG-Info: ColorEcho loading ERROR
 %colorEcho% {F0}00 - black{\n}{01}01 - navy{\n}{02}02 - green{\n}{03}03 - teal{\n}{04}04 - maroon{\n}{05}05 - purple{\n}{06}06 - olive{\n}{07}07 - silver{\n}{08}08 - gray{\n}{09}09 - blue{\n}{0A}0A - lime{\n}{0B}0B - aqua{\n}{0C}0C - red{\n}{0D}0D - fuchisa{\n}{0E}0E - yellow{\n}{0F}0F - white{\n}{#} || echo DEBUG: ColorEcho loading ERROR
 ECHO.
 CHOICE /N /C 123 /T 3 /D 1 >NUL
@@ -109,7 +109,7 @@ REM Sprache wählen (Lade entsprechenden Code aus Datei)
         PAUSE & EXIT
     )
 REM DEBUG
-    IF "%DEBUG%"=="DebugON" ( ECHO. & ECHO DEBUG: countrycode= "%countrycode%" pass variable to MainPart.cmd & CHOICE /N /C 123 /T 3 /D 1 >NUL )
+    IF "%DEBUG%"=="DebugON" ( ECHO. & ECHO DEBUG-Info: countrycode= "%countrycode%" pass variable to MainPart.cmd & CHOICE /N /C 123 /T 3 /D 1 >NUL )
 REM Load language file
 REM Lade Sprachdatei
 IF EXIST "src\translations\%countrycode%.cmd" (
@@ -141,8 +141,46 @@ REM URL for reading out the values such as download URL, name, number of pages..
 REM URL zum Auslesen der Werte wie Download-URL, Name, Seitenanzahl...
 REM Load url query
 REM Lade URL-Abfrage
+SET "outputMenu=OutputMenuMainUrl"
+CALL "src\ConsoleOutputMenus.cmd" 1
+IF EXIST "src\data-query\UrlNumberFilter.cmd" (
+  CALL "src\data-query\UrlNumberFilter.cmd" 1
+  ) ELSE (
+    CLS & COLOR 0C
+    ECHO Fatal ERROR by loading "src\data-query\UrlNumberFilter.cmd", file do not exist & echo Downloads the missing file or the latest version of the software from: & echo https://github.com/RaptorXilef/ImHentai.xxx_Image_Downloader.
+    PAUSE & EXIT
+)
+
+REM Set different storage paths as variables
+REM Setze verschiedene Speicherpfade als Variablen
+SET "savePathDatabaseFolder=%savePath%\_database"
+SET "savePathDatabaseFolderComicID=%savePathDatabaseFolder%\%comicId%"
+SET "savePathTempFolder=%savePathDatabaseFolder%\_temp"
+SET "savePathTempFolderComicID=%savePathTempFolder%\%comicId%"
+SET "savePathBackupFile=%savePathDatabaseFolderComicID%\%comicId%.zip"
+IF "%DEBUG%"=="DebugON" (
+  ECHO. & ECHO.
+  ECHO DEBUG-Info: savePathDatabaseFolder= "%savePathDatabaseFolder%"
+  ECHO DEBUG-Info: savePathDatabaseFolderComicID= "%savePathDatabaseFolderComicID%"
+  ECHO DEBUG-Info: savePathTempFolder= "%savePathTempFolder%"
+  ECHO DEBUG-Info: savePathTempFolderComicID= "%savePathTempFolderComicID%"
+  ECHO DEBUG-Info: savePathBackupFile= "%savePathBackupFile%"
+  choice /N /C 123 /T 2 /D 1 >NUL
+)
+
+
+:: ===============================================================================================
+::      Read website  /  Webseite auslesen
+:: ===============================================================================================
+REM Reading out the values download URL, name, number of pages...
+:: Auslesen der Werte Download-URL, Name, Seitenanzahl...
 
 
 
 
+
+
+
+
+PAUSE
 EXIT /B

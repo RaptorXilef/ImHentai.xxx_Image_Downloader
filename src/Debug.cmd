@@ -7,7 +7,7 @@ IF "%~1"=="" (
   SET "STARTED_CORRECTLY=%1"
 )
 IF %STARTED_CORRECTLY%==0 (CD.. && START start.cmd && ECHO Restart! & Exit)
-IF %STARTED_CORRECTLY%==1 (IF "%DEBUG%"=="DebugON" CLS & ECHO Debug.cmd load successful! & ECHO.)
+IF %STARTED_CORRECTLY%==1 (IF "%DEBUG%"=="DebugON" CLS & ECHO. & ECHO DEBUG-Info: Debug.cmd load successful! & ECHO.)
 IF "%DEBUG%"=="DebugON" CHOICE /N /C 123 /T 3 /D 1 >NUL
 
 mode con lines=155 cols=180
