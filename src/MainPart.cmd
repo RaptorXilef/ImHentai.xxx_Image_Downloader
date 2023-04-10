@@ -109,7 +109,7 @@ REM Sprache wählen (Lade entsprechenden Code aus Datei)
         PAUSE & EXIT
     )
 REM DEBUG
-    IF "%DEBUG%"=="DebugON" ( ECHO. & ECHO DEBUG-Info: countrycode= "%countrycode%" pass variable to MainPart.cmd & CHOICE /N /C 123 /T 3 /D 1 >NUL )
+    IF "%DEBUG%"=="DebugON" ( ECHO. & ECHO DEBUG-Info: countrycode="%countrycode%" pass variable to MainPart.cmd & CHOICE /N /C 123 /T 3 /D 1 >NUL )
 REM Load language file
 REM Lade Sprachdatei
 IF EXIST "src\translations\%countrycode%.cmd" (
@@ -165,7 +165,7 @@ IF "%DEBUG%"=="DebugON" (
   ECHO DEBUG-Info: savePathTempFolder= "%savePathTempFolder%"
   ECHO DEBUG-Info: savePathTempFolderComicID= "%savePathTempFolderComicID%"
   ECHO DEBUG-Info: savePathBackupFile= "%savePathBackupFile%"
-  choice /N /C 123 /T 2 /D 1 >NUL
+  choice /N /C 123 /T 3 /D 1 >NUL
 )
 
 
@@ -174,6 +174,15 @@ IF "%DEBUG%"=="DebugON" (
 :: ===============================================================================================
 REM Reading out the values download URL, name, number of pages...
 :: Auslesen der Werte Download-URL, Name, Seitenanzahl...
+IF EXIST "src\data-query\ReadingDataFromURL.cmd" (
+  CALL "src\data-query\ReadingDataFromURL.cmd" 1
+  ) ELSE (
+    CLS & COLOR 0C
+    ECHO Fatal ERROR by loading "src\data-query\ReadingDataFromURL.cmd", file do not exist & echo Downloads the missing file or the latest version of the software from: & echo https://github.com/RaptorXilef/ImHentai.xxx_Image_Downloader.
+    PAUSE & EXIT
+)
+GOTO %errorRestart%
+:errorRestartNO
 
 
 
