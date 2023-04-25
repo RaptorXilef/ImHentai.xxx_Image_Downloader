@@ -19,6 +19,7 @@ REM Debug modus off
 REM Debug Modus aus
     SET "DEBUG=DebugON"
     ECHO DEBUG-Info: "%DEBUG%"
+    SET "DEBUGTIME=0"
     IF EXIST "src\MainPart.cmd" (
       CALL "src\MainPart.cmd" 1
     ) ELSE (

@@ -1,13 +1,10 @@
 REM Check whether the programme was started via Start.cmd, if not, start it automatically via Start.cmd.
 REM Prüfe ob Programm über Start.cmd gestartet wurde, wenn nicht starte es automatisch über Start.cmd.
-IF "%~1"=="" (
-  SET "STARTED_CORRECTLY=0"
-) ELSE (
-  SET "STARTED_CORRECTLY=%1"
-)
+IF "%~1"=="" (SET "STARTED_CORRECTLY=0") ELSE (SET "STARTED_CORRECTLY=%1")
 IF %STARTED_CORRECTLY%==0 (CD.. && CD.. && START start.cmd && ECHO Restart! & Exit)
 IF %STARTED_CORRECTLY%==1 (IF "%DEBUG%"=="DebugON" ECHO. & ECHO DEBUG-Info: data-query\UrlNumberFilter.cmd load successful! & ECHO.)
-IF "%DEBUG%"=="DebugON" CHOICE /N /C 123 /T 3 /D 1 >NUL
+IF "%DEBUG%"=="DebugON" CHOICE /N /C 123 /T %DEBUGTIME% /D 1 >NUL
+REM ############################################################################
 
 :ReloadUserInput
 REM Query the URL and wait for user input
@@ -120,6 +117,6 @@ REM Prüfung, ob die ermittelte Comic-ID im gesuchten Bereich liegt
       %colorEcho% {0A} %outputUrlNumberFilter5%.{\n}{#}
       SET "mainUrl=https://imhentai.xxx/gallery/%comicId%/"
           IF "%DEBUG%"=="DebugON" (ECHO. & ECHO DEBUG-Info: mainUrl= "%mainUrl%")
-          CHOICE /N /C 123 /T 1 /D 1 >NUL
+          CHOICE /N /C 123 /T %DEBUGTIME% /D 1 >NUL
       ::aktiviere äöü
 EXIT /B

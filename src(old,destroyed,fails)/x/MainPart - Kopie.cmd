@@ -20,7 +20,6 @@ REM ============================================================================
     REM Resete Variablen
     IF EXIST "src\preload\VariablesReset.cmd" (
         CALL "src\preload\VariablesReset.cmd" 1
-        IF "!errorRestart!"=="errorRestartYES" GOTO errorRestartYES
     ) ELSE (
         CLS & COLOR 0C
         ECHO Fatal ERROR by loading "src\preload\VariablesReset.cmd", file do not exist & ECHO Downloads the missing file or the latest version of the software from: & ECHO https://github.com/RaptorXilef/ImHentai.xxx_Image_Downloader.
@@ -71,7 +70,6 @@ IF "%DEBUG%"=="DebugON" ( ECHO.
     REM Abfrage der aktuellen Zeit
     IF EXIST "src\preload\TimeQuery.cmd" (
         CALL "src\preload\TimeQuery.cmd" 1
-        IF "!errorRestart!"=="errorRestartYES" GOTO errorRestartYES
     ) ELSE (
         CLS & COLOR 0C
         ECHO Fatal ERROR by loading "src\preload\TimeQuery.cmd", file do not exist & ECHO Downloads the missing file or the latest version of the software from: & ECHO https://github.com/RaptorXilef/ImHentai.xxx_Image_Downloader.
@@ -104,7 +102,6 @@ REM ============================================================================
     REM Sprache wählen (Lade entsprechenden Code aus Datei)
     IF EXIST "src\presets\LanguageLoadOrCreateConfigfile.cmd" (
         CALL "src\presets\LanguageLoadOrCreateConfigfile.cmd" 1
-        IF "!errorRestart!"=="errorRestartYES" GOTO errorRestartYES
     ) ELSE (
         CLS & COLOR 0C
         ECHO Fatal ERROR by loading "src\presets\LanguageLoadOrCreateConfigfile.cmd", file do not exist & ECHO Downloads the missing file or the latest version of the software from: & ECHO https://github.com/RaptorXilef/ImHentai.xxx_Image_Downloader.
@@ -116,7 +113,6 @@ IF "%DEBUG%"=="DebugON" ( ECHO. & ECHO DEBUG-Info: countrycode="%countrycode%" p
     REM Lade Sprachdatei
     IF EXIST "src\translations\%countrycode%.cmd" (
         CALL "src\translations\%countrycode%.cmd" 1
-        IF "!errorRestart!"=="errorRestartYES" GOTO errorRestartYES
     ) ELSE (
         CLS & COLOR 0C
         ECHO Fatal ERROR by loading "src\translations\%countrycode%.cmd", file do not exist & ECHO Downloads the missing file or the latest version of the software from: & ECHO https://github.com/RaptorXilef/ImHentai.xxx_Image_Downloader.
@@ -129,7 +125,6 @@ IF "%DEBUG%"=="DebugON" ( ECHO. & ECHO DEBUG-Info: countrycode="%countrycode%" p
     REM Hauptverzeichnis zum Speichern der Downloads festlegen/abfragen
     IF EXIST "src\presets\SavePathLoadOrCreateConfigfile.cmd" (
         CALL "src\presets\SavePathLoadOrCreateConfigfile.cmd" 1
-        IF "!errorRestart!"=="errorRestartYES" GOTO errorRestartYES
     ) ELSE (
         CLS & COLOR 0C
         ECHO Fatal ERROR by loading "src\presets\SavePathLoadOrCreateConfigfile.cmd", file do not exist & ECHO Downloads the missing file or the latest version of the software from: & ECHO https://github.com/RaptorXilef/ImHentai.xxx_Image_Downloader.
@@ -149,7 +144,6 @@ REM Lade URL-Abfrage
     CALL "src\ConsoleOutputMenus.cmd" 1
     IF EXIST "src\data-query\UrlNumberFilter.cmd" (
         CALL "src\data-query\UrlNumberFilter.cmd" 1
-        IF "!errorRestart!"=="errorRestartYES" GOTO errorRestartYES
     ) ELSE (
         CLS & COLOR 0C
         ECHO Fatal ERROR by loading "src\data-query\UrlNumberFilter.cmd", file do not exist & ECHO Downloads the missing file or the latest version of the software from: & ECHO https://github.com/RaptorXilef/ImHentai.xxx_Image_Downloader.
@@ -180,12 +174,13 @@ REM ============================================================================
     REM Auslesen der Werte Download-URL, Name, Seitenanzahl...
     IF EXIST "src\data-query\ReadingDataFromURL.cmd" (
         CALL "src\data-query\ReadingDataFromURL.cmd" 1
-        IF "!errorRestart!"=="errorRestartYES" GOTO errorRestartYES
     ) ELSE (
         CLS & COLOR 0C
         ECHO Fatal ERROR by loading "src\data-query\ReadingDataFromURL.cmd", file do not exist & ECHO Downloads the missing file or the latest version of the software from: & ECHO https://github.com/RaptorXilef/ImHentai.xxx_Image_Downloader.
         PAUSE & EXIT
     )
+    GOTO %errorRestart%
+:errorRestartNO
 
 REM ===============================================================================================
 REM      Check: Already downloaded / pages missing? / History + name of the comic  /  Prüfen: Bereits heruntergeladen / Seiten fehlen? / History + Name des Comics #
@@ -194,8 +189,6 @@ REM ============================================================================
     REM If not, request the data from the user.
     REM Prüfe, ob das Comic bereits heruntergeladen wurde (wenn ja, lade Variablen aus DB)
     REM Wenn nicht, frage die Daten vom User ab.
-
-REM ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     IF NOT EXIST "%savePathDatabaseFolderComicID%\finished.txt" (
         REM Set the subdirectory for saving the downloads
         REM Unterverzeichnis zum Speichern der Downloads festlegen
@@ -203,17 +196,12 @@ REM ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         CALL "src\ConsoleOutputMenus.cmd" 1
         IF EXIST "src\questions\AskDownloadFolder.cmd" (
             CALL "src\questions\AskDownloadFolder.cmd" 1
-            IF "!errorRestart!"=="errorRestartYES" GOTO errorRestartYES
         ) ELSE (
             CLS & COLOR 0C
             ECHO Fatal ERROR by loading "src\questions\AskDownloadFolder.cmd", file do not exist & ECHO Downloads the missing file or the latest version of the software from: & ECHO https://github.com/RaptorXilef/ImHentai.xxx_Image_Downloader.
             PAUSE & EXIT
         )
-    )
-REM ----------------------------------------------------------------------------
 
-REM ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    IF NOT EXIST "%savePathDatabaseFolderComicID%\finished.txt" (
         REM Set or confirm the number of pages
         REM Seitenanzahl festlegen oder bestätigen
         SET "outputMenu=OutputMenuPageCountInput"
@@ -223,20 +211,17 @@ REM ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         CALL "src\ConsoleOutputMenus.cmd" 1
         IF EXIST "src\questions\AskPages.cmd" (
             CALL "src\questions\AskPages.cmd" 1
-            IF "!errorRestart!"=="errorRestartYES" GOTO errorRestartYES
         ) ELSE (
             CLS & COLOR 0C
             ECHO Fatal ERROR by loading "src\questions\AskPages.cmd", file do not exist & ECHO Downloads the missing file or the latest version of the software from: & ECHO https://github.com/RaptorXilef/ImHentai.xxx_Image_Downloader.
             PAUSE & EXIT
         )
-
     ) ELSE (
 
       REM If pages of the comic have already been downloaded in the past, you will now be asked for the number of additional pages to be downloaded. (Useful e.g. if the comic is still being drawn and only a part of the work has been available so far).
       REM Wenn bereits in der Vergangenheit Seiten des Comics heruntergeladen wurden, wird nun nach der Anzahl der zusätzlich herunter zu ladenen Seiten gefragt. (Sinnvoll z.B. wenn das Comic derzeit noch gezeichnet wird und bisher nur ein Teil des Werks verfügbar war.)
       IF EXIST "src\questions\AskPagesRenewLoad.cmd" (
           CALL "src\questions\AskPagesRenewLoad.cmd" 1 & REM innerhalb der Datei wird auch die Datei "src\questions\AskPagesRenew.cmd" mittels CALL abgerufen
-          IF "!errorRestart!"=="errorRestartYES" GOTO errorRestartYES
       ) ELSE (
           CLS & COLOR 0C
           ECHO Fatal ERROR by loading "src\AskPagesRenewLoad.cmd", file do not exist & ECHO Downloads the missing file or the latest version of the software from: & ECHO https://github.com/RaptorXilef/ImHentai.xxx_Image_Downloader.
@@ -249,99 +234,104 @@ REM ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
       REM Prüft ob sich die Seitenanzahl seit dem letzten Download geändert hat.
       REM Wenn diese kleiner oder gleich der bereits heruntergeladenen Seitenanzahl ist, beende den Forgang
       REM Wenn diese großer als die bereits heruntergeladenen Seitenanzahl ist, fordere zur Bestätigung der herunter zu ladenden Anzahl an Seiten auf und übergebe die Werte an die Vatriablen für den Download.
-      IF !pageCountInputRenew! GEQ !pageCountInput! (
-          cls && color 0c && ECHO. && ECHO. && ECHO   "!comicNameRenew!" wurde bereits vollständig heruntergeladen. && ECHO. && ECHO. && ECHO    Sie finden "!comicNameRenew!" unter: && ECHO. && ECHO      - Bilddateien/Comic:  !savePathRenew!\!downloadFolderRenew!\!comicNameInputRenew!\ && ECHO      - Backup:             !savePathRenew!\_backup\!comicIdRenew!.zip && ECHO      - Datenbankeintrag:   !savePathRenew!\_database\!comicIdRenew!\ && ECHO. && ECHO. && ECHO. && ECHO   Mit einem Klick auf [Enter] werden alle Eingaben zurückgesetzt und Sie können mit einem anderen Download beginnen. && ECHO. && ECHO. && PAUSE && SET "errorRestart=errorRestartYES" && GOTO errorRestartYES
+      IF %pageCountInputRenew% GEQ %pageCountInput% (
+          cls && color 0c && ECHO. && ECHO. && ECHO   "%comicNameRenew%" wurde bereits vollständig heruntergeladen. && ECHO. && ECHO. && ECHO    Sie finden "%comicNameRenew%" unter: && ECHO. && ECHO      - Bilddateien/Comic:  %savePathRenew%\%downloadFolderRenew%\%comicNameInputRenew%\ && ECHO      - Backup:             %savePathRenew%\_backup\%comicIdRenew%.zip && ECHO      - Datenbankeintrag:   %savePathRenew%\_database\%comicIdRenew%\ && ECHO. && ECHO. && ECHO. && ECHO   Mit einem Klick auf [Enter] werden alle Eingaben zurückgesetzt und Sie können mit einem anderen Download beginnen. && ECHO. && ECHO. && PAUSE && SET errorRestart=restart_yes
       )
 
-
-      REM Datenprüfung
-      SET "outputMenu=OutputMenuPageCountInputRenew"
-      CALL "src\ConsoleOutputMenus.cmd" 1
-
-      IF EXIST "src\questions\AskPagesRenew.cmd" (
-        CALL "src\questions\AskPagesRenew.cmd" 1
-        IF "!errorRestart!"=="errorRestartYES" GOTO errorRestartYES
-      ) ELSE (
-        CLS & COLOR 0C
-        ECHO Fatal ERROR by loading "src\questions\AskPagesRenew.cmd", file do not exist & ECHO Downloads the missing file or the latest version of the software from: & ECHO https://github.com/RaptorXilef/ImHentai.xxx_Image_Downloader.
-        PAUSE & EXIT
-      )
-
+    REM ::  ) ELSE (
+    REM ::    IF %pageCountInputRenew% LSS %pageCountInput% (
+    REM ::      SET "outputMenu=OutputMenuPageCountInputRenew"
+    REM ::      CALL "src\ConsoleOutputMenus.cmd" 1
+    REM ::      IF EXIST "src\questions\AskPagesRenew.cmd" (
+    REM ::        CALL "src\questions\AskPagesRenew.cmd" 1
+    REM ::      ) ELSE (
+    REM ::        CLS & COLOR 0C
+    REM ::        ECHO Fatal ERROR by loading "src\questions\AskPagesRenew.cmd", file do not exist & ECHO Downloads the missing file or the latest version of the software from: & ECHO https://github.com/RaptorXilef/ImHentai.xxx_Image_Downloader.
+    REM ::        PAUSE & EXIT
+    REM ::      )
+    REM ::    ) ELSE (ECHO ERROR: Unerwarteter Feher beim laden der Seitenanzahl & PAUSE & SET errorRestart=restart_yes)
+    REM ::  )
     )
-REM ----------------------------------------------------------------------------
 
 
-REM ############################################################################
-
-        REM Set comic name to save downloads
-        REM Comicnamen zum Speichern der Downloads festlegen
-        SET "savePath_downloadFolder=%savePath%\!downloadFolder!
-        SET /A "pages_last=!pages!"
-
-REM ############################################################################
 
 
-REM ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    IF NOT EXIST "%savePathDatabaseFolderComicID%\finished.txt" (
-        REM Comicname festlegen oder bestätigen
-            IF EXIST "src\questions\AskComicName1.cmd" (
-                CALL "src\questions\AskComicName1.cmd" 1
-            ) ELSE (
-                CLS & COLOR 0C
-                ECHO Fatal ERROR by loading "src\questions\AskComicName1.cmd", file do not exist & ECHO Downloads the missing file or the latest version of the software from: & ECHO https://github.com/RaptorXilef/ImHentai.xxx_Image_Downloader.
-                PAUSE & EXIT
-            )
+    GOTO %errorRestart%
+:errorRestartNO
+    REM Set comic name to save downloads
+    REM Comicnamen zum Speichern der Downloads festlegen
+    SET "savePath_downloadFolder=%savePath%\%downloadFolder%
+    SET /A "pages_last=%pages%"
+
+
+    REM Comicname festlegen oder bestätigen
+    IF not exist "%savePathDatabaseFolderComicID%\finished.txt" (
+        IF EXIST "src\questions\AskComicName1.cmd" (
+            CALL "src\questions\AskComicName1.cmd" 1
+        ) ELSE (
+            CLS & COLOR 0C
+            ECHO Fatal ERROR by loading "src\questions\AskComicName1.cmd", file do not exist & ECHO Downloads the missing file or the latest version of the software from: & ECHO https://github.com/RaptorXilef/ImHentai.xxx_Image_Downloader.
+            PAUSE & EXIT
+        )
 :ComicNameInput
-            SET "outputMenu=OutputMenuComicNameInput"
-            CALL "src\ConsoleOutputMenus.cmd" 1
+        SET "outputMenu=OutputMenuComicNameInput"
+        CALL "src\ConsoleOutputMenus.cmd" 1
 
-            IF EXIST "src\questions\AskComicName2.cmd" (
-                CALL "src\questions\AskComicName2.cmd" 1
-                IF "!errorRestart!"=="errorRestartYES" GOTO errorRestartYES
-            ) ELSE (
-                CLS & COLOR 0C
-                ECHO Fatal ERROR by loading "src\questions\AskComicName2.cmd", file do not exist & ECHO Downloads the missing file or the latest version of the software from: & ECHO https://github.com/RaptorXilef/ImHentai.xxx_Image_Downloader.
-                PAUSE & EXIT
-            )
+        IF EXIST "src\questions\AskComicName2.cmd" (
+          CALL "src\questions\AskComicName2.cmd" 1
+        ) ELSE (
+          CLS & COLOR 0C
+          ECHO Fatal ERROR by loading "src\questions\AskComicName2.cmd", file do not exist & ECHO Downloads the missing file or the latest version of the software from: & ECHO https://github.com/RaptorXilef/ImHentai.xxx_Image_Downloader.
+          PAUSE & EXIT
+        )
+        IF EXIST "%savePath%\%dl-theme%\%comicName_%" ( CLS & ECHO. & ECHO     Der Name %comicName% ist bereist vergeben! & ECHO     Bitte wählen Sie einen anderen Namen. & CHOICE /N /C 123 /T 2 /D 1 /M "" >NUL & GOTO ComicNameInput )
+ECHO F4 & PAUSE
 
-            IF EXIST "!savePath_downloadFolder!\!comicName!" ( CLS & ECHO. & ECHO     Der Name !comicName! ist bereist vergeben! & ECHO     Bitte wählen Sie einen anderen Namen. & CHOICE /N /C 123 /T 3 /D 1 /M "" >NUL & GOTO ComicNameInput ) ELSE (ECHO Der Name ist noch nicht vergeben. Es wird fortgefahren.)
-REM ÜBERSETZEN
-    )
-REM ----------------------------------------------------------------------------
 
-REM ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    IF NOT EXIST "%savePathDatabaseFolderComicID%\finished.txt" (
-            SET "outputMenu=OutputMenuRllRightInput"
-            CALL "src\ConsoleOutputMenus.cmd" 1
 
-            IF EXIST "src\questions\AskAllRight.cmd" (
-                CALL "src\questions\AskAllRight.cmd" 1
-                IF "!errorRestart!"=="errorRestartYES" GOTO errorRestartYES
-            ) ELSE (
-                CLS & COLOR 0C
-                ECHO Fatal ERROR by loading "src\questions\AskAllRight.cmd", file do not exist & ECHO Downloads the missing file or the latest version of the software from: & ECHO https://github.com/RaptorXilef/ImHentai.xxx_Image_Downloader.
-                PAUSE & EXIT
-            )
+pause & PAUSE & PAUSE
 
+
+
+        REM Datenprüfung
+        SET "outputMenu=OutputMenuPageCountInputRenew"
+        CALL "src\ConsoleOutputMenus.cmd" 1
+        IF EXIST "src\questions\AskPagesRenew.cmd" (
+          CALL "src\questions\AskPagesRenew.cmd" 1
+        ) ELSE (
+          CLS & COLOR 0C
+          ECHO Fatal ERROR by loading "src\questions\AskPagesRenew.cmd", file do not exist & ECHO Downloads the missing file or the latest version of the software from: & ECHO https://github.com/RaptorXilef/ImHentai.xxx_Image_Downloader.
+          PAUSE & EXIT
+        )
+        CALL "src\ask_all_right.cmd"
+
+
+
+
+
+
+
+
+
+
+
+        
     ) ELSE (
-
-            SET "outputMenu=OutputMenuRllRightRenewInput"
-            CALL "src\ConsoleOutputMenus.cmd" 1
-
-            IF EXIST "src\questions\AskAllRightRenew.cmd" (
-                CALL "src\questions\AskAllRightRenew.cmd" 1
-                IF "!errorRestart!"=="errorRestartYES" GOTO errorRestartYES
-            ) ELSE (
-                CLS & COLOR 0C
-                ECHO Fatal ERROR by loading "src\questions\AskAllRightRenew.cmd", file do not exist & ECHO Downloads the missing file or the latest version of the software from: & ECHO https://github.com/RaptorXilef/ImHentai.xxx_Image_Downloader.
-                PAUSE & EXIT
-            )
+        IF EXIST "src\questions\AskPagesRenew.cmd" (
+          CALL "src\questions\AskPagesRenew.cmd" 1
+        ) ELSE (
+          CLS & COLOR 0C
+          ECHO Fatal ERROR by loading "src\questions\AskPagesRenew.cmd", file do not exist & ECHO Downloads the missing file or the latest version of the software from: & ECHO https://github.com/RaptorXilef/ImHentai.xxx_Image_Downloader.
+          PAUSE & EXIT
+        )
+        CALL "src\ask_all_right_renew.cmd"
     )
-REM ----------------------------------------------------------------------------
 
-    SET "savePath_comic_folder=!savePath_downloadFolder!\!comicName_!"
+    GOTO %errorRestart%
+:errorRestartNO
+    SET "savePath_comic_folder=%savePath_downloadFolder%\%comicName_%"
 
-ECHO ENDE & PAUSE
+
 REM ===============================================================================================
 REM      Start of the data query from the user and from the website 2  /  Start der Datenabfrage vom User und von der Webseite 2
 REM ===============================================================================================
@@ -371,5 +361,4 @@ REM .......
 
 
 PAUSE
-:errorRestartYES
 EXIT /B
