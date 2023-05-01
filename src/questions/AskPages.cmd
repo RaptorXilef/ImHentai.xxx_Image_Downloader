@@ -6,7 +6,7 @@ IF %STARTED_CORRECTLY%==1 (IF "%DEBUG%"=="DebugON" ECHO. & ECHO DEBUG-Info: ques
 IF "%DEBUG%"=="DebugON" CHOICE /N /C 123 /T %DEBUGTIME% /D 1 >NUL
 REM ############################################################################
 
-    set /p "pageCountInput=------> Seitenanzahl: "
+    SET /p "pageCountInput=------> Seitenanzahl: "
 
     SET /a "pages=%pageCountInput%"
 

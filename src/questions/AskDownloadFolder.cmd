@@ -57,9 +57,9 @@ REM ############################################################################
     IF "%downloadFolder%"=="f"   SET "downloadFolder=Favouriten"
     IF "%downloadFolder%"=="tlk" SET "downloadFolder=The_Lion_King"
     IF "%downloadFolder%"=="sfw" SET "SFW"
-    IF "%downloadFolder%"=="i" START https://imhentai.xxx/ && goto redo
+    IF "%downloadFolder%"=="i" START https://imhentai.xxx/ && GOTO redo
     IF "%downloadFolder%"=="e" EXIT
-    ::if "%downloadFolder%"=="restart" goto restart
+    ::if "%downloadFolder%"=="restart" GOTO restart
 
 EXIT /B
     REM aktiviere הצü

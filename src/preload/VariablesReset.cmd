@@ -7,6 +7,7 @@ IF "%DEBUG%"=="DebugON" CHOICE /N /C 123 /T %DEBUGTIME% /D 1 >NUL
 REM ############################################################################
 
 SET errorRestart=errorRestartNO
+SET errorTestCommand=IF "!errorRestart!"=="errorRestartYES" GOTO errorRestartYES
 
 :: pages_start
 SET /a "pages_start=1"

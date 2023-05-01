@@ -8,15 +8,15 @@ REM ############################################################################
 
 :REDO
 
-  goto %chcpCodeNumber%
-  :chcp65001
-      IF "%DEBUG%"=="DebugON" (CHCP 65001) else (CHCP 65001>nul)
-  :chcp1252
-    set /p "all_right_input=------> Download starten: "
+  GOTO %chcpCodeNumber%
+:chcp65001
+      IF "%DEBUG%"=="DebugON" (CHCP 65001) ELSE (CHCP 65001>nul)
+:chcp1252
+    SET /p "all_right_input=------> Download starten: "
 
-    IF "%all_right_input%"=="j" goto continue
-    IF "%all_right_input%"=="y" goto continue
-    IF "%all_right_input%"=="n" color 0c && echo. && echo. && echo Mit dem Klick auf [Enter] werden alle Eingaben gelöscht und Sie können die richtigen Daten angeben. && pause && set "errorRestart=errorRestartYES" && goto continue
+    IF "%all_right_input%"=="j" GOTO continue
+    IF "%all_right_input%"=="y" GOTO continue
+    IF "%all_right_input%"=="n" COLOR 0C && ECHO. && ECHO. && ECHO Mit dem Klick auf [Enter] werden alle Eingaben gelöscht und Sie können die richtigen Daten angeben. && pause && SET "errorRestart=errorRestartYES" && GOTO continue
 GOTO REDO
 :continue
 EXIT /B

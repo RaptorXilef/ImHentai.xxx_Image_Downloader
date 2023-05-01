@@ -6,36 +6,36 @@ IF %STARTED_CORRECTLY%==1 (IF "%DEBUG%"=="DebugON" ECHO. & ECHO DEBUG-Info: ques
 IF "%DEBUG%"=="DebugON" CHOICE /N /C 123 /T %DEBUGTIME% /D 1 >NUL
 REM ############################################################################
 
-goto %chcpCodeNumber%
+GOTO %chcpCodeNumber%
 :chcp65001
-    IF "%DEBUG%"=="DebugON" (CHCP 65001) else (CHCP 65001>nul)
+    IF "%DEBUG%"=="DebugON" (CHCP 65001) ELSE (CHCP 65001>nul)
 :chcp1252
 ::Entferne Sonderzeichen aus dem eingegebenen String der von der Webseite kommt
-    set "comicNameInput=%comicNameInput:|=-%"
-    set "comicNameInput=%comicNameInput:<=%"
-    set "comicNameInput=%comicNameInput:>=%"
-    set "comicNameInput=%comicNameInput:&=%"
-    set "comicNameInput=%comicNameInput:^=%"
-    set "comicNameInput=%comicNameInput:"=%"
-    set "comicNameInput=%comicNameInput:?=%"
-    set "comicNameInput=%comicNameInput::=%"
-    set "comicNameInput=%comicNameInput:/=%"
-    set "comicNameInput=%comicNameInput:\=%"
-    set "comicNameInput=%comicNameInput:!=%"
-    set "comicNameInput=%comicNameInput:?=%"
-    set "comicNameInput=%comicNameInput:.=%"
-    set "comicNameInput=%comicNameInput:´=-%"
-    set "comicNameInput=%comicNameInput:'=-%"
-    set "comicNameInput=%comicNameInput:é=e%"
-    set "comicNameInput=%comicNameInput:è=e%"
-    set "comicNameInput=%comicNameInput:amp;=^&%"
-    set "comicNameInput=%comicNameInput:Ouml;=Ö%"
-    set "comicNameInput=%comicNameInput:Auml;=Ä%"
-    set "comicNameInput=%comicNameInput:Uuml;=Ü%"
-    set "comicNameInput=%comicNameInput:ouml;=ö%"
-    set "comicNameInput=%comicNameInput:auml;=ä%"
-    set "comicNameInput=%comicNameInput:uuml;=ü%"
-    set "comicNameInput=%comicNameInput:szlig;=ß%"
+    SET "comicNameInput=%comicNameInput:|=-%"
+    SET "comicNameInput=%comicNameInput:<=%"
+    SET "comicNameInput=%comicNameInput:>=%"
+    SET "comicNameInput=%comicNameInput:&=%"
+    SET "comicNameInput=%comicNameInput:^=%"
+    SET "comicNameInput=%comicNameInput:"=%"
+    SET "comicNameInput=%comicNameInput:?=%"
+    SET "comicNameInput=%comicNameInput::=%"
+    SET "comicNameInput=%comicNameInput:/=%"
+    SET "comicNameInput=%comicNameInput:\=%"
+    SET "comicNameInput=%comicNameInput:!=%"
+    SET "comicNameInput=%comicNameInput:?=%"
+    SET "comicNameInput=%comicNameInput:.=%"
+    SET "comicNameInput=%comicNameInput:´=-%"
+    SET "comicNameInput=%comicNameInput:'=-%"
+    SET "comicNameInput=%comicNameInput:é=e%"
+    SET "comicNameInput=%comicNameInput:è=e%"
+    SET "comicNameInput=%comicNameInput:amp;=^&%"
+    SET "comicNameInput=%comicNameInput:Ouml;=Ö%"
+    SET "comicNameInput=%comicNameInput:Auml;=Ä%"
+    SET "comicNameInput=%comicNameInput:Uuml;=Ü%"
+    SET "comicNameInput=%comicNameInput:ouml;=ö%"
+    SET "comicNameInput=%comicNameInput:auml;=ä%"
+    SET "comicNameInput=%comicNameInput:uuml;=ü%"
+    SET "comicNameInput=%comicNameInput:szlig;=ß%"
 
 
 EXIT /B

@@ -278,7 +278,7 @@ SET /a "pages_count=%pageCountInput%-%pageCountInputRenew%"
     echo   ^>     -^> %comicId%
     echo   ^>
     echo   ^>    Comic-URL:
-    echo   ^>     -^> %main-url%
+    echo   ^>     -^> %mainUrl%
     echo   ^>
     echo   ^>    Download-URL (Basis):
     echo   ^>     -^> %imageDownloadFolderURL%*.*

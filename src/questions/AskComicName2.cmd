@@ -7,10 +7,10 @@ IF "%DEBUG%"=="DebugON" CHOICE /N /C 123 /T %DEBUGTIME% /D 1 >NUL
 REM ############################################################################
 
 
-  goto %chcpCodeNumber%
-  :chcp65001
+  GOTO %chcpCodeNumber%
+:chcp65001
       IF "%DEBUG%"=="DebugON" (CHCP 65001) else (CHCP 65001>nul)
-  :chcp1252
+:chcp1252
     SET "comicNameInput_temp=%comicNameInput%"
     SET /P "comicNameInput=------> Name: "
 
