@@ -5,7 +5,7 @@ IF %STARTED_CORRECTLY%==0 (CD.. && CD.. && START start.cmd && ECHO Restart! & Ex
 IF %STARTED_CORRECTLY%==1 (IF "%DEBUG%"=="DebugON" ECHO. & ECHO DEBUG-Info: questions\AskPagesRenew.cmd load successful! & ECHO.)
 IF "%DEBUG%"=="DebugON" CHOICE /N /C 123 /T %DEBUGTIME% /D 1 >NUL
 REM ############################################################################
-
+:pageCountInput
 SET /A pages_tobig=%pageCountInput%
 
 REM Hier war ursprünglich die Textausgabe "OutputMenuPageCountInputRenew"
@@ -18,7 +18,7 @@ REM Hier war ursprünglich die Textausgabe "OutputMenuPageCountInputRenew"
     IF %pages_tobig% GTR %pageCountInput% SET /A "pageCountInput=%pages_tobig%"
 
 
-    IF %pages% LEQ %pageCountInputRenew% COLOR 0C && ECHO %pages% ist kleiner als %pageCountInputRenew% und damit ungültig. && ECHO Bitte versuchen Sie es erneut! && pause && GOTO pageCountInput
+    IF %pages% LEQ %pageCountInputRenew% COLOR 0C && ECHO %pages% ist kleiner als %pageCountInputRenew% und damit ungültig. && ECHO Bitte versuchen Sie es erneut! && pause && CLS && SET "outputMenu=OutputMenuPageCountInputRenew" && CALL "src\ConsoleOutputMenus.cmd" 1 && COLOR 08 && GOTO pageCountInput
 
     SET "savePath=%savePathRenew%"
     SET "downloadFolder=%downloadFolderRenew%"

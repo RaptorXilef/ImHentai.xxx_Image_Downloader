@@ -1,4 +1,4 @@
-REM Check whether the programme was started via Start.cmd, if not, start it automatically via Start.cmd.
+REM Check whether the programme was started via Start.cmd, IF not, start it automatically via Start.cmd.
 REM Prüfe ob Programm über Start.cmd gestartet wurde, wenn nicht starte es automatisch über Start.cmd.
 IF "%~1"=="" (SET "STARTED_CORRECTLY=0") ELSE (SET "STARTED_CORRECTLY=%1")
 IF %STARTED_CORRECTLY%==0 (CD.. && CD.. && START start.cmd && ECHO Restart! & Exit)
@@ -7,36 +7,48 @@ IF "%DEBUG%"=="DebugON" CHOICE /N /C 123 /T %DEBUGTIME% /D 1 >NUL
 REM ############################################################################
 
 REM Initialisiere Variable für Dateinamen
-set CheckFileName=
+SET CheckFileName=
 
 REM Dieser Code verwendet eine for-Schleife, die xx mal ausgeführt wird. Bei jedem Durchgang wird der Inhalt der Variablen %CheckFileName% geändert
-for /l %%i in (1,1,20) do (
-    if %%i==1 set "CheckFileName=src\preload\VariablesReset.cmd"
-    if %%i==2 set "CheckFileName=src\preload\CurrentVersion.txt"
-    if %%i==3 set "CheckFileName=bin\ThirdPartySoftware\cECHO.exe"
-    if %%i==4 set "CheckFileName=src\preload\TimeQuery.cmd"
-    if %%i==5 set "CheckFileName=src\ConsoleOutputMenus.cmd"
-    if %%i==6 set "CheckFileName=src\presets\LanguageLoadOrCreateConfigfile.cmd"
-    if %%i==7 set "CheckFileName=src\translations\de.cmd"
-    if %%i==8 set "CheckFileName=src\translations\en.cmd"
-    if %%i==9 set "CheckFileName=src\presets\SavePathLoadOrCreateConfigfile.cmd"
-    if %%i==10 set "CheckFileName=src\data-query\UrlNumberFilter.cmd"
-    if %%i==11 set "CheckFileName=src\data-query\ReadingDataFromURL.cmd"
-    if %%i==12 set "CheckFileName=src\questions\AskDownloadFolder.cmd"
-    if %%i==13 set "CheckFileName=src\questions\AskPages.cmd"
-    if %%i==14 set "CheckFileName=src\questions\AskPagesRenewLoad.cmd"
-    if %%i==15 set "CheckFileName=src\questions\AskPagesRenew.cmd"
-    if %%i==16 set "CheckFileName=src\questions\AskComicName1.cmd"
-    if %%i==17 set "CheckFileName=src\questions\AskComicName2.cmd"
-    if %%i==18 set "CheckFileName=src\questions\AskAllRight.cmd"
-    if %%i==19 set "CheckFileName=src\questions\AskAllRightRenew.cmd"
-    REM if %%i==20 set "CheckFileName="
-    REM if %%i==21 set "CheckFileName="
-    IF "%DEBUG%"=="DebugON" ECHO DEBUG-Info: Test: !CheckFileName! & CHOICE /N /C 123 /T %DEBUGTIME% /D 1 >NUL
+for /l %%i in (1,1,24) do (
+    IF %%i==1 SET "CheckFileName=src\preload\VariablesReset.cmd"
+    IF %%i==2 SET "CheckFileName=src\preload\CurrentVersion.txt"
+    IF %%i==3 SET "CheckFileName=bin\ThirdPartySoftware\cECHO.exe"
+    IF %%i==4 SET "CheckFileName=src\preload\TimeQuery.cmd"
+    IF %%i==5 SET "CheckFileName=src\ConsoleOutputMenus.cmd"
+    IF %%i==6 SET "CheckFileName=src\presets\LanguageLoadOrCreateConfigfile.cmd"
+    IF %%i==7 SET "CheckFileName=src\translations\de.cmd"
+    IF %%i==8 SET "CheckFileName=src\translations\en.cmd"
+    IF %%i==9 SET "CheckFileName=src\presets\SavePathLoadOrCreateConfigfile.cmd"
+    IF %%i==10 SET "CheckFileName=src\data-query\UrlNumberFilter.cmd"
+    IF %%i==11 SET "CheckFileName=src\data-query\ReadingDataFromURL.cmd"
+    IF %%i==12 SET "CheckFileName=src\questions\AskDownloadFolder.cmd"
+    IF %%i==13 SET "CheckFileName=src\questions\AskPages.cmd"
+    IF %%i==14 SET "CheckFileName=src\questions\AskPagesRenewLoad.cmd"
+    IF %%i==15 SET "CheckFileName=src\questions\AskPagesRenew.cmd"
+    IF %%i==16 SET "CheckFileName=src\questions\AskComicName1.cmd"
+    IF %%i==17 SET "CheckFileName=src\questions\AskComicName2.cmd"
+    IF %%i==18 SET "CheckFileName=src\questions\AskAllRight.cmd"
+    IF %%i==19 SET "CheckFileName=src\questions\AskAllRightRenew.cmd"
+    IF %%i==20 SET "CheckFileName=src\wget\wgetDownloadLists.cmd"
+    IF %%i==21 SET "CheckFileName=src\refinishing\RenameToPageNumber.cmd"
+    IF %%i==22 SET "CheckFileName=src\refinishing\WebLinkCreate.cmd"
+    IF %%i==23 SET "CheckFileName=src\refinishing\SaveVarToDatabase.cmd"
+    IF %%i==24 SET "CheckFileName=src\refinishing\7zrStart.cmd"
+    IF %%i==24 SET "CheckFileName=bin\ThirdPartySoftware\7zr.exe"
+    IF %%i==24 SET "CheckFileName=bin\ThirdPartySoftware\cecho.exe"
+    IF %%i==24 SET "CheckFileName=bin\ThirdPartySoftware\cecho_bin.zip"
+    IF %%i==24 SET "CheckFileName=bin\ThirdPartySoftware\cecho32.exe"
+    IF %%i==24 SET "CheckFileName=bin\ThirdPartySoftware\cecho64.exe"
+    IF %%i==24 SET "CheckFileName=bin\ThirdPartySoftware\wget.exe"
+    IF %%i==24 SET "CheckFileName=bin\ThirdPartySoftware\wget32.exe"
+    IF %%i==24 SET "CheckFileName=bin\ThirdPartySoftware\wget64.exe"
 
-  REM Test if %CheckFileName% exists
+  REM Test IF %CheckFileName% exists
   REM Teste, ob %CheckFileName% existiert
-    IF NOT EXIST "!CheckFileName!" (
+    IF EXIST "!CheckFileName!" (
+        IF "%DEBUG%"=="DebugON" ECHO DEBUG-Info: Test erfolgreich, !CheckFileName! existiert & CHOICE /N /C 123 /T %DEBUGTIME% /D 1 >NUL
+    ) ELSE (
         CLS & COLOR 0C
         ECHO Fatal ERROR by loading "src\!CheckFileName!", file do not exist or has been corrupted & ECHO Downloads the missing file or the latest version of the software from: & ECHO https://github.com/RaptorXilef/ImHentai.xxx_Image_Downloader.
         START https://github.com/RaptorXilef/ImHentai.xxx_Image_Downloader/blob/main/!CheckFileName!
@@ -44,4 +56,5 @@ for /l %%i in (1,1,20) do (
     )
 )
 
+SET check=1
 EXIT /B

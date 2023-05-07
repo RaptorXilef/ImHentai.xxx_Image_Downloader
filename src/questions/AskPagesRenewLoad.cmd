@@ -6,21 +6,23 @@ IF %STARTED_CORRECTLY%==1 (IF "%DEBUG%"=="DebugON" ECHO. & ECHO DEBUG-Info: ques
 IF "%DEBUG%"=="DebugON" CHOICE /N /C 123 /T %DEBUGTIME% /D 1 >NUL
 REM ############################################################################
 
-    IF EXIST "%savePathDatabaseFolderComicID%\DownloadFolder.txt"         FOR /f "usebackq delims=" %%f IN ("%savePathDatabaseFolderComicID%\DownloadFolder.txt")         DO SET "downloadFolderRenew=%%f"
+
+IF "%DEBUG%"=="DebugON" ( ECHO DEBUG-Info: Lade Variablen aus der Flatfile-Datenbank & CHOICE /N /C 123 /T %DEBUGTIME% /D 1 >NUL )
+    IF EXIST "%savePathDatabaseFolderComicID%\DownloadFolder.txt"         FOR /f "usebackq delims=" %%f IN ("%savePathDatabaseFolderComicID%\downloadFolder.txt")         DO SET "downloadFolderRenew=%%f"
     IF EXIST "%savePathDatabaseFolderComicID%\comicId.txt"                FOR /f "usebackq delims=" %%f IN ("%savePathDatabaseFolderComicID%\comicId.txt")                DO SET "comicIdRenew=%%f"
     IF EXIST "%savePathDatabaseFolderComicID%\mainUrl.txt"                FOR /f "usebackq delims=" %%f IN ("%savePathDatabaseFolderComicID%\mainUrl.txt")                DO SET "mainUrlRenew=%%f"
     IF EXIST "%savePathDatabaseFolderComicID%\imageDownloadFolderURL.txt" FOR /f "usebackq delims=" %%f IN ("%savePathDatabaseFolderComicID%\imageDownloadFolderURL.txt") DO SET "imageDownloadFolderURLRenew=%%f"
     IF EXIST "%savePathDatabaseFolderComicID%\pages.txt"                  FOR /f "usebackq delims=" %%f IN ("%savePathDatabaseFolderComicID%\pages.txt")                  DO SET "pageCountInputRenew=%%f"
     IF EXIST "%savePathDatabaseFolderComicID%\comicName.txt"              FOR /f "usebackq delims=" %%f IN ("%savePathDatabaseFolderComicID%\comicName.txt")              DO SET "comicNameRenew=%%f"
     IF EXIST "%savePathDatabaseFolderComicID%\savePath.txt"               FOR /f "usebackq delims=" %%f IN ("%savePathDatabaseFolderComicID%\savePath.txt")               DO SET "savePathRenew=%%f"
-
+IF "%DEBUG%"=="DebugON" ( ECHO DEBUG-Info: Setze Variablen & CHOICE /N /C 123 /T %DEBUGTIME% /D 1 >NUL )
         SET "pageCountInputRenew=%pageCountInputRenew: =%"
         SET /a "pageCountInputRenew=%pageCountInputRenew%"
         SET "pageCountInput=%pageCountInput: =%"
         SET /a "pageCountInput=%pageCountInput%"
 
         ::DEBUG echo "%pageCountInputRenew%" - "%pageCountInput%" && PAUSE
-
+IF "%DEBUG%"=="DebugON" ( ECHO DEBUG-Info: Entferne Sonderzeichen aus den Variablen & CHOICE /N /C 123 /T %DEBUGTIME% /D 1 >NUL )
     :AntiSonderzeichenName
     ::Entferne Sonderzeichen aus dem eingegebenen String
     SET "comicNameInputRenew=%comicNameRenew:<=%"
@@ -44,23 +46,17 @@ REM ############################################################################
 
 
 IF "%DEBUG%"=="DebugON" (
-    ECHO %downloadFolderRenew%
-    ECHO %comicIdRenew%
-    ECHO %mainUrlRenew%
-    ECHO %imageDownloadFolderURLRenew%
-    ECHO %pageCountInputRenew%
-    ECHO %comicNameRenew%
-    ECHO %comicNameInputRenew%
-    ECHO %savePathRenew%
     ECHO.
-    ECHO !downloadFolderRenew!
-    ECHO !comicIdRenew!
-    ECHO !mainUrlRenew!
-    ECHO !imageDownloadFolderURLRenew!
-    ECHO !pageCountInputRenew!
-    ECHO !comicNameRenew!
-    ECHO !comicNameInputRenew!
-    ECHO !savePathRenew!
+    ECHO DEBUG-Info: Zeige geladene Variablen:
+    ECHO DEBUG-Info: downloadFolderRenew: !downloadFolderRenew!
+    ECHO DEBUG-Info: comicIdRenew: !comicIdRenew!
+    ECHO DEBUG-Info: mainUrlRenew: !mainUrlRenew!
+    ECHO DEBUG-Info: imageDownloadFolderURLRenew: !imageDownloadFolderURLRenew!
+    ECHO DEBUG-Info: pageCountInputRenew: !pageCountInputRenew!
+    ECHO DEBUG-Info: comicNameRenew: !comicNameRenew!
+    ECHO DEBUG-Info: comicNameInputRenew: !comicNameInputRenew!
+    ECHO DEBUG-Info: savePathRenew: !savePathRenew!
+    IF "%DEBUG%"=="DebugON" CHOICE /N /C 123 /T %DEBUGTIME% /D 1 >NUL
     PAUSE
 )
 

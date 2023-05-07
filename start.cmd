@@ -18,6 +18,7 @@ SETLOCAL ENABLEDELAYEDEXPANSION
 REM Debug modus off
 REM Debug Modus aus
     SET "DEBUG=DebugOFF"
+    IF NOT DEFINED check SET check=0
     IF EXIST "src\MainPart.cmd" (
       CALL "src\MainPart.cmd" 1
     ) ELSE (

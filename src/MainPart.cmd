@@ -16,16 +16,19 @@ REM Lizens: GNU GENERAL PUBLIC LICENSE - Version 3, 29 June 2007
 REM ===============================================================================================
 REM      Preload  #  Vorladen
 REM ===============================================================================================
-REM Check completeness of data
-REM Überprüfe Vollständigkeit der Daten
-  IF EXIST "src\preload\CheckCompleteness.cmd" (
-      CALL "src\preload\CheckCompleteness.cmd" 1
-      IF "!errorRestart!"=="errorRestartYES" GOTO errorRestartYES
-  ) ELSE (
-      CLS & COLOR 0C
-      ECHO Fatal ERROR by loading "src\preload\CheckCompleteness.cmd", file do not exist & ECHO Downloads the missing file or the latest version of the software from: & ECHO https://github.com/RaptorXilef/ImHentai.xxx_Image_Downloader.
-      PAUSE & EXIT
-  )
+  REM Check completeness of data
+  REM Überprüfe Vollständigkeit der Daten
+    IF "%check%"=="0" (
+        IF EXIST "src\preload\CheckCompleteness.cmd" (
+            CALL "src\preload\CheckCompleteness.cmd" 1
+            IF "!errorRestart!"=="errorRestartYES" GOTO errorRestartYES
+        ) ELSE (
+            CLS & COLOR 0C
+            ECHO Fatal ERROR by loading "src\preload\CheckCompleteness.cmd", file do not exist & ECHO Downloads the missing file or the latest version of the software from: & ECHO https://github.com/RaptorXilef/ImHentai.xxx_Image_Downloader.
+            PAUSE & EXIT
+        )
+    )
+
   REM Reset Variables
   REM Resete Variablen
     CALL "src\preload\VariablesReset.cmd" 1 & %errorTestCommand%
@@ -115,7 +118,10 @@ REM URL zum Auslesen der Werte wie Download-URL, Name, Seitenanzahl...
     SET "savePathDatabaseFolderComicID=%savePathDatabaseFolder%\%comicId%"
     SET "savePathTempFolder=%savePathDatabaseFolder%\_temp"
     SET "savePathTempFolderComicID=%savePathTempFolder%\%comicId%"
-    SET "savePathBackupFile=%savePathDatabaseFolderComicID%\%comicId%.zip"
+    REM SET "savePathBackupFile=%savePathDatabaseFolderComicID%\%comicId%.zip"
+    SET "savePathBackup=%savePath%\_backup"
+    SET "savePathBackupFile=%savePath%\_backup\%comicId%.zip"
+
 REM DEBUG
 IF "%DEBUG%"=="DebugON" (
     ECHO. & ECHO.
@@ -134,10 +140,13 @@ REM ============================================================================
   REM Reading out the values download URL, name, number of pages...
   REM Auslesen der Werte Download-URL, Name, Seitenanzahl...
     CALL "src\data-query\ReadingDataFromURL.cmd" 1 & %errorTestCommand%
-
+CLS
 
 REM ===============================================================================================
 REM      Check: Already downloaded / pages missing? / History + name of the comic  /  Prüfen: Bereits heruntergeladen / Seiten fehlen? / History + Name des Comics #
+REM ===============================================================================================
+REM ===============================================================================================
+REM      Start of the data query from the user and from the website 2  /  Start der Datenabfrage vom User und von der Webseite 2
 REM ===============================================================================================
   REM Check if comic has already been downloaded (if yes, load variables from DB)
   REM If not, request the data from the user.
@@ -150,6 +159,7 @@ REM ============================================================================
         SET "outputMenu=OutputMenuDownloadFolderInput"
         CALL "src\ConsoleOutputMenus.cmd" 1
         CALL "src\questions\AskDownloadFolder.cmd" 1 & %errorTestCommand%
+        CLS
     )
     REM ----------------------------------------------------------------------------
 
@@ -163,12 +173,14 @@ REM ============================================================================
       REM Frage nach der herunter zu ladenden Anzahl an Seiten und vergleiche diese mir der aus der Webseite ausgelesenen maximalen Seitenanzahl
         CALL "src\ConsoleOutputMenus.cmd" 1
         CALL "src\questions\AskPages.cmd" 1 & %errorTestCommand%
+        CLS
 
     ) ELSE (
 
       REM If pages of the comic have already been downloaded in the past, you will now be asked for the number of additional pages to be downloaded. (Useful e.g. if the comic is still being drawn and only a part of the work has been available so far).
       REM Wenn bereits in der Vergangenheit Seiten des Comics heruntergeladen wurden, wird nun nach der Anzahl der zusätzlich herunter zu ladenen Seiten gefragt. (Sinnvoll z.B. wenn das Comic derzeit noch gezeichnet wird und bisher nur ein Teil des Werks verfügbar war.)
         CALL "src\questions\AskPagesRenewLoad.cmd" 1 & %errorTestCommand% & REM innerhalb der Datei wird auch die Datei "src\questions\AskPagesRenew.cmd" mittels CALL abgerufen
+        CLS
 
       REM Check if the number of pages has changed since the last download.
       REM If it is less than or equal to the number of pages already downloaded, stop the process.
@@ -184,6 +196,7 @@ REM ============================================================================
         SET "outputMenu=OutputMenuPageCountInputRenew"
         CALL "src\ConsoleOutputMenus.cmd" 1
         CALL "src\questions\AskPagesRenew.cmd" 1 & %errorTestCommand%
+        CLS
     )
     REM ----------------------------------------------------------------------------
 
@@ -202,6 +215,7 @@ REM ############################################################################
         SET "outputMenu=OutputMenuComicNameInput"
         CALL "src\ConsoleOutputMenus.cmd" 1
         CALL "src\questions\AskComicName2.cmd" 1 & %errorTestCommand%
+        CLS
         IF EXIST "!savePath_downloadFolder!\!comicName!" ( CLS & ECHO. & ECHO     Der Name !comicName! ist bereist vergeben! & ECHO     Bitte wählen Sie einen anderen Namen. & CHOICE /N /C 123 /T 3 /D 1 /M "" >NUL & GOTO ComicNameInput ) ELSE (ECHO Der Name ist noch nicht vergeben. Es wird fortgefahren.)
 REM ÜBERSETZEN
     )
@@ -223,33 +237,66 @@ REM ----------------------------------------------------------------------------
 
 
 REM ===============================================================================================
-REM      Start of the data query from the user and from the website 2  /  Start der Datenabfrage vom User und von der Webseite 2
+REM      Prepare download (lists) / Download vorbereiten (Listen)
 REM ===============================================================================================
-REM Set or confirm the number of pages
-REM Seitenanzahl festlegen oder bestätigen
-REM .......
+  REM Set variables for WGet Downloader
+  REM Setze Variablen für WGet Downloader
+    SET "dl_lists=%savePathDatabaseFolderComicID%\dl_lists"
+    SET "dl_list_all=%dl_lists%\ALL_%xDateRTime%.txt"
+    SET "dl_list_jpg=%dl_lists%\JPG_%xDateRTime%.txt"
+    SET "dl_list_png=%dl_lists%\PNG_%xDateRTime%.txt"
+    SET "dl_list_gif=%dl_lists%\GIF_%xDateRTime%.txt"
 
-ECHO ENDE & PAUSE
-
-
-
-
-##### mainUrl Variable ist leer??????
-
-
-
-
-
+  REM Create download list and DB folder
+  REM Add the files to download to the NameDownloadlist (loop)
+  REM Erstelle Downloadliste und DB Ordner
+  REM Füge die zu downloadenden Dateien in die NameDownloadliste ein (schleife)
+    CALL "src\wget\wgetDownloadLists.cmd" 1 & %errorTestCommand%
 
 
+REM ===============================================================================================
+REM      Start Download / Starte Download
+REM ===============================================================================================
+  REM Create comic folders for download
+  REM Start download with WGet via 32 or 64 bit
+  REM Erstelle Comicordner für den Download
+  REM Starte Download mit WGet über 32 oder 64 bit
+    CALL "src\wget\wgetStartDownload.cmd" 1 & %errorTestCommand%
 
 
+REM ===============================================================================================
+REM      Numbering images / Bilder nummerieren
+REM ===============================================================================================
+REM Number images according to the number with leading zeros.
+REM Bilder entsprechend der Anzahl mit vorstehenden Nullen durchnummerieren.
+    CALL "src\refinishing\RenameToPageNumber.cmd" 1 & %errorTestCommand%
 
 
+REM ===============================================================================================
+REM      Create link to website / Erstelle Verknüpfung zur Webseite
+REM ===============================================================================================
+REM Include a link to the comic website in the comic folder.
+REM Packe eine Verknüpfung zur Comic-Webseite mit in den Comicordner.
+    CALL "src\refinishing\WebLinkCreate.cmd" 1 & %errorTestCommand%
 
 
+REM ===============================================================================================
+REM      Complete download / Exit script /// Download abschließen / Script Beenden
+REM ===============================================================================================
+REM Set database to ready
+REM Setze Datenbank auf fertig
+    IF NOT EXIST "%savePathDatabaseFolder%" MD "%savePathDatabaseFolder%" && attrib +h "%savePathDatabaseFolder%"
+    CALL "src\refinishing\SaveVarToDatabase.cmd" 1 & %errorTestCommand%
 
 
-PAUSE
+REM ===============================================================================================
+REM      Backup
+REM ===============================================================================================
+REM Erstelle ein Backup der heruntergeladenen Bilder
+REM Zippe die Downloadlisten um Speicherplatz zu spaaren
+    CALL "src\refinishing\7zrStart.cmd" 1 & %errorTestCommand%
+
+
+IF "%DEBUG%"=="DebugON" ( PAUSE )
 :errorRestartYES
 EXIT /B

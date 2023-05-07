@@ -13,11 +13,12 @@ REM ############################################################################
 REM DEBUG
   IF "%DEBUG%"=="DebugON" (
     ECHO.
-    ECHO DEBUG-Info:: %outputReadingDataFromURL1%
+    ECHO DEBUG-Info: %outputReadingDataFromURL1%
     ECHO.
     ECHO.
-    ECHO DEBUG-Info:: %outputReadingDataFromURL2%
-  ) ELSE (CLS)
+    ECHO DEBUG-Info: %outputReadingDataFromURL2%
+  ) ELSE ( CLS )
+
 REM ===============================================================================================(äöü)
 REM      Setze HTML Dokument Pfad und Name + temp Zwischenspeicher
 REM ===============================================================================================
@@ -47,11 +48,12 @@ REM versehen. Die dritte und vierte Zeile setzen die Dateipfade für zwei temporä
     SET "tempFile=%savePathTempFolderComicID%\temp.txt"
 REM DEBUG
   IF "%DEBUG%"=="DebugON" (
-    ECHO DEBUG-Info:: htmlFile= "%htmlFile%"
-    ECHO DEBUG-Info:: htmlFile= "%tempFile%"
+    ECHO DEBUG-Info: htmlFile= "%htmlFile%"
+    ECHO DEBUG-Info: htmlFile= "%tempFile%"
     CHOICE /N /C 123 /T %DEBUGTIME% /D 1 >NUL
   )
     ECHO. & ECHO.
+
 REM ===============================================================================================
 REM      Starte 64 oder 32 Bit Downlaoder für HTML Dokument
 REM ===============================================================================================
@@ -80,22 +82,23 @@ REM und der Benutzer zur Wiederholung aufgefordert.
     IF NOT EXIST "bin\ThirdPartySoftware\wget%PROCESSOR_ARCHITECTURE:~-2%.exe" "bin\ThirdPartySoftware\wget.exe" -O "%htmlFile%" "%mainUrl%"
 
     ECHO. & ECHO.
-    IF EXIST "%htmlFile%" %colorEcho% {0A} %outputReadingDataFromURL3%{#}{\n}{\n}{\n} && CHOICE /N /C 123 /T %DEBUGTIME% /D 1 >NUL
+    IF EXIST "%htmlFile%" %colorEcho% {0A} %outputReadingDataFromURL3%{#}{\n}{\n}{\n} && CHOICE /N /C 123 /T 2 /D 1 >NUL
     IF NOT EXIST "%htmlFile%" %colorEcho% {0C} %outputReadingDataFromURL4%{\n} %outputReadingDataFromURL5%{\n} {08} %outputReadingDataFromURL6%{\n}{\n} %outputReadingDataFromURL7%{#}{\n} && pause && SET errorRestart=errorRestartYES
     GOTO %errorRestart%
 
 :errorRestartNO
 :debugloop
+
 REM DEBUG
   IF "%DEBUG%"=="DebugON" (
-    %colorEcho% DEBUG-Info:: {0c}%outputReadingDataFromURL8%: {0e}%outputReadingDataFromURL9% && PAUSE
+    %colorEcho% DEBUG-Info: {0c}%outputReadingDataFromURL8%: {0e}%outputReadingDataFromURL9% && PAUSE
       CLS & ECHO. & ECHO.
       COLOR 08
-        %colorEcho% {08}DEBUG-Info:: {07}Download-URL: "%imageDownloadFolderURL%"{#}{\n}{\n}
-        %colorEcho% DEBUG-Info:: {07}Seiten: "%pageCountInput%"{#}{\n}{\n}
-        %colorEcho% DEBUG-Info:: {07}Language: "%languageInput%"{#}{\n}{\n}
-        %colorEcho% DEBUG-Info:: {07}Artist: "%artistInput%"{#}{\n}{\n}
-        %colorEcho% DEBUG-Info:: {07}Comicname: "%comicNameInput%"{#}{\n}{\n}
+        %colorEcho% {08}DEBUG-Info: {07}Download-URL: "%imageDownloadFolderURL%"{#}{\n}{\n}
+        %colorEcho% DEBUG-Info: {07}Seiten: "%pageCountInput%"{#}{\n}{\n}
+        %colorEcho% DEBUG-Info: {07}Language: "%languageInput%"{#}{\n}{\n}
+        %colorEcho% DEBUG-Info: {07}Artist: "%artistInput%"{#}{\n}{\n}
+        %colorEcho% DEBUG-Info: {07}Comicname: "%comicNameInput%"{#}{\n}{\n}
       CHOICE /N /C 123 /T %DEBUGTIME% /D 1 >NUL
   )
 REM ===============================================================================================
@@ -145,7 +148,6 @@ REM DEBUG
       %colorEcho% DEBUG-Info: {07}Comicname: "%comicNameInput%"{#}{\n}{\n}
     CHOICE /N /C 123 /T %DEBUGTIME% /D 1 >NUL
   )
-
 
 
 REM English
@@ -403,7 +405,7 @@ REM Dieser Codeblock löscht temporäre Dateien und Verzeichnisse sowie die Ausgab
 REM vorherigen Befehlen. Wenn die DEBUG-Option aktiviert ist, wird die Zeichenkodierung
 REM auf 1252 geändert und eine Benutzereingabe aufgefordert.
 
-IF "%DEBUG%"=="DebugON" (CHCP 1252) ELSE (CHCP 1252>nul)
+IF "%DEBUG%"=="DebugON" ( CHCP 1252 ) ELSE ( CHCP 1252>nul )
     %colorEcho% {\n}{0A} %outputReadingDataFromURL10%{#}{\n}
     %colorEcho% {\n}{0A} %outputReadingDataFromURL11%{#}{\n}
         del "%htmlFile%"
