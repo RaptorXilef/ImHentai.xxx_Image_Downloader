@@ -30,139 +30,139 @@ GOTO %outputMenu%
     GOTO BackToMainCode
 
 :OutputMenuSavePath
-    %colorEcho%    # {0B}%outputMenuSavePath_header%{#} # {\n}
+    %colorEcho%    # {0B}%LANG_ConsoleOutputMenus_OutputMenuSavePath_header%{#} # {\n}
     ECHO   +=======================================================================================================================================================================
     ECHO   ^>
-    %colorEcho%   ^>  {0A}%outputMenuSavePath_headline1%{#}{\n}
-    %colorEcho%   ^>  {07}%outputMenuSavePath_headline2%{#}{\n}
+    %colorEcho%   ^>  {0A}%LANG_ConsoleOutputMenus_OutputMenuSavePath_headline1%{#}{\n}
+    %colorEcho%   ^>  {07}%LANG_ConsoleOutputMenus_OutputMenuSavePath_headline2%{#}{\n}
     ECHO   ^>
-    %colorEcho%   ^>    {0f}%outputMenuSavePath_body1%{#}{\n}
+    %colorEcho%   ^>    {0f}%LANG_ConsoleOutputMenus_OutputMenuSavePath_body1%{#}{\n}
     ECHO   ^>
-    %colorEcho%   ^>      {07}%outputMenuSavePath_body2%{#}{\n}
-    %colorEcho%   ^>        {08}%outputMenuSavePath_body3%{#}{\n}
-    %colorEcho%   ^>        {08}%outputMenuSavePath_body4%{#}{\n}
-    %colorEcho%   ^>        {08}%outputMenuSavePath_body5%{#}{\n}
+    %colorEcho%   ^>      {07}%LANG_ConsoleOutputMenus_OutputMenuSavePath_body2%{#}{\n}
+    %colorEcho%   ^>        {08}%LANG_ConsoleOutputMenus_OutputMenuSavePath_body3%{#}{\n}
+    %colorEcho%   ^>        {08}%LANG_ConsoleOutputMenus_OutputMenuSavePath_body4%{#}{\n}
+    %colorEcho%   ^>        {08}%LANG_ConsoleOutputMenus_OutputMenuSavePath_body5%{#}{\n}
     ECHO   ^>
-    %colorEcho%   ^>      {07}%outputMenuSavePath_body6%{#}{\n}
-    %colorEcho%   ^>        {08}%outputMenuSavePath_body7%{#}{\n}
+    %colorEcho%   ^>      {07}%LANG_ConsoleOutputMenus_OutputMenuSavePath_body6%{#}{\n}
+    %colorEcho%   ^>        {08}%LANG_ConsoleOutputMenus_OutputMenuSavePath_body7%{#}{\n}
     ECHO   ^>
-    %colorEcho%   ^>      {07}%outputMenuSavePath_body8%{#}{\n}
-    %colorEcho%   ^>        {08}%outputMenuSavePath_body9%{#}{\n}
+    %colorEcho%   ^>      {07}%LANG_ConsoleOutputMenus_OutputMenuSavePath_body8%{#}{\n}
+    %colorEcho%   ^>        {08}%LANG_ConsoleOutputMenus_OutputMenuSavePath_body9%{#}{\n}
     ECHO   ^>
     ECHO   ^>
     ECHO   +=======================================================================================================================================================================
     ECHO.
     ECHO.
-    ECHO   #  %outputMenuSavePath_footer%
+    ECHO   #  %LANG_ConsoleOutputMenus_OutputMenuSavePath_footer%
     ECHO.
     GOTO BackToMainCode
 
 :OutputMenuMainUrl
     ECHO.
-    %colorEcho%    # {0B}%outputMenuMainUrl_header%{#} # {\n}
+    %colorEcho%    # {0B}%LANG_ConsoleOutputMenus_OutputMenueMainUrl_header%{#} # {\n}
     ECHO   +=======================================================================================================================================================================
     ECHO   ^>
-    %colorEcho%   ^>  {0A}%outputMenuMainUrl_headline1%{#}{\n}
-    %colorEcho%   ^>  {07}%outputMenuMainUrl_headline2%{#}{\n}
+    %colorEcho%   ^>  {0A}%LANG_ConsoleOutputMenus_OutputMenueMainUrl_headline1%{#}{\n}
+    %colorEcho%   ^>  {07}%LANG_ConsoleOutputMenus_OutputMenueMainUrl_headline2%{#}{\n}
     ECHO   ^>
     ECHO   ^>
-    %colorEcho%   ^>    {02}%outputMenuMainUrl_body1%{#}{\n}
+    %colorEcho%   ^>    {02}%LANG_ConsoleOutputMenus_OutputMenueMainUrl_body1%:{#}{\n}
     %colorEcho%   ^>     {07}-^> %savePath%{#}\*{\n}
     ECHO   ^>
     ECHO   ^>
     ECHO   +=======================================================================================================================================================================
     ECHO.
-    %colorEcho%   #  {07}%outputMenuMainUrl_body2% {0B}%outputMenuMainUrl_body3%{07} %outputMenuMainUrl_body4% {0B}%outputMenuMainUrl_body5%{07} %outputMenuMainUrl_body6%:{#}{\n}
-    %colorEcho%         - {08}%outputMenuMainUrl_body7%{#}{\n}
-    %colorEcho%          - {08}%outputMenuMainUrl_body8%: https://imhentai.xxx/gallery/598258/   %outputMenuMainUrl_body4%   https://imhentai.xxx/gallery/000258/{#}{\n}
-    %colorEcho%          - {08}%outputMenuMainUrl_body8%: 598258, 397 %outputMenuMainUrl_body4% 000237{#}{\n}
-    %colorEcho%         # {07}%outputMenuMainUrl_footer%: {#}{\n}
+    %colorEcho%   #  {07}%LANG_ConsoleOutputMenus_OutputMenueMainUrl_body2% {0B}%LANG_ConsoleOutputMenus_OutputMenueMainUrl_body3%{07} %LANG_ConsoleOutputMenus_OutputMenueMainUrl_body4% {0B}%LANG_ConsoleOutputMenus_OutputMenueMainUrl_body5%{07} %LANG_ConsoleOutputMenus_OutputMenueMainUrl_body6%:{#}{\n}
+    %colorEcho%         - {08}%LANG_ConsoleOutputMenus_OutputMenueMainUrl_body7%{#}{\n}
+    %colorEcho%          - {08}%LANG_ConsoleOutputMenus_OutputMenueMainUrl_body8%: https://imhentai.xxx/gallery/598258/   %LANG_ConsoleOutputMenus_OutputMenueMainUrl_body4%   https://imhentai.xxx/gallery/000258/{#}{\n}
+    %colorEcho%          - {08}%LANG_ConsoleOutputMenus_OutputMenueMainUrl_body8%: 598258, 397 %LANG_ConsoleOutputMenus_OutputMenueMainUrl_body4% 000237{#}{\n}
+    %colorEcho%         # {07}%LANG_ConsoleOutputMenus_OutputMenueMainUrl_footer%: {#}{\n}
     ECHO.
     GOTO BackToMainCode
 
 :OutputMenuDownloadFolderInput
-    ECHO    Thema: Unterordner wählen / Thema wählen
+    %colorEcho%    # {0B}%LANG_ConsoleOutputMenus_OutputMenuDownloadFolderInput_header%{#}{\n}
     ECHO   +=======================================================================================================================================================================
     ECHO   ^>
-    ECHO   ^>  Downloadthema
-    ECHO   ^>  =============
+    %colorEcho%   ^>  {0A}  %LANG_ConsoleOutputMenus_OutputMenuDownloadFolderInput_headline1%{#}{\n}
+    %colorEcho%   ^>  {07}  %LANG_ConsoleOutputMenus_OutputMenuDownloadFolderInput_headline2%{#}{\n}
     ECHO   ^>
     ECHO   ^>
-    ECHO   ^>    Eingabe ^| Unter-Ordnername
-    ECHO   ^>    --------^|----------------------
-    ECHO   ^>       d    ^| Downloads_Allgemein
-    ECHO   ^>       a    ^| Animals_-_Feral
-    ECHO   ^>       dr   ^| Dragon
-    ECHO   ^>       f    ^| Furry
-    ECHO   ^>       c    ^| Furry_Cub
-    ECHO   ^>       h    ^| Human /Menschen
-    ECHO   ^>       hc   ^| Human Children
-    ECHO   ^>       k    ^| Kids_movies
-    ECHO   ^>       p    ^| Pokemon
-    ECHO   ^>       di   ^| Digimon
-    ECHO   ^>       s    ^| Spezial
-    ECHO   ^>       z    ^| Zootopia
-    ECHO   ^>       an   ^| Anime
-    ECHO   ^>       de   ^| Deutsch
-    ECHO   ^>      mlp   ^| MyLittlePony
-    ECHO   ^>      pic   ^| Pictures_only
-    ECHO   ^>       tk   ^| TwoKinds
-    ECHO   ^>      tlk   ^| The_Lion_King
-    ECHO   ^>       o    ^| Other
+    %colorEcho%   ^>  {0A}  %LANG_ConsoleOutputMenus_OutputMenuDownloadFolderInput_body1% {07}^| %LANG_ConsoleOutputMenus_OutputMenuDownloadFolderInput_body2%{#}{\n}
+    %colorEcho%   ^>  {07}  --------^|----------------------{#}{\n}
+    %colorEcho%   ^>  {0A}     d    {07}^| %LANG_ConsoleOutputMenus_OutputMenuDownloadFolderInput_Var1%{#}{\n}
+    %colorEcho%   ^>  {0A}     a    {07}^| %LANG_ConsoleOutputMenus_OutputMenuDownloadFolderInput_Var2%{#}{\n}
+    %colorEcho%   ^>  {0A}     dr   {07}^| %LANG_ConsoleOutputMenus_OutputMenuDownloadFolderInput_Var3%{#}{\n}
+    %colorEcho%   ^>  {0A}     f    {07}^| %LANG_ConsoleOutputMenus_OutputMenuDownloadFolderInput_Var4%{#}{\n}
+    %colorEcho%   ^>  {0A}     c    {07}^| %LANG_ConsoleOutputMenus_OutputMenuDownloadFolderInput_Var5%{#}{\n}
+    %colorEcho%   ^>  {0A}     h    {07}^| %LANG_ConsoleOutputMenus_OutputMenuDownloadFolderInput_Var6%{#}{\n}
+    %colorEcho%   ^>  {0A}     hc   {07}^| %LANG_ConsoleOutputMenus_OutputMenuDownloadFolderInput_Var7%{#}{\n}
+    %colorEcho%   ^>  {0A}     k    {07}^| %LANG_ConsoleOutputMenus_OutputMenuDownloadFolderInput_Var8%{#}{\n}
+    %colorEcho%   ^>  {0A}     p    {07}^| %LANG_ConsoleOutputMenus_OutputMenuDownloadFolderInput_Var9%{#}{\n}
+    %colorEcho%   ^>  {0A}     di   {07}^| %LANG_ConsoleOutputMenus_OutputMenuDownloadFolderInput_Var10%{#}{\n}
+    %colorEcho%   ^>  {0A}     s    {07}^| %LANG_ConsoleOutputMenus_OutputMenuDownloadFolderInput_Var11%{#}{\n}
+    %colorEcho%   ^>  {0A}     z    {07}^| %LANG_ConsoleOutputMenus_OutputMenuDownloadFolderInput_Var12%{#}{\n}
+    %colorEcho%   ^>  {0A}     an   {07}^| %LANG_ConsoleOutputMenus_OutputMenuDownloadFolderInput_Var13%{#}{\n}
+    %colorEcho%   ^>  {0A}     de   {07}^| %LANG_ConsoleOutputMenus_OutputMenuDownloadFolderInput_Var14%{#}{\n}
+    %colorEcho%   ^>  {0A}    mlp   {07}^| %LANG_ConsoleOutputMenus_OutputMenuDownloadFolderInput_Var15%{#}{\n}
+    %colorEcho%   ^>  {0A}    pic   {07}^| %LANG_ConsoleOutputMenus_OutputMenuDownloadFolderInput_Var16%{#}{\n}
+    %colorEcho%   ^>  {0A}     tk   {07}^| %LANG_ConsoleOutputMenus_OutputMenuDownloadFolderInput_Var17%{#}{\n}
+    %colorEcho%   ^>  {0A}    tlk   {07}^| %LANG_ConsoleOutputMenus_OutputMenuDownloadFolderInput_Var18%{#}{\n}
+    %colorEcho%   ^>  {0A}     o    {07}^| %LANG_ConsoleOutputMenus_OutputMenuDownloadFolderInput_Var19%{#}{\n}
     ECHO   ^>
-    ECHO   ^>      sfw   ^| SFW
+    %colorEcho%   ^>  {0A}    sfw   {07}^| %LANG_ConsoleOutputMenus_OutputMenuDownloadFolderInput_Var20%{#}{\n}
     ECHO   ^>
-    ECHO   ^>       f    ^| Favouriten
+    %colorEcho%   ^>  {0A}     f    {07}^| %LANG_ConsoleOutputMenus_OutputMenuDownloadFolderInput_Var21%{#}{\n}
     ECHO   ^>
-    ECHO   ^>            ^| Manuelle Eingabe eines eigenen Ordnernamen (Der Inhalt des Ordners wird nur bei dessen Auswahl geprüft) (In dieser Version nicht empfohlen)
+    %colorEcho%   ^>  {08}          ^| %LANG_ConsoleOutputMenus_OutputMenuDownloadFolderInput_body3%{#}{\n}
     ECHO   ^>
     ECHO   ^>
-    ECHO   ^>       i    ^| ImHentai.xxx öffnen
-    ECHO   ^>       e    ^| Exit / Anwendung beenden
+    %colorEcho%   ^>  {08}     i    ^| %LANG_ConsoleOutputMenus_OutputMenuDownloadFolderInput_body4%{#}{\n}
+    %colorEcho%   ^>  {08}     e    ^| Exit / %LANG_ConsoleOutputMenus_OutputMenuDownloadFolderInput_body5%{#}{\n}
     ECHO   +=======================================================================================================================================================================
     ECHO.
-    ECHO   #  In welchen Ordner soll der Comic gedownloadet werden?
-    ECHO         - Beispiel: tk
-    ECHO         # Eingabe mit Enter bestätigen:
+    %colorEcho%  {07} #  %LANG_ConsoleOutputMenus_OutputMenuDownloadFolderInput_footer_1%{#}{\n}
+    %colorEcho%  {08}       - %LANG_ConsoleOutputMenus_OutputMenuDownloadFolderInput_footer_2%{#}{\n}
+    %colorEcho%  {07}       # %LANG_ConsoleOutputMenus_OutputMenuDownloadFolderInput_footer_3%{#}{\n}
     ECHO.
     GOTO BackToMainCode
 
 :OutputMenuPageCountInput
-    ECHO    Thema: Seitenanzahl
+    %colorEcho%    # {0B}%LANG_ConsoleOutputMenus_OutputMenuPageCountInput_header%{#}{\n}
     ECHO   +=======================================================================================================================================================================
     ECHO   ^>
-    ECHO   ^>  Bisherige Eingaben
-    ECHO   ^>  ==================
+    %colorEcho%   ^>{0A}  %LANG_ConsoleOutputMenus_OutputMenuPageCountInput_headline1%{#}{\n}
+    %colorEcho%   ^>{07}  %LANG_ConsoleOutputMenus_OutputMenuPageCountInput_headline2%{#}{\n}
     ECHO   ^>
     ECHO   ^>
-    ECHO   ^>    Speichern unter:
-    ECHO   ^>     -^> %savePath%
+    %colorEcho%   ^>{07}    %LANG_ConsoleOutputMenus_OutputMenuPageCountInput_body1%:{#}{\n}
+    %colorEcho%   ^>{08}     -^> %savePath%{#}{\n}
     ECHO   ^>
-    ECHO   ^>    Aktueller Downloadordner/-unterordner:
-    ECHO   ^>     -^> %downloadFolder%
+    %colorEcho%   ^>{07}    %LANG_ConsoleOutputMenus_OutputMenuPageCountInput_body2%:{#}{\n}
+    %colorEcho%   ^>{08}     -^> %downloadFolder%{#}{\n}
     ECHO   ^>
-    ECHO   ^>    Comic-Identifikationsnummer:
-    ECHO   ^>     -^> %comicId%
+    %colorEcho%   ^>{07}    %LANG_ConsoleOutputMenus_OutputMenuPageCountInput_body3%:{#}{\n}
+    %colorEcho%   ^>{08}     -^> %comicId%{#}{\n}
     ECHO   ^>
-    ECHO   ^>    Comic-URL:
-    ECHO   ^>     -^> %mainUrl%
+    %colorEcho%   ^>{07}    %LANG_ConsoleOutputMenus_OutputMenuPageCountInput_body4%:{#}{\n}
+    %colorEcho%   ^>{08}     -^> %mainUrl%{#}{\n}
     ECHO   ^>
-    ECHO   ^>    Download-URL (Basis): (Von der Webseite übernummen)
-    ECHO   ^>     -^> %imageDownloadFolderURL%*.*
+    %colorEcho%   ^>{07}    %LANG_ConsoleOutputMenus_OutputMenuPageCountInput_body5%: %LANG_ConsoleOutputMenus_OutputMenuPageCountInput_body6%{#}{\n}
+    %colorEcho%   ^>{08}     -^> %imageDownloadFolderURL%*.*{#}{\n}
     ECHO   ^>
-    ECHO   ^>    Seitenanzahl: (Von der Webseite übernummen)
-    ECHO   ^>     *-^> %pageCountInput%
+    %colorEcho%   ^>{02}    %LANG_ConsoleOutputMenus_OutputMenuPageCountInput_body7%: {07}%LANG_ConsoleOutputMenus_OutputMenuPageCountInput_body6%{#}{\n}
+    %colorEcho%   ^>{0A}     *-^> %pageCountInput%{#}{\n}
     ECHO   ^>
     ECHO   ^>
     ECHO   ^>
     ECHO   +=======================================================================================================================================================================
     ECHO.
-    ECHO   #  Geben Sie die Anzahl der Seiten an, welche heruntergeladen werden sollen:
-    ECHO         - Möchten Sie die vorgeschlagene Seitenanzahl übernehmen, drücken Sie nur [Enter] ohne Eingabe einer anderen Zahl.
-    ECHO         # Eingabe mit [Enter] bestätigen:
+    %colorEcho% {07}  #  %LANG_ConsoleOutputMenus_OutputMenuPageCountInput_body8%:{#}{\n}
+    %colorEcho% {08}        - %LANG_ConsoleOutputMenus_OutputMenuPageCountInput_body9%{#}{\n}
+    %colorEcho% {07}        # %LANG_ConsoleOutputMenus_OutputMenuPageCountInput_footer%:{#}{\n}
     ECHO.
     GOTO BackToMainCode
-
+:ggg
 :OutputMenuPageCountInputRenew
     echo =================================================================================
     echo Das Comic/Die Bildreihe auf der angegebenen Seite wurden bereits heruntergeladen!
@@ -204,7 +204,7 @@ SET /a "pages_count=%pageCountInput%-%pageCountInputRenew%"
     echo         - Die angegebene Zahl muss größer sein als "%pageCountInputRenew%".
     echo         - Möchten Sie die vorgeschlagene Seitenanzahl übernehmen, drücken Sie [Enter] ohne Eingabe einer Zahl.
     echo         # Eingabe jetzt mit [Enter] bestätigen:
-    ECHO.
+    ECHO. & PAUSE & CALL src\translations\de.cmd 1 & CLS & Goto ggg
     GOTO BackToMainCode
 
 :OutputMenuComicNameInput

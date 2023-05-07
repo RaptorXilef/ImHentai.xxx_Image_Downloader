@@ -26,8 +26,9 @@ REM Debug Modus aus
     ) ELSE (
       CLS
       COLOR 0C
-      ECHO Fatal ERROR by loading "src\MainPart.cmd", file do not exist.
-      PAUSE
+      ECHO Fatal ERROR by loading "src\MainPart.cmd", file do not exist or has been corrupted & ECHO Downloads the missing file or the latest version of the software from: & ECHO https://github.com/RaptorXilef/ImHentai.xxx_Image_Downloader.
+      START https://github.com/RaptorXilef/ImHentai.xxx_Image_Downloader/blob/main/src/MainPart.cmd
+      PAUSE & EXIT
       EXIT
     )
 

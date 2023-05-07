@@ -9,7 +9,7 @@ REM ############################################################################
 :ReloadUserInput
 REM Query the URL and wait for user input
 REM Frage die URL ab und warte auf eine Benutzereingabe
-    SET /p "mainUrlInput=------> URL: "
+    SET /p "mainUrlInput=------> !LANG_mainUrlInput!: "
 REM Remove all parts of the URL except comic ID
 REM Entferne alle Bestandteile der URL außer der Comic-ID
       SET "mainUrlInputRemove=%mainUrlInput:h=%"
@@ -35,11 +35,11 @@ REM Repeat the prompt if input is not a number or a valid URL.
 REM Wiederhole die Eingabeaufforderung, wenn die Eingabe keine Zahl oder gültige URL ist.
         SET /a "comicIdTest2=%comicIdTest%+0
         IF %comicIdTest% NEQ %comicIdTest2% (
-          ECHO "%mainUrlInput%" %outputUrlNumberFilter1%!
-          ECHO %outputUrlNumberFilter2%
+          ECHO "%mainUrlInput%" %LANG_UrlNumberFilter_1%!
+          ECHO %LANG_UrlNumberFilter_2%
           PAUSE
           SET "outputMenu=OutputMenuMainUrl"
-          CALL "src\ConsoleOutputMenus.cmd"
+          CALL "src\ConsoleOutputMenus.cmd" 1 & %errorTestCommand%
           GOTO ReloadUserInput
         )
       SET "comicId=%comicIdTest%"
@@ -94,15 +94,15 @@ REM ############################################################################
 REM Checking whether the determined comic ID is in the searched area
 REM Prüfung, ob die ermittelte Comic-ID im gesuchten Bereich liegt
       SET /a "comicIdTemp=%comicId%"
-          IF "%DEBUG%"=="DebugON" (ECHO. & ECHO DEBUG-Info: comicIdTemp= "%comicIdTemp%" & ECHO DEBUG: comicId= "%comicId%")
+          IF "%DEBUG%"=="DebugON" (ECHO. & ECHO DEBUG-Info: comicIdTemp= "%comicIdTemp%" & ECHO DEBUG-Info: comicId= "%comicId%")
 
       IF %strlen% EQU 6 IF %comicIdTemp% GEQ 1 IF %comicIdTemp% LEQ 999999 GOTO continue
       ECHO.
       ECHO.
       ECHO.
       color 0c
-      ECHO %outputUrlNumberFilter3%!
-      ECHO %outputUrlNumberFilter4%.
+      ECHO %LANG_UrlNumberFilter_3%!
+      ECHO %LANG_UrlNumberFilter_4%.
       PAUSE
       SET "outputMenu=OutputMenuMainUrl"
       CALL "src\ConsoleOutputMenus.cmd"
@@ -114,7 +114,7 @@ REM Prüfung, ob die ermittelte Comic-ID im gesuchten Bereich liegt
       ECHO.
       ECHO.
       ECHO.
-      %colorEcho% {0A} %outputUrlNumberFilter5%.{\n}{#}
+      %colorEcho% {0A} %LANG_UrlNumberFilter_5%.{\n}{#}
       SET "mainUrl=https://imhentai.xxx/gallery/%comicId%/"
           IF "%DEBUG%"=="DebugON" (ECHO. & ECHO DEBUG-Info: mainUrl= "%mainUrl%")
           CHOICE /N /C 123 /T %DEBUGTIME% /D 1 >NUL
