@@ -7,7 +7,7 @@ IF "%DEBUG%"=="DebugON" CHOICE /N /C 123 /T %DEBUGTIME% /D 1 >NUL
 REM ############################################################################
 
 
-IF "%DEBUG%"=="DebugON" ( ECHO DEBUG-Info: Lade Variablen aus der Flatfile-Datenbank & CHOICE /N /C 123 /T %DEBUGTIME% /D 1 >NUL )
+IF "%DEBUG%"=="DebugON" ( ECHO DEBUG-Info: %lang_AskPagesRenewLoad_DEBUG_1% & CHOICE /N /C 123 /T %DEBUGTIME% /D 1 >NUL )
     IF EXIST "%savePathDatabaseFolderComicID%\DownloadFolder.txt"         FOR /f "usebackq delims=" %%f IN ("%savePathDatabaseFolderComicID%\downloadFolder.txt")         DO SET "downloadFolderRenew=%%f"
     IF EXIST "%savePathDatabaseFolderComicID%\comicId.txt"                FOR /f "usebackq delims=" %%f IN ("%savePathDatabaseFolderComicID%\comicId.txt")                DO SET "comicIdRenew=%%f"
     IF EXIST "%savePathDatabaseFolderComicID%\mainUrl.txt"                FOR /f "usebackq delims=" %%f IN ("%savePathDatabaseFolderComicID%\mainUrl.txt")                DO SET "mainUrlRenew=%%f"
@@ -22,7 +22,7 @@ IF "%DEBUG%"=="DebugON" ( ECHO DEBUG-Info: Setze Variablen & CHOICE /N /C 123 /T
         SET /a "pageCountInput=%pageCountInput%"
 
         ::DEBUG echo "%pageCountInputRenew%" - "%pageCountInput%" && PAUSE
-IF "%DEBUG%"=="DebugON" ( ECHO DEBUG-Info: Entferne Sonderzeichen aus den Variablen & CHOICE /N /C 123 /T %DEBUGTIME% /D 1 >NUL )
+IF "%DEBUG%"=="DebugON" ( ECHO DEBUG-Info: %lang_AskPagesRenewLoad_DEBUG_2% & CHOICE /N /C 123 /T %DEBUGTIME% /D 1 >NUL )
     :AntiSonderzeichenName
     ::Entferne Sonderzeichen aus dem eingegebenen String
     SET "comicNameInputRenew=%comicNameRenew:<=%"
@@ -47,7 +47,7 @@ IF "%DEBUG%"=="DebugON" ( ECHO DEBUG-Info: Entferne Sonderzeichen aus den Variab
 
 IF "%DEBUG%"=="DebugON" (
     ECHO.
-    ECHO DEBUG-Info: Zeige geladene Variablen:
+    ECHO DEBUG-Info: %lang_AskPagesRenewLoad_DEBUG_3%:
     ECHO DEBUG-Info: downloadFolderRenew: !downloadFolderRenew!
     ECHO DEBUG-Info: comicIdRenew: !comicIdRenew!
     ECHO DEBUG-Info: mainUrlRenew: !mainUrlRenew!

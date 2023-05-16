@@ -16,8 +16,8 @@ REM Starts the language selection / Startet die Sprachauswahl
       :ReloadOutputMenuSavePath
       SET "outputMenu=OutputMenuSavePath"
       CALL "src\ConsoleOutputMenus.cmd"
-        SET "inputSavePath=Comics"
-        SET /p "inputSavePath=------> Speicherort: "
+        SET "inputSavePath=ImHentayXxxComicdownloads"
+        SET /p "inputSavePath=------> %lang_SavePathLoadOrCreateConfigfile_inputSavePath%: "
           SET savePath=!inputSavePath!
 REM DEBUG
       IF "%DEBUG%"=="DebugON" ( ECHO DEBUG: countrycode= "!savePath!" & CHOICE /N /C 123 /T 2 /D 1 >NUL )

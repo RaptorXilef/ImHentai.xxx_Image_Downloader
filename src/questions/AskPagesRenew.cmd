@@ -18,7 +18,7 @@ REM Hier war ursprünglich die Textausgabe "OutputMenuPageCountInputRenew"
     IF %pages_tobig% GTR %pageCountInput% SET /A "pageCountInput=%pages_tobig%"
 
 
-    IF %pages% LEQ %pageCountInputRenew% COLOR 0C && ECHO %pages% ist kleiner als %pageCountInputRenew% und damit ungültig. && ECHO Bitte versuchen Sie es erneut! && pause && CLS && SET "outputMenu=OutputMenuPageCountInputRenew" && CALL "src\ConsoleOutputMenus.cmd" 1 && COLOR 08 && GOTO pageCountInput
+    IF %pages% LEQ %pageCountInputRenew% COLOR 0C && ECHO %pages% %lang_AskPagesRenew_1% %pageCountInputRenew% %lang_AskPagesRenew_2% && ECHO %lang_AskPagesRenew_3% && pause && CLS && SET "outputMenu=OutputMenuPageCountInputRenew" && CALL "src\ConsoleOutputMenus.cmd" 1 && COLOR 08 && GOTO pageCountInput
 
     SET "savePath=%savePathRenew%"
     SET "downloadFolder=%downloadFolderRenew%"

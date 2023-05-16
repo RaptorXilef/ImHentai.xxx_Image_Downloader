@@ -2,7 +2,7 @@ REM Check whether the programme was started via Start.cmd, if not, start it auto
 REM Prüfe ob Programm über Start.cmd gestartet wurde, wenn nicht starte es automatisch über Start.cmd.
 IF "%~1"=="" (SET "STARTED_CORRECTLY=0") ELSE (SET "STARTED_CORRECTLY=%1")
 IF %STARTED_CORRECTLY%==0 (CD.. && START start.cmd && ECHO Restart! & Exit)
-IF %STARTED_CORRECTLY%==1 (CLS & ECHO. & ECHO DEBUG-Info: MainPart.cmd load successful! & ECHO.)
+IF %STARTED_CORRECTLY%==1 (IF "%DEBUG%"=="DebugON" CLS & ECHO. & ECHO DEBUG-Info: MainPart.cmd load successful! & ECHO.)
 IF "%DEBUG%"=="DebugON" CHOICE /N /C 123 /T %DEBUGTIME% /D 1 >NUL
 REM ############################################################################
 
@@ -31,7 +31,7 @@ REM ============================================================================
 
   REM Reset Variables
   REM Resete Variablen
-    CALL "src\preload\VariablesReset.cmd" 1 & %errorTestCommand%
+    CALL "src\preload\VariablesReset.cmd" 1 & IF "!errorRestart!"=="errorRestartYES" GOTO errorRestartYES
   REM Window size, background and font color
   REM Fenstergröße, Hintergrund- und SchrIFtfarbe
   REM Window size, background and font color
@@ -65,7 +65,7 @@ IF "%DEBUG%"=="DebugON" ( ECHO.
 
   REM Current time query
   REM Abfrage der aktuellen Zeit
-    CALL "src\preload\TimeQuery.cmd" 1 & %errorTestCommand%
+    CALL "src\preload\TimeQuery.cmd" 1 & IF "!errorRestart!"=="errorRestartYES" GOTO errorRestartYES
 
 REM DEBUG
 IF "%DEBUG%"=="DebugON" (
@@ -84,20 +84,20 @@ REM      Presets (One Time)  #  Voreinstellungen (Einmalig)
 REM ===============================================================================================
   REM Choose language (Load appropriate code from file)
   REM Sprache wählen (Lade entsprechenden Code aus Datei)
-    CALL "src\presets\LanguageLoadOrCreateConfigfile.cmd" 1 & %errorTestCommand%
+    CALL "src\presets\LanguageLoadOrCreateConfigfile.cmd" 1 & IF "!errorRestart!"=="errorRestartYES" GOTO errorRestartYES
 
 REM DEBUG
 IF "%DEBUG%"=="DebugON" ( ECHO. & ECHO DEBUG-Info: countrycode="%countrycode%" pass variable to MainPart.cmd & CHOICE /N /C 123 /T %DEBUGTIME% /D 1 >NUL )
 
   REM Load language file
   REM Lade Sprachdatei
-    CALL "src\translations\%countrycode%.cmd" 1 & %errorTestCommand%
+    CALL "src\translations\%countrycode%.cmd" 1 & IF "!errorRestart!"=="errorRestartYES" GOTO errorRestartYES
   REM Windowtitel
   REM Fenstertitel
     TITLE RaptorXilef CMD Tools - ImHentai.xxx Downloader (%countrycode%) - %PROCESSOR_ARCHITECTURE:~-2%bit - v%CurrentVersion% -^> https://github.com/RaptorXilef  -  https://www.patreon.com/raptorxilef
   REM Specify/query root directory for storing downloads
   REM Hauptverzeichnis zum Speichern der Downloads festlegen/abfragen
-    CALL "src\presets\SavePathLoadOrCreateConfigfile.cmd" 1 & %errorTestCommand%
+    CALL "src\presets\SavePathLoadOrCreateConfigfile.cmd" 1 & IF "!errorRestart!"=="errorRestartYES" GOTO errorRestartYES
     IF NOT EXIST "%savePath%" ( MD "%savePath%" )
 
 
@@ -110,7 +110,7 @@ REM URL zum Auslesen der Werte wie Download-URL, Name, Seitenanzahl...
   REM Lade URL-Abfrage
     SET "outputMenu=OutputMenuMainUrl"
     CALL "src\ConsoleOutputMenus.cmd" 1
-    CALL "src\data-query\UrlNumberFilter.cmd" 1 & %errorTestCommand%
+    CALL "src\data-query\UrlNumberFilter.cmd" 1 & IF "!errorRestart!"=="errorRestartYES" GOTO errorRestartYES
 
   REM Set different storage paths as variables
   REM Setze verschiedene Speicherpfade als Variablen
@@ -139,7 +139,7 @@ REM      Read website  /  Webseite auslesen
 REM ===============================================================================================
   REM Reading out the values download URL, name, number of pages...
   REM Auslesen der Werte Download-URL, Name, Seitenanzahl...
-    CALL "src\data-query\ReadingDataFromURL.cmd" 1 & %errorTestCommand%
+    CALL "src\data-query\ReadingDataFromURL.cmd" 1 & IF "!errorRestart!"=="errorRestartYES" GOTO errorRestartYES
 CLS
 
 REM ===============================================================================================
@@ -158,7 +158,7 @@ REM ============================================================================
       REM Unterverzeichnis zum Speichern der Downloads festlegen
         SET "outputMenu=OutputMenuDownloadFolderInput"
         CALL "src\ConsoleOutputMenus.cmd" 1
-        CALL "src\questions\AskDownloadFolder.cmd" 1 & %errorTestCommand%
+        CALL "src\questions\AskDownloadFolder.cmd" 1 & IF "!errorRestart!"=="errorRestartYES" GOTO errorRestartYES
         CLS
     )
     REM ----------------------------------------------------------------------------
@@ -172,14 +172,14 @@ REM ============================================================================
       REM Ask for the number of pages to be downloaded and compare this with the maximum number of pages read from the web page
       REM Frage nach der herunter zu ladenden Anzahl an Seiten und vergleiche diese mir der aus der Webseite ausgelesenen maximalen Seitenanzahl
         CALL "src\ConsoleOutputMenus.cmd" 1
-        CALL "src\questions\AskPages.cmd" 1 & %errorTestCommand%
+        CALL "src\questions\AskPages.cmd" 1 & IF "!errorRestart!"=="errorRestartYES" GOTO errorRestartYES
         CLS
 
     ) ELSE (
 
       REM If pages of the comic have already been downloaded in the past, you will now be asked for the number of additional pages to be downloaded. (Useful e.g. if the comic is still being drawn and only a part of the work has been available so far).
       REM Wenn bereits in der Vergangenheit Seiten des Comics heruntergeladen wurden, wird nun nach der Anzahl der zusätzlich herunter zu ladenen Seiten gefragt. (Sinnvoll z.B. wenn das Comic derzeit noch gezeichnet wird und bisher nur ein Teil des Werks verfügbar war.)
-        CALL "src\questions\AskPagesRenewLoad.cmd" 1 & %errorTestCommand% & REM innerhalb der Datei wird auch die Datei "src\questions\AskPagesRenew.cmd" mittels CALL abgerufen
+        CALL "src\questions\AskPagesRenewLoad.cmd" 1 & IF "!errorRestart!"=="errorRestartYES" GOTO errorRestartYES & REM innerhalb der Datei wird auch die Datei "src\questions\AskPagesRenew.cmd" mittels CALL abgerufen
         CLS
 
       REM Check if the number of pages has changed since the last download.
@@ -189,13 +189,32 @@ REM ============================================================================
       REM Wenn diese kleiner oder gleich der bereits heruntergeladenen Seitenanzahl ist, beende den Forgang
       REM Wenn diese großer als die bereits heruntergeladenen Seitenanzahl ist, fordere zur Bestätigung der herunter zu ladenden Anzahl an Seiten auf und übergebe die Werte an die Vatriablen für den Download.
         IF !pageCountInputRenew! GEQ !pageCountInput! (
-            cls && color 0c && ECHO. && ECHO. && ECHO   "!comicNameRenew!" wurde bereits vollständig heruntergeladen. && ECHO. && ECHO. && ECHO    Sie finden "!comicNameRenew!" unter: && ECHO. && ECHO      - Bilddateien/Comic:  !savePathRenew!\!downloadFolderRenew!\!comicNameInputRenew!\ && ECHO      - Backup:             !savePathRenew!\_backup\!comicIdRenew!.zip && ECHO      - Datenbankeintrag:   !savePathRenew!\_database\!comicIdRenew!\ && ECHO. && ECHO. && ECHO. && ECHO   Mit einem Klick auf [Enter] werden alle Eingaben zurückgesetzt und Sie können mit einem anderen Download beginnen. && ECHO. && ECHO. && PAUSE && SET "errorRestart=errorRestartYES" && GOTO errorRestartYES
+            cls
+            ECHO.
+            ECHO.
+            %colorEcho% {0C}  "!comicNameRenew!" %lang_MainPart_comicNameRenew_output_1%
+            ECHO.
+            ECHO.
+            %colorEcho% {0C}   %lang_MainPart_comicNameRenew_output_2% "!comicNameRenew!" %lang_MainPart_comicNameRenew_output_3%:
+            ECHO.
+            %colorEcho% {0C}     - %lang_MainPart_comicNameRenew_output_4%:{07}  !savePathRenew!\!downloadFolderRenew!\!comicNameInputRenew!\
+            %colorEcho% {0C}     - %lang_MainPart_comicNameRenew_output_5%:{07}             !savePathRenew!\_backup\!comicIdRenew!.zip
+            %colorEcho% {0C}     - %lang_MainPart_comicNameRenew_output_6%:{07}   !savePathRenew!\_database\!comicIdRenew!\
+            ECHO.
+            ECHO.
+            ECHO.
+            %colorEcho% {0C}  %lang_MainPart_comicNameRenew_output_7%
+            ECHO.
+            ECHO.
+            PAUSE
+            SET "errorRestart=errorRestartYES"
+            GOTO errorRestartYES
         )
 
       REM Datenprüfung
         SET "outputMenu=OutputMenuPageCountInputRenew"
         CALL "src\ConsoleOutputMenus.cmd" 1
-        CALL "src\questions\AskPagesRenew.cmd" 1 & %errorTestCommand%
+        CALL "src\questions\AskPagesRenew.cmd" 1 & IF "!errorRestart!"=="errorRestartYES" GOTO errorRestartYES
         CLS
     )
     REM ----------------------------------------------------------------------------
@@ -210,13 +229,24 @@ REM ############################################################################
     REM ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     IF NOT EXIST "%savePathDatabaseFolderComicID%\finished.txt" (
       REM Comicname festlegen oder bestätigen
-        CALL "src\questions\AskComicName1.cmd" 1 & %errorTestCommand%
+        CALL "src\questions\AskComicName1.cmd" 1 & IF "!errorRestart!"=="errorRestartYES" GOTO errorRestartYES
 :ComicNameInput
         SET "outputMenu=OutputMenuComicNameInput"
         CALL "src\ConsoleOutputMenus.cmd" 1
-        CALL "src\questions\AskComicName2.cmd" 1 & %errorTestCommand%
+        CALL "src\questions\AskComicName2.cmd" 1 & IF "!errorRestart!"=="errorRestartYES" GOTO errorRestartYES
         CLS
-        IF EXIST "!savePath_downloadFolder!\!comicName!" ( CLS & ECHO. & ECHO     Der Name !comicName! ist bereist vergeben! & ECHO     Bitte wählen Sie einen anderen Namen. & CHOICE /N /C 123 /T 3 /D 1 /M "" >NUL & GOTO ComicNameInput ) ELSE (ECHO Der Name ist noch nicht vergeben. Es wird fortgefahren.)
+        IF EXIST "!savePath_downloadFolder!\!comicName!" (
+            CLS
+            ECHO.
+            ECHO     %lang_MainPart_AskComicName_output_1% !comicName! %lang_MainPart_AskComicName_output_2%
+            ECHO     %lang_MainPart_AskComicName_output_3%
+            CHOICE /N /C 123 /T 3 /D 1 /M "" >NUL
+            GOTO ComicNameInput
+        )
+        ELSE
+        (
+            ECHO %lang_MainPart_AskComicName_output_4%
+        )
 REM ÜBERSETZEN
     )
 REM ----------------------------------------------------------------------------
@@ -227,11 +257,11 @@ REM ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     IF NOT EXIST "%savePathDatabaseFolderComicID%\finished.txt" (
         SET "outputMenu=OutputMenuRllRightInput"
         CALL "src\ConsoleOutputMenus.cmd" 1
-        CALL "src\questions\AskAllRight.cmd" 1 & %errorTestCommand%
+        CALL "src\questions\AskAllRight.cmd" 1 & IF "!errorRestart!"=="errorRestartYES" GOTO errorRestartYES
     ) ELSE (
         SET "outputMenu=OutputMenuRllRightRenewInput"
         CALL "src\ConsoleOutputMenus.cmd" 1
-        CALL "src\questions\AskAllRightRenew.cmd" 1 & %errorTestCommand%
+        CALL "src\questions\AskAllRightRenew.cmd" 1 & IF "!errorRestart!"=="errorRestartYES" GOTO errorRestartYES
     )
 REM ----------------------------------------------------------------------------
 
@@ -251,7 +281,7 @@ REM ============================================================================
   REM Add the files to download to the NameDownloadlist (loop)
   REM Erstelle Downloadliste und DB Ordner
   REM Füge die zu downloadenden Dateien in die NameDownloadliste ein (schleife)
-    CALL "src\wget\wgetDownloadLists.cmd" 1 & %errorTestCommand%
+    CALL "src\wget\wgetDownloadLists.cmd" 1 & IF "!errorRestart!"=="errorRestartYES" GOTO errorRestartYES
 
 
 REM ===============================================================================================
@@ -261,7 +291,7 @@ REM ============================================================================
   REM Start download with WGet via 32 or 64 bit
   REM Erstelle Comicordner für den Download
   REM Starte Download mit WGet über 32 oder 64 bit
-    CALL "src\wget\wgetStartDownload.cmd" 1 & %errorTestCommand%
+    CALL "src\wget\wgetStartDownload.cmd" 1 & IF "!errorRestart!"=="errorRestartYES" GOTO errorRestartYES
 
 
 REM ===============================================================================================
@@ -269,7 +299,7 @@ REM      Numbering images / Bilder nummerieren
 REM ===============================================================================================
 REM Number images according to the number with leading zeros.
 REM Bilder entsprechend der Anzahl mit vorstehenden Nullen durchnummerieren.
-    CALL "src\refinishing\RenameToPageNumber.cmd" 1 & %errorTestCommand%
+    CALL "src\refinishing\RenameToPageNumber.cmd" 1 & IF "!errorRestart!"=="errorRestartYES" GOTO errorRestartYES
 
 
 REM ===============================================================================================
@@ -277,7 +307,7 @@ REM      Create link to website / Erstelle Verknüpfung zur Webseite
 REM ===============================================================================================
 REM Include a link to the comic website in the comic folder.
 REM Packe eine Verknüpfung zur Comic-Webseite mit in den Comicordner.
-    CALL "src\refinishing\WebLinkCreate.cmd" 1 & %errorTestCommand%
+    CALL "src\refinishing\WebLinkCreate.cmd" 1 & IF "!errorRestart!"=="errorRestartYES" GOTO errorRestartYES
 
 
 REM ===============================================================================================
@@ -286,7 +316,7 @@ REM ============================================================================
 REM Set database to ready
 REM Setze Datenbank auf fertig
     IF NOT EXIST "%savePathDatabaseFolder%" MD "%savePathDatabaseFolder%" && attrib +h "%savePathDatabaseFolder%"
-    CALL "src\refinishing\SaveVarToDatabase.cmd" 1 & %errorTestCommand%
+    CALL "src\refinishing\SaveVarToDatabase.cmd" 1 & IF "!errorRestart!"=="errorRestartYES" GOTO errorRestartYES
 
 
 REM ===============================================================================================
@@ -294,7 +324,7 @@ REM      Backup
 REM ===============================================================================================
 REM Erstelle ein Backup der heruntergeladenen Bilder
 REM Zippe die Downloadlisten um Speicherplatz zu spaaren
-    CALL "src\refinishing\7zrStart.cmd" 1 & %errorTestCommand%
+    CALL "src\refinishing\7zrStart.cmd" 1 & IF "!errorRestart!"=="errorRestartYES" GOTO errorRestartYES
 
 
 IF "%DEBUG%"=="DebugON" ( PAUSE )

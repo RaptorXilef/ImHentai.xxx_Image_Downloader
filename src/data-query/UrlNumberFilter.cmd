@@ -9,7 +9,7 @@ REM ############################################################################
 :ReloadUserInput
 REM Query the URL and wait for user input
 REM Frage die URL ab und warte auf eine Benutzereingabe
-    SET /p "mainUrlInput=------> !LANG_mainUrlInput!: "
+    SET /p "mainUrlInput=------> !lang_UrlNumberFilter_mainUrlInput!: "
 REM Remove all parts of the URL except comic ID
 REM Entferne alle Bestandteile der URL außer der Comic-ID
       SET "mainUrlInputRemove=%mainUrlInput:h=%"
@@ -33,13 +33,14 @@ REM Entferne alle Bestandteile der URL außer der Comic-ID
       SET "comicIdTest=%mainUrlInputRemove: =%"
 REM Repeat the prompt if input is not a number or a valid URL.
 REM Wiederhole die Eingabeaufforderung, wenn die Eingabe keine Zahl oder gültige URL ist.
+
         SET /a "comicIdTest2=%comicIdTest%+0
         IF %comicIdTest% NEQ %comicIdTest2% (
-          ECHO "%mainUrlInput%" %LANG_UrlNumberFilter_1%!
-          ECHO %LANG_UrlNumberFilter_2%
+          ECHO "%mainUrlInput%" %lang_UrlNumberFilter_1%!
+          ECHO %lang_UrlNumberFilter_2%
           PAUSE
           SET "outputMenu=OutputMenuMainUrl"
-          CALL "src\ConsoleOutputMenus.cmd" 1 & %errorTestCommand%
+          CALL "src\ConsoleOutputMenus.cmd" 1 & IF "!errorRestart!"=="errorRestartYES" GOTO errorRestartYES
           GOTO ReloadUserInput
         )
       SET "comicId=%comicIdTest%"
@@ -101,8 +102,8 @@ REM Prüfung, ob die ermittelte Comic-ID im gesuchten Bereich liegt
       ECHO.
       ECHO.
       color 0c
-      ECHO %LANG_UrlNumberFilter_3%!
-      ECHO %LANG_UrlNumberFilter_4%.
+      ECHO %lang_UrlNumberFilter_3%!
+      ECHO %lang_UrlNumberFilter_4%.
       PAUSE
       SET "outputMenu=OutputMenuMainUrl"
       CALL "src\ConsoleOutputMenus.cmd"
@@ -114,7 +115,7 @@ REM Prüfung, ob die ermittelte Comic-ID im gesuchten Bereich liegt
       ECHO.
       ECHO.
       ECHO.
-      %colorEcho% {0A} %LANG_UrlNumberFilter_5%.{\n}{#}
+      %colorEcho% {0A} %lang_UrlNumberFilter_5%.{\n}{#}
       SET "mainUrl=https://imhentai.xxx/gallery/%comicId%/"
           IF "%DEBUG%"=="DebugON" (ECHO. & ECHO DEBUG-Info: mainUrl= "%mainUrl%")
           CHOICE /N /C 123 /T %DEBUGTIME% /D 1 >NUL

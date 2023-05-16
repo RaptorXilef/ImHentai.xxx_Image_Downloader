@@ -8,9 +8,9 @@ REM ############################################################################
 
 
 REM Erstelle Downloadliste und DB Ordner
-    IF "%DEBUG%"=="DebugON" ( ECHO DEBUG-Info: Erstelle Flatfile-Datenbankeintrag des Comics )
+    IF "%DEBUG%"=="DebugON" ( ECHO DEBUG-Info: %lang_wgetDownloadLists_DEBUG_1% & CHOICE /N /C 123 /T %DEBUGTIME% /D 1 >NUL )
     MD "%savePathDatabaseFolderComicID%\dl_lists"
-    IF "%DEBUG%"=="DebugON" ( ECHO DEBUG-Info: Erstelle Downloadliste/n )
+    IF "%DEBUG%"=="DebugON" ( ECHO DEBUG-Info: %lang_wgetDownloadLists_DEBUG_2% & CHOICE /N /C 123 /T %DEBUGTIME% /D 1 >NUL)
     ECHO von Seite %pages_start% bis Seite %pages_last%
 REM Füge die zu downloadenden Dateien in die NameDownloadliste ein (schleIFe)
     FOR /l %%G IN (%pages_start%,1,%pages_last%) DO ECHO %imageDownloadFolderURL%%%G.jpg>>"%dl_list_all%" & ECHO %imageDownloadFolderURL%%%G.png>>"%dl_list_all%" & ECHO %imageDownloadFolderURL%%%G.gif>>"%dl_list_all%" & ECHO %imageDownloadFolderURL%%%G.jpg>>"%dl_list_jpg%" & ECHO %imageDownloadFolderURL%%%G.png>>"%dl_list_png%" & ECHO %imageDownloadFolderURL%%%G.gif>>"%dl_list_gif%"

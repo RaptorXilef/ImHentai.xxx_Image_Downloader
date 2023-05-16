@@ -12,11 +12,11 @@ REM ############################################################################
 :chcp65001
       IF "%DEBUG%"=="DebugON" (CHCP 65001) ELSE (CHCP 65001>nul)
 :chcp1252
-    SET /p "all_right_input=------> Download starten: "
+    SET /p "all_right_input=------> %lang_AskAllRight_all_right_input%: "
 
     IF "%all_right_input%"=="j" GOTO continue
     IF "%all_right_input%"=="y" GOTO continue
-    IF "%all_right_input%"=="n" COLOR 0C && ECHO. && ECHO. && ECHO Mit dem Klick auf [Enter] werden alle Eingaben gelöscht und Sie können die richtigen Daten angeben. && pause && SET "errorRestart=errorRestartYES" && GOTO continue
+    IF "%all_right_input%"=="n" COLOR 0C && ECHO. && ECHO. && ECHO %lang_AskAllRight_n% && pause && SET "errorRestart=errorRestartYES" && COLOR 08 && GOTO continue
 
 GOTO REDO
 :continue

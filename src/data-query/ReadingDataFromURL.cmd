@@ -13,10 +13,10 @@ REM ############################################################################
 REM DEBUG
   IF "%DEBUG%"=="DebugON" (
     ECHO.
-    ECHO DEBUG-Info: %LANG_ReadingDataFromURL_DEBUG_1%
+    ECHO DEBUG-Info: %lang_ReadingDataFromURL_DEBUG_1%
     ECHO.
     ECHO.
-    ECHO DEBUG-Info: %LANG_ReadingDataFromURL_DEBUG_2%
+    ECHO DEBUG-Info: %lang_ReadingDataFromURL_DEBUG_2%
   ) ELSE ( CLS )
 
 REM ===============================================================================================(äöü)
@@ -82,8 +82,8 @@ REM und der Benutzer zur Wiederholung aufgefordert.
     IF NOT EXIST "bin\ThirdPartySoftware\wget%PROCESSOR_ARCHITECTURE:~-2%.exe" "bin\ThirdPartySoftware\wget.exe" -O "%htmlFile%" "%mainUrl%"
 
     ECHO. & ECHO.
-    IF EXIST "%htmlFile%" %colorEcho% {0A} %LANG_ReadingDataFromURL_1%{#}{\n}{\n}{\n} && CHOICE /N /C 123 /T 2 /D 1 >NUL
-    IF NOT EXIST "%htmlFile%" %colorEcho% {0C} %LANG_ReadingDataFromURL_2%{\n} %LANG_ReadingDataFromURL_3%{\n} {08} %LANG_ReadingDataFromURL_4%{\n}{\n} %LANG_ReadingDataFromURL_5%{#}{\n} && pause && SET errorRestart=errorRestartYES
+    IF EXIST "%htmlFile%" %colorEcho% {0A} %lang_ReadingDataFromURL_1%{#}{\n}{\n}{\n} && CHOICE /N /C 123 /T 2 /D 1 >NUL
+    IF NOT EXIST "%htmlFile%" %colorEcho% {0C} %lang_ReadingDataFromURL_2%{\n} %lang_ReadingDataFromURL_3%{\n} {08} %lang_ReadingDataFromURL_4%{\n}{\n} %lang_ReadingDataFromURL_5%{#}{\n} && pause && SET errorRestart=errorRestartYES
     GOTO %errorRestart%
 
 :errorRestartNO
@@ -91,14 +91,14 @@ REM und der Benutzer zur Wiederholung aufgefordert.
 
 REM DEBUG
   IF "%DEBUG%"=="DebugON" (
-    %colorEcho% DEBUG-Info: {0c}%LANG_ReadingDataFromURL_DEBUG_8%: {0e}%LANG_ReadingDataFromURL_DEBUG_9% && PAUSE
+    %colorEcho% DEBUG-Info: {0c}%lang_ReadingDataFromURL_DEBUG_8%: {0e}%lang_ReadingDataFromURL_DEBUG_9% && PAUSE
       CLS & ECHO. & ECHO.
       COLOR 08
-        %colorEcho% {08}DEBUG-Info: {07}%LANG_ReadingDataFromURL_DEBUG_3%: "%imageDownloadFolderURL%"{#}{\n}{\n}
-        %colorEcho% DEBUG-Info: {07}%LANG_ReadingDataFromURL_DEBUG_4%: "%pageCountInput%"{#}{\n}{\n}
-        %colorEcho% DEBUG-Info: {07}%LANG_ReadingDataFromURL_DEBUG_5%: "%languageInput%"{#}{\n}{\n}
-        %colorEcho% DEBUG-Info: {07}%LANG_ReadingDataFromURL_DEBUG_6%: "%artistInput%"{#}{\n}{\n}
-        %colorEcho% DEBUG-Info: {07}%LANG_ReadingDataFromURL_DEBUG_7%: "%comicNameInput%"{#}{\n}{\n}
+        %colorEcho% {08}DEBUG-Info: {07}%lang_ReadingDataFromURL_DEBUG_3%: "%imageDownloadFolderURL%"{#}{\n}{\n}
+        %colorEcho% DEBUG-Info: {07}%lang_ReadingDataFromURL_DEBUG_4%: "%pageCountInput%"{#}{\n}{\n}
+        %colorEcho% DEBUG-Info: {07}%lang_ReadingDataFromURL_DEBUG_5%: "%languageInput%"{#}{\n}{\n}
+        %colorEcho% DEBUG-Info: {07}%lang_ReadingDataFromURL_DEBUG_6%: "%artistInput%"{#}{\n}{\n}
+        %colorEcho% DEBUG-Info: {07}%lang_ReadingDataFromURL_DEBUG_7%: "%comicNameInput%"{#}{\n}{\n}
       CHOICE /N /C 123 /T %DEBUGTIME% /D 1 >NUL
   )
 REM ===============================================================================================
@@ -141,11 +141,11 @@ REM Download-URL
 REM DEBUG
   IF "%DEBUG%"=="DebugON" (
     CLS & ECHO. & ECHO.
-      %colorEcho% DEBUG-Info: {07}%LANG_ReadingDataFromURL_DEBUG_3%: {0A}"%imageDownloadFolderURL%"{#}{\n}{\n}
-      %colorEcho% DEBUG-Info: {07}%LANG_ReadingDataFromURL_DEBUG_4%: "%pageCountInput%"{#}{\n}{\n}
-      %colorEcho% DEBUG-Info: {07}%LANG_ReadingDataFromURL_DEBUG_5%: "%languageInput%"{#}{\n}{\n}
-      %colorEcho% DEBUG-Info: {07}%LANG_ReadingDataFromURL_DEBUG_6%: "%artistInput%"{#}{\n}{\n}
-      %colorEcho% DEBUG-Info: {07}%LANG_ReadingDataFromURL_DEBUG_7%: "%comicNameInput%"{#}{\n}{\n}
+      %colorEcho% DEBUG-Info: {07}%lang_ReadingDataFromURL_DEBUG_3%: {0A}"%imageDownloadFolderURL%"{#}{\n}{\n}
+      %colorEcho% DEBUG-Info: {07}%lang_ReadingDataFromURL_DEBUG_4%: "%pageCountInput%"{#}{\n}{\n}
+      %colorEcho% DEBUG-Info: {07}%lang_ReadingDataFromURL_DEBUG_5%: "%languageInput%"{#}{\n}{\n}
+      %colorEcho% DEBUG-Info: {07}%lang_ReadingDataFromURL_DEBUG_6%: "%artistInput%"{#}{\n}{\n}
+      %colorEcho% DEBUG-Info: {07}%lang_ReadingDataFromURL_DEBUG_7%: "%comicNameInput%"{#}{\n}{\n}
     CHOICE /N /C 123 /T %DEBUGTIME% /D 1 >NUL
   )
 
@@ -186,11 +186,11 @@ REM number of pages / Seitenanzahl
 REM DEBUG
   IF "%DEBUG%"=="DebugON" (
     CLS & ECHO. & ECHO.
-      %colorEcho% DEBUG-Info: {07}%LANG_ReadingDataFromURL_DEBUG_3%: "%imageDownloadFolderURL%"{#}{\n}{\n}
-      %colorEcho% DEBUG-Info: {07}%LANG_ReadingDataFromURL_DEBUG_4%: {0A}"%pageCountInput%"{#}{\n}{\n}
-      %colorEcho% DEBUG-Info: {07}%LANG_ReadingDataFromURL_DEBUG_5%: "%languageInput%"{#}{\n}{\n}
-      %colorEcho% DEBUG-Info: {07}%LANG_ReadingDataFromURL_DEBUG_6%: "%artistInput%"{#}{\n}{\n}
-      %colorEcho% DEBUG-Info: {07}%LANG_ReadingDataFromURL_DEBUG_7%: "%comicNameInput%"{#}{\n}{\n}
+      %colorEcho% DEBUG-Info: {07}%lang_ReadingDataFromURL_DEBUG_3%: "%imageDownloadFolderURL%"{#}{\n}{\n}
+      %colorEcho% DEBUG-Info: {07}%lang_ReadingDataFromURL_DEBUG_4%: {0A}"%pageCountInput%"{#}{\n}{\n}
+      %colorEcho% DEBUG-Info: {07}%lang_ReadingDataFromURL_DEBUG_5%: "%languageInput%"{#}{\n}{\n}
+      %colorEcho% DEBUG-Info: {07}%lang_ReadingDataFromURL_DEBUG_6%: "%artistInput%"{#}{\n}{\n}
+      %colorEcho% DEBUG-Info: {07}%lang_ReadingDataFromURL_DEBUG_7%: "%comicNameInput%"{#}{\n}{\n}
     CHOICE /N /C 123 /T %DEBUGTIME% /D 1 >NUL
   )
 
@@ -211,11 +211,11 @@ REM Language
 REM DEBUG
   IF "%DEBUG%"=="DebugON" (
     CLS & ECHO. & ECHO.
-      %colorEcho% DEBUG-Info: {07}%LANG_ReadingDataFromURL_DEBUG_3%: "%imageDownloadFolderURL%"{#}{\n}{\n}
-      %colorEcho% DEBUG-Info: {07}%LANG_ReadingDataFromURL_DEBUG_4%: "%pageCountInput%"{#}{\n}{\n}
-      %colorEcho% DEBUG-Info: {07}%LANG_ReadingDataFromURL_DEBUG_5%: {0A}"%languageInput%"{#}{\n}{\n}
-      %colorEcho% DEBUG-Info: {07}%LANG_ReadingDataFromURL_DEBUG_6%: "%artistInput%"{#}{\n}{\n}
-      %colorEcho% DEBUG-Info: {07}%LANG_ReadingDataFromURL_DEBUG_7%: "%comicNameInput%"{#}{\n}{\n}
+      %colorEcho% DEBUG-Info: {07}%lang_ReadingDataFromURL_DEBUG_3%: "%imageDownloadFolderURL%"{#}{\n}{\n}
+      %colorEcho% DEBUG-Info: {07}%lang_ReadingDataFromURL_DEBUG_4%: "%pageCountInput%"{#}{\n}{\n}
+      %colorEcho% DEBUG-Info: {07}%lang_ReadingDataFromURL_DEBUG_5%: {0A}"%languageInput%"{#}{\n}{\n}
+      %colorEcho% DEBUG-Info: {07}%lang_ReadingDataFromURL_DEBUG_6%: "%artistInput%"{#}{\n}{\n}
+      %colorEcho% DEBUG-Info: {07}%lang_ReadingDataFromURL_DEBUG_7%: "%comicNameInput%"{#}{\n}{\n}
     CHOICE /N /C 123 /T %DEBUGTIME% /D 1 >NUL
   )
 
@@ -280,11 +280,11 @@ REM Artist
 REM DEBUG
   IF "%DEBUG%"=="DebugON" (
     CLS & ECHO. & ECHO.
-      %colorEcho% DEBUG-Info: {07}%LANG_ReadingDataFromURL_DEBUG_3%: "%imageDownloadFolderURL%"{#}{\n}{\n}
-      %colorEcho% DEBUG-Info: {07}%LANG_ReadingDataFromURL_DEBUG_4%: "%pageCountInput%"{#}{\n}{\n}
-      %colorEcho% DEBUG-Info: {07}%LANG_ReadingDataFromURL_DEBUG_5%: "%languageInput%"{#}{\n}{\n}
-      %colorEcho% DEBUG-Info: {07}%LANG_ReadingDataFromURL_DEBUG_6%: {0A}"%artistInput%"{#}{\n}{\n}
-      %colorEcho% DEBUG-Info: {07}%LANG_ReadingDataFromURL_DEBUG_7%: "%comicNameInput%"{#}{\n}{\n}
+      %colorEcho% DEBUG-Info: {07}%lang_ReadingDataFromURL_DEBUG_3%: "%imageDownloadFolderURL%"{#}{\n}{\n}
+      %colorEcho% DEBUG-Info: {07}%lang_ReadingDataFromURL_DEBUG_4%: "%pageCountInput%"{#}{\n}{\n}
+      %colorEcho% DEBUG-Info: {07}%lang_ReadingDataFromURL_DEBUG_5%: "%languageInput%"{#}{\n}{\n}
+      %colorEcho% DEBUG-Info: {07}%lang_ReadingDataFromURL_DEBUG_6%: {0A}"%artistInput%"{#}{\n}{\n}
+      %colorEcho% DEBUG-Info: {07}%lang_ReadingDataFromURL_DEBUG_7%: "%comicNameInput%"{#}{\n}{\n}
     CHOICE /N /C 123 /T %DEBUGTIME% /D 1 >NUL
   )
 
@@ -371,22 +371,22 @@ REM "comicNameInput" gespeichert.
   REM DEBUG
     IF "%DEBUG%"=="DebugON" (
       CLS & ECHO. & ECHO.
-        %colorEcho% DEBUG-Info: {07}%LANG_ReadingDataFromURL_DEBUG_3%: "%imageDownloadFolderURL%"{#}{\n}{\n}
-        %colorEcho% DEBUG-Info: {07}%LANG_ReadingDataFromURL_DEBUG_4%: "%pageCountInput%"{#}{\n}{\n}
-        %colorEcho% DEBUG-Info: {07}%LANG_ReadingDataFromURL_DEBUG_5%: "%languageInput%"{#}{\n}{\n}
-        %colorEcho% DEBUG-Info: {07}%LANG_ReadingDataFromURL_DEBUG_6%: "%artistInput%"{#}{\n}{\n}
-        %colorEcho% DEBUG-Info: {07}%LANG_ReadingDataFromURL_DEBUG_7%: {0A}"%comicNameInput%"{#}{\n}{\n}
+        %colorEcho% DEBUG-Info: {07}%lang_ReadingDataFromURL_DEBUG_3%: "%imageDownloadFolderURL%"{#}{\n}{\n}
+        %colorEcho% DEBUG-Info: {07}%lang_ReadingDataFromURL_DEBUG_4%: "%pageCountInput%"{#}{\n}{\n}
+        %colorEcho% DEBUG-Info: {07}%lang_ReadingDataFromURL_DEBUG_5%: "%languageInput%"{#}{\n}{\n}
+        %colorEcho% DEBUG-Info: {07}%lang_ReadingDataFromURL_DEBUG_6%: "%artistInput%"{#}{\n}{\n}
+        %colorEcho% DEBUG-Info: {07}%lang_ReadingDataFromURL_DEBUG_7%: {0A}"%comicNameInput%"{#}{\n}{\n}
       CHOICE /N /C 123 /T %DEBUGTIME% /D 1 >NUL
     )
 
 REM DEBUG
   IF "%DEBUG%"=="DebugON" (
     CLS & ECHO. & ECHO.
-      %colorEcho% DEBUG-Info: {07}%LANG_ReadingDataFromURL_DEBUG_3%: "%imageDownloadFolderURL%"{#}{\n}{\n}
-      %colorEcho% DEBUG-Info: {07}%LANG_ReadingDataFromURL_DEBUG_4%: "%pageCountInput%"{#}{\n}{\n}
-      %colorEcho% DEBUG-Info: {07}%LANG_ReadingDataFromURL_DEBUG_5%: "%languageInput%"{#}{\n}{\n}
-      %colorEcho% DEBUG-Info: {07}%LANG_ReadingDataFromURL_DEBUG_6%: "%artistInput%"{#}{\n}{\n}
-      %colorEcho% DEBUG-Info: {07}%LANG_ReadingDataFromURL_DEBUG_7%: "%comicNameInput%"{#}{\n}{\n}
+      %colorEcho% DEBUG-Info: {07}%lang_ReadingDataFromURL_DEBUG_3%: "%imageDownloadFolderURL%"{#}{\n}{\n}
+      %colorEcho% DEBUG-Info: {07}%lang_ReadingDataFromURL_DEBUG_4%: "%pageCountInput%"{#}{\n}{\n}
+      %colorEcho% DEBUG-Info: {07}%lang_ReadingDataFromURL_DEBUG_5%: "%languageInput%"{#}{\n}{\n}
+      %colorEcho% DEBUG-Info: {07}%lang_ReadingDataFromURL_DEBUG_6%: "%artistInput%"{#}{\n}{\n}
+      %colorEcho% DEBUG-Info: {07}%lang_ReadingDataFromURL_DEBUG_7%: "%comicNameInput%"{#}{\n}{\n}
     CHOICE /N /C 123 /T %DEBUGTIME% /D 1 >NUL
     REM CLS && GOTO debugloop
   )
@@ -406,8 +406,8 @@ REM vorherigen Befehlen. Wenn die DEBUG-Option aktiviert ist, wird die Zeichenko
 REM auf 1252 geändert und eine Benutzereingabe aufgefordert.
 
 IF "%DEBUG%"=="DebugON" ( CHCP 1252 ) ELSE ( CHCP 1252>nul )
-    %colorEcho% {\n}{0A} %LANG_ReadingDataFromURL_DEBUG_10%{#}{\n}
-    %colorEcho% {\n}{0A} %LANG_ReadingDataFromURL_DEBUG_11%{#}{\n}
+    %colorEcho% {\n}{0A} %lang_ReadingDataFromURL_DEBUG_10%{#}{\n}
+    %colorEcho% {\n}{0A} %lang_ReadingDataFromURL_DEBUG_11%{#}{\n}
         del "%htmlFile%"
         del "%tempFile%"
     rd /s /q "%savePathTempFolderComicID%"

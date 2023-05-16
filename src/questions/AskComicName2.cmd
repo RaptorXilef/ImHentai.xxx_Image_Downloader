@@ -12,7 +12,7 @@ REM ############################################################################
       IF "%DEBUG%"=="DebugON" (CHCP 65001) else (CHCP 65001>nul)
 :chcp1252
     SET "comicNameInput_temp=%comicNameInput%"
-    SET /P "comicNameInput=------> Name: "
+    SET /P "comicNameInput=------> %lang_AskComicName2_comicNameInput%: "
 
         IF "%comicNameInput%"=="1" SET "comicNameInput=%comicNameInput_temp%"
         IF "%comicNameInput%"=="2" SET "comicNameInput=%comicNameInput_temp% (%languageInput%)"

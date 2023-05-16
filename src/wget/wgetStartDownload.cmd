@@ -11,7 +11,8 @@ REM Erstelle Comicordner für den Download
     IF "%DEBUG%"=="DebugON" (
         CLS
         ECHO.
-        ECHO Erstelle Downloadordner
+        ECHO %lang_wgetStartDownload_DEBUG_1%
+        CHOICE /N /C 123 /T %DEBUGTIME% /D 1 >NUL
     )
     MD "%savePath_comic_folder%"
 REM Starte Download mit WGet über 32 oder 64 bit
