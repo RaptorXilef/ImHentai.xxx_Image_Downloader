@@ -9,3 +9,6 @@ DE
 Laden Sie alle Bilder von einer Galerie von ImHentai.xxx herunter, sortieren Sie sie nach Themen und erhalten Sie sofort eine Informationen, wenn Sie die Bilder/das Comic bereits heruntergeladen haben.
 
 Diese Anwendung ist ein Hobbyprojekt und steht in keinerlei Verbindung zu den Betreibern von ImHentay.xxx
+
+
+Download last Version: https://github.com/RaptorXilef/ImHentai.xxx_Image_Downloader/releases/
