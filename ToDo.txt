@@ -1,5 +1,0 @@
-Updater über fmf einbauen (Versionsprüfung)
-
-Gesammten Code in eine Datei schreiben, welchge sich selbstupdaten kann
-
-Fehler finden

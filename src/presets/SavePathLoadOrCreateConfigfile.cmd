@@ -13,9 +13,9 @@ REM If Save path file exists... if not... / Wenn Speicherpfad Datei existiert ..
       FOR /f "usebackq delims=" %%f IN ("config\SavePath.txt") DO SET "savePath=%%f"
     ) ELSE (
 REM Starts the language selection / Startet die Sprachauswahl
-      :ReloadOutputMenuSavePath
+:ReloadOutputMenuSavePath
       SET "outputMenu=OutputMenuSavePath"
-      CALL "src\ConsoleOutputMenus.cmd"
+      CALL "src\ConsoleOutputMenus.cmd" 1 & IF "!errorRestart!"=="errorRestartYES" GOTO errorRestartYES
         SET "inputSavePath=ImHentayXxxComicdownloads"
         SET /p "inputSavePath=------> %lang_SavePathLoadOrCreateConfigfile_inputSavePath%: "
           SET savePath=!inputSavePath!

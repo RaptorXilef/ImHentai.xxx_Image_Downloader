@@ -17,7 +17,7 @@ GOTO %outputMenu%
     %colorEcho%   ^>  {0A}Countrycodes{#}{\n}
     %colorEcho%   ^>  {07}============{#}{\n}
     ECHO   ^>
-    %colorEcho%   ^>    {02}English =^> en (not available yet){#}{\n}
+    %colorEcho%   ^>    {02}English =^> en{#}{\n}
     %colorEcho%   ^>    {02}Deutsch =^> de{#}{\n}
     ECHO   ^>
     ECHO   ^>
@@ -204,6 +204,7 @@ SET /a "pages_count=%pageCountInput%-%pageCountInputRenew%"
     %colorEcho% {08}        - %lang_ConsoleOutputMenus_OutputMenuPageCountInputRenew_body13% "{0E}%pageCountInputRenew%{08}".{#}{\n}
     %colorEcho% {08}        - %lang_ConsoleOutputMenus_OutputMenuPageCountInputRenew_body14%{#}{\n}
     %colorEcho% {07}        # %lang_ConsoleOutputMenus_OutputMenuPageCountInputRenew_footer%:{#}{\n}
+    ECHO.
     GOTO BackToMainCode
 
 :OutputMenuComicNameInput
@@ -296,7 +297,6 @@ SET /a "pages_count=%pageCountInput%-%pageCountInputRenew%"
     %colorEcho% {07}  #  %lang_ConsoleOutputMenus_OutputMenuRllRightInput_body11%{#}{\n}
     %colorEcho% {08}        -  {0A} j {08}/ {04}n   {08} (%lang_ConsoleOutputMenus_OutputMenuRllRightInput_body12%){#}{\n}
     %colorEcho% {07}        # %lang_ConsoleOutputMenus_OutputMenuPageCountInput_footer%:{#}{\n}
-    ECHO.
     ECHO.
     GOTO BackToMainCode
 

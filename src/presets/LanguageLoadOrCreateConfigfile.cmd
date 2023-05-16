@@ -17,7 +17,7 @@ REM Read the first line of ... and store the content in the variable ... / Lese 
 REM Starts the language selection / Startet die Sprachauswahl
       :ReloadOutputMenuCountrycode
       SET "outputMenu=OutputMenuCountrycode"
-      CALL "src\ConsoleOutputMenus.cmd" 1
+      CALL "src\ConsoleOutputMenus.cmd" 1 & IF "!errorRestart!"=="errorRestartYES" GOTO errorRestartYES
         SET /p "countrycode=------> Countrycode: "
 REM DEBUG
       IF "%DEBUG%"=="DebugON" ( ECHO. & ECHO DEBUG: countrycode= "!countrycode!" & CHOICE /N /C 123 /T %DEBUGTIME% /D 1 >NUL )

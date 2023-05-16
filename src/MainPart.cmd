@@ -85,19 +85,21 @@ REM ============================================================================
   REM Choose language (Load appropriate code from file)
   REM Sprache wählen (Lade entsprechenden Code aus Datei)
     CALL "src\presets\LanguageLoadOrCreateConfigfile.cmd" 1 & IF "!errorRestart!"=="errorRestartYES" GOTO errorRestartYES
-
+    CLS
 REM DEBUG
 IF "%DEBUG%"=="DebugON" ( ECHO. & ECHO DEBUG-Info: countrycode="%countrycode%" pass variable to MainPart.cmd & CHOICE /N /C 123 /T %DEBUGTIME% /D 1 >NUL )
 
   REM Load language file
   REM Lade Sprachdatei
     CALL "src\translations\%countrycode%.cmd" 1 & IF "!errorRestart!"=="errorRestartYES" GOTO errorRestartYES
+    CLS
   REM Windowtitel
   REM Fenstertitel
     TITLE RaptorXilef CMD Tools - ImHentai.xxx Downloader (%countrycode%) - %PROCESSOR_ARCHITECTURE:~-2%bit - v%CurrentVersion% -^> https://github.com/RaptorXilef  -  https://www.patreon.com/raptorxilef
   REM Specify/query root directory for storing downloads
   REM Hauptverzeichnis zum Speichern der Downloads festlegen/abfragen
     CALL "src\presets\SavePathLoadOrCreateConfigfile.cmd" 1 & IF "!errorRestart!"=="errorRestartYES" GOTO errorRestartYES
+    CLS
     IF NOT EXIST "%savePath%" ( MD "%savePath%" )
 
 
@@ -111,6 +113,7 @@ REM URL zum Auslesen der Werte wie Download-URL, Name, Seitenanzahl...
     SET "outputMenu=OutputMenuMainUrl"
     CALL "src\ConsoleOutputMenus.cmd" 1
     CALL "src\data-query\UrlNumberFilter.cmd" 1 & IF "!errorRestart!"=="errorRestartYES" GOTO errorRestartYES
+    CLS
 
   REM Set different storage paths as variables
   REM Setze verschiedene Speicherpfade als Variablen
@@ -140,7 +143,7 @@ REM ============================================================================
   REM Reading out the values download URL, name, number of pages...
   REM Auslesen der Werte Download-URL, Name, Seitenanzahl...
     CALL "src\data-query\ReadingDataFromURL.cmd" 1 & IF "!errorRestart!"=="errorRestartYES" GOTO errorRestartYES
-CLS
+    CLS
 
 REM ===============================================================================================
 REM      Check: Already downloaded / pages missing? / History + name of the comic  /  Prüfen: Bereits heruntergeladen / Seiten fehlen? / History + Name des Comics #
