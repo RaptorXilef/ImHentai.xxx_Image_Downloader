@@ -64,13 +64,14 @@ REM ############################################################################
           ::ECHO %strlen%
 
 
-REM If strlen less than 6, complete string (old site support)
-REM Wenn strlen kleiner 6, vervollständige String (Support der alten Seiten)
-      IF %strlen% EQU 5 SET "comicId=0%comicId%"
-      IF %strlen% EQU 4 SET "comicId=00%comicId%"
-      IF %strlen% EQU 3 SET "comicId=000%comicId%"
-      IF %strlen% EQU 2 SET "comicId=0000%comicId%"
-      IF %strlen% EQU 1 SET "comicId=00000%comicId%"
+REM If strlen less than 7, complete string (old site support)
+REM Wenn strlen kleiner 7, vervollständige String (Support der alten Seiten)
+      IF %strlen% EQU 6 SET "comicId=0%comicId%"
+      IF %strlen% EQU 5 SET "comicId=00%comicId%"
+      IF %strlen% EQU 4 SET "comicId=000%comicId%"
+      IF %strlen% EQU 3 SET "comicId=0000%comicId%"
+      IF %strlen% EQU 2 SET "comicId=00000%comicId%"
+      IF %strlen% EQU 1 SET "comicId=000000%comicId%"
 
 
 REM ######################################################################################################################################
@@ -97,7 +98,7 @@ REM Prüfung, ob die ermittelte Comic-ID im gesuchten Bereich liegt
       SET /a "comicIdTemp=%comicId%"
           IF "%DEBUG%"=="DebugON" (ECHO. & ECHO DEBUG-Info: comicIdTemp= "%comicIdTemp%" & ECHO DEBUG-Info: comicId= "%comicId%")
 
-      IF %strlen% EQU 6 IF %comicIdTemp% GEQ 1 IF %comicIdTemp% LEQ 999999 GOTO continue
+      IF %strlen% EQU 7 IF %comicIdTemp% GEQ 1 IF %comicIdTemp% LEQ 9999999 GOTO continue
       ECHO.
       ECHO.
       ECHO.
@@ -105,10 +106,12 @@ REM Prüfung, ob die ermittelte Comic-ID im gesuchten Bereich liegt
       ECHO %lang_UrlNumberFilter_3%!
       ECHO %lang_UrlNumberFilter_4%.
       PAUSE
-      SET "outputMenu=OutputMenuMainUrl"
-      CALL "src\ConsoleOutputMenus.cmd"
-      GOTO ReloadUserInput
-      EXIT
+      ::SET "outputMenu=OutputMenuMainUrl"
+      ::CALL "src\ConsoleOutputMenus.cmd"
+      ::GOTO ReloadUserInput
+      ::EXIT
+      SET "errorRestart=errorRestartYES"
+      EXIT /B
 
 
   :continue
