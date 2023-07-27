@@ -34,7 +34,7 @@ REM Entferne alle Bestandteile der URL außer der Comic-ID
 REM Repeat the prompt if input is not a number or a valid URL.
 REM Wiederhole die Eingabeaufforderung, wenn die Eingabe keine Zahl oder gültige URL ist.
 
-        SET /a "comicIdTest2=%comicIdTest%+0
+        SET /a comicIdTest2=%comicIdTest%+0
         IF %comicIdTest% NEQ %comicIdTest2% (
           ECHO "%mainUrlInput%" %lang_UrlNumberFilter_1%!
           ECHO %lang_UrlNumberFilter_2%
@@ -43,8 +43,8 @@ REM Wiederhole die Eingabeaufforderung, wenn die Eingabe keine Zahl oder gültige
           CALL "src\ConsoleOutputMenus.cmd" 1 & IF "!errorRestart!"=="errorRestartYES" GOTO errorRestartYES
           GOTO ReloadUserInput
         )
-      SET "comicId=%comicIdTest%"
-
+      SET "comicId=%comicIdTest2%"
+::echo %comicIdTest%  %comicIdTest2% & pause
 
 REM ######################################################################################################################################
 REM Check whether the comic ID determined has 6 digits (Code-part by https://www.geeksforgeeks.org/batch-script-string-length/)
@@ -60,10 +60,11 @@ REM Prüfung, ob die ermittelte Comic-ID 6 Stellen hat (Code-part by https://www.
           GOTO :eof
 REM ######################################################################################################################################
 :continue
+::echo "1" & pause
       SET /a "strlen=%strlen%"
           ::ECHO %strlen%
 
-
+::echo "2" & pause
 REM If strlen less than 7, complete string (old site support)
 REM Wenn strlen kleiner 7, vervollständige String (Support der alten Seiten)
       IF %strlen% EQU 6 SET "comicId=0%comicId%"
@@ -73,7 +74,7 @@ REM Wenn strlen kleiner 7, vervollständige String (Support der alten Seiten)
       IF %strlen% EQU 2 SET "comicId=00000%comicId%"
       IF %strlen% EQU 1 SET "comicId=000000%comicId%"
 
-
+::echo %comicId% & pause
 REM ######################################################################################################################################
 REM Check whether the comic ID determined has 6 digits (Code-part by https://www.geeksforgeeks.org/batch-script-string-length/)
 REM Prüfung, ob die ermittelte Comic-ID 6 Stellen hat (Code-part by https://www.geeksforgeeks.org/batch-script-string-length/)
@@ -88,16 +89,16 @@ REM Prüfung, ob die ermittelte Comic-ID 6 Stellen hat (Code-part by https://www.
           GOTO :eof
 REM ######################################################################################################################################
 
-  :continue
+:continue
       SET /a "strlen=%strlen%"
           IF "%DEBUG%"=="DebugON" (ECHO. & ECHO. & ECHO DEBUG-Info: strlen: "%strlen%")
-
+::echo %comicId% & pause
 
 REM Checking whether the determined comic ID is in the searched area
 REM Prüfung, ob die ermittelte Comic-ID im gesuchten Bereich liegt
-      SET /a "comicIdTemp=%comicId%"
+      SET /a comicIdTemp=%comicIdTest2%+0
           IF "%DEBUG%"=="DebugON" (ECHO. & ECHO DEBUG-Info: comicIdTemp= "%comicIdTemp%" & ECHO DEBUG-Info: comicId= "%comicId%")
-
+::echo %comicId%  %comicIdTemp%  %strlen% & pause
       IF %strlen% EQU 7 IF %comicIdTemp% GEQ 1 IF %comicIdTemp% LEQ 9999999 GOTO continue
       ECHO.
       ECHO.
@@ -114,7 +115,7 @@ REM Prüfung, ob die ermittelte Comic-ID im gesuchten Bereich liegt
       EXIT /B
 
 
-  :continue
+:continue
       ECHO.
       ECHO.
       ECHO.
