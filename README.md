@@ -1,63 +1,106 @@
-# ImHentai.xxx_Image_Downloader
-DE
-Kurzbeschreibung: Laden Sie alle Bilder einer Galerie von ImHentai.xxx herunter, sortieren Sie sie nach Themen und erhalten Sie sofort eine Meldung, wenn Sie die Bilder/das Comic bereits heruntergeladen haben.
+## English
 
-Diese Anwendung ist ein Hobbyprojekt und steht in keinerlei Verbindung zu den Betreibern von ImHentay.xxx
+  <h1>ImHentai.xxx_Image_Downloader</h1>
+
+  <p>Welcome to "ImHentai.xxx_Image_Downloader" - the command-line application that greatly simplifies the process of downloading and organizing images and comics from the website ImHentai.xxx! This command-line application, specifically developed for the Windows operating system, allows you to bypass the tedious task of individually downloading each image to secure it on your system, thus simplifying your comic collecting process.</p>
+
+ 
+  <h2>Features:</h2>
+
+  <ul>
+    <li><strong>Portable and Resource-Efficient:</strong> With a clear focus on efficiency and performance, I intentionally opted for a lightweight, text-based console interface to ensure optimal resource utilization. This allows the software to run smoothly even on low-end systems, enabling you to fully concentrate on downloading and organizing your favorite images and comics.</li>
+    <li><strong>Advanced Features:</strong> The ImHentai.xxx_Image_Downloader utilizes a flat-file database to intelligently recognize previously downloaded comics and avoid duplicate downloads. In the event of a comic being updated, the software automatically detects the newly added pages upon input of the comic link, ensuring that you always have the latest version of the comic. Only the missing pages are downloaded, saving both data volume and time.</li>
+    <li><strong>Data Backup:</strong> To optimally protect your downloaded comics, the ImHentai.xxx_Image_Downloader creates a backup in the form of a zip archive file for each comic. This allows damaged images to be quickly restored without the need for re-downloading.</li>
+    <li><strong>Multi-Language Support and Open-Source:</strong> The ImHentai.xxx_Image_Downloader is available not only in German and English but also offers easy integration of additional languages. The software is open-source and accessible on GitHub, allowing the developer community to contribute to its improvement and expansion, and you can always see what's happening behind the scenes.</li>
+  </ul>
+
+  <h2>Description:</h2>
+
+  <p>Experience the future of simple and efficient downloading and organizing of images and comics from ImHentai.xxx. Get the ImHentai.xxx_Image_Downloader today and discover a whole new way to organize your favorite content!</p>
+
+  <h2>Download the Latest Version:</h2>
+
+  <p><a href="https://github.com/RaptorXilef/ImHentai.xxx_Image_Downloader/releases/tag/v.0.2.0.3">Download Latest Version</a></p>
+
+<h2>Usage:</h2>
+
+<ol>
+  <li>Download the script.</li>
+  <li>Start it.</li>
+  <li>In the console, select your preferred language and the storage location for the comics.</li>
+  <li>Enter the link to the comic on ImHentai.xxx or the ComicID (number from the link).</li>
+  <li>Optionally, select a category for the comic.</li>
+  <li>Answer the questions about the comic name, authors, etc. The script already offers a preselection for this, which you can simply confirm or individualize.</li>
+  <li>The download starts.</li>
+  <li>Done.</li>
+  <li>PS: You can also start the application several times to bridge waiting times during the download by entering the next ComicID.</li>
+</ol>
+
+<h2>License:</h2>
+
+<p>The Minecraft Log Filter Script is licensed under the GNU General Public License (GPL) Version 3.0. For more information, refer to the included license file.</p>
+
+  <h2>In Short:</h2>
+
+  <p>Are you looking for a convenient way to download and organize your favorite images and comics from ImHentai.xxx? Look no further! With ImHentai.xxx_Image_Downloader, the entire process is automated and simplified. Forget about the tedious task of downloading each individual image - this software handles it all for you! No installation required - take the portable version on your USB stick and use it on any Windows computer. And the best part? ImHentai.xxx_Image_Downloader even runs on weak systems, thanks to its resource-efficient design. You'll love how easy it is to browse through your comics and download the latest pages. And if a picture is ever broken, you always have a backup on hand to quickly restore it. Take control of downloading and organizing your images and comics - get ImHentai.xxx_Image_Downloader today and experience ultimate user-friendliness! Available in German and English. Join the growing developer community on GitHub and even help make the software better.</p>
+
+<h2>Important:</h2>
+
+  <p>This application is a hobby project and is not affiliated with the operators of ImHentai.xxx.</p>
 
 
-Download last Version: https://github.com/RaptorXilef/ImHentai.xxx_Image_Downloader/releases/
 
 
 
-Mein Werbetext:
-Auf der Suche nach einer bequemen Möglichkeit, Ihre Lieblingsbilder und Comics von ImHentai.xxx herunterzuladen und zu organisieren? Suchen Sie nicht weiter! Mit ImHentai.xxx_Image_Downloader wird der gesamte Prozess automatisiert und vereinfacht. Vergessen Sie das mühsame Herunterladen jedes einzelnen Bildes - meine Software erledigt alles für Sie! Keine Installation erforderlich - nehmen Sie die portable Version auf Ihrem USB-Stick mit und verwenden Sie sie auf jedem Windows-Computer. Und das Beste daran? ImHentai.xxx_Image_Downloader läuft sogar auf schwachen Systemen, dank seines ressourcensparenden Designs. Sie werden es lieben, wie einfach es ist, Ihre Comics zu durchsuchen und die neuesten Seiten herunterzuladen. Und falls einmal ein Bild defekt ist, haben Sie immer ein Backup zur Hand, um es schnell wiederherzustellen. Nehmen Sie das Herunterladen und Sortieren Ihrer Bilder und Comics in die eigene Hand - holen Sie sich noch heute ImHentai.xxx_Image_Downloader und erleben Sie die ultimative Benutzerfreundlichkeit! Verfügbar auf Deutsch, Englisch und vielen weiteren Sprachen (in der Entwicklung). Werden Sie Teil der wachsenden Entwicklergemeinschaft auf GitHub und helfen Sie sogar mit, die Software noch besser zu machen.
+<br><br><br><br><br>
 
 
+## Deutsch
 
-Beschreibung:
-Willkommen zu "ImHentai.xxx_Image_Downloader" - der Software, die das Herunterladen und Sortieren von Bildern und Comics von der Webseite ImHentai.xxx revolutioniert! Diese exklusive Software für das Windows-Betriebssystem ermöglicht es Ihnen, die mühsame Aufgabe des manuellen Herunterladens von Bildern zu umgehen und Ihren Comic-Sammelprozess zu vereinfachen.
+<h1>ImHentai.xxx_Image_Downloader</h1>
 
-ImHentai.xxx_Image_Downloader ist nicht nur portabel, sondern auch ressourcensparend. Mit einem klaren Fokus auf Effizienz und Leistung wurde bewusst auf eine grafische Oberfläche und Animationen verzichtet. Stattdessen wurde eine schlichte textbasierte Konsole gewählt, die die Ressourcen Ihres Systems optimal nutzt. Selbst auf schwachen Systemen läuft die Software reibungslos, sodass Sie sich ganz auf das Herunterladen und Sortieren Ihrer Lieblingsbilder und Comics konzentrieren können.
+<p>Willkommen beim "ImHentai.xxx_Image_Downloader" - der Komandozeilenanwendung, die den Prozess des Herunterladens und Organisierens von Bildern und Comics der Webseite ImHentai.xxx deutlich vereinfacht! Diese Komandozeilenanwendung, speziell fÃ¼r das Betriebssystem Windows entwickelt, ermÃ¶glicht es Ihnen, die mÃ¼hsame Aufgabe des individuellen Herunterladens jedes einzelnen Bildes um es auf ihrem System zu sichern zu umgehen und vereinfacht bamit Ihren Comic-Sammelprozess.</p>
 
-Diese innovative Software geht über das bloße Herunterladen hinaus. ImHentai.xxx_Image_Downloader legt eine Flatfile-Datenbank an, um bereits heruntergeladene Comics zu erkennen und ein erneutes Herunterladen zu vermeiden. Falls ein Comic während des Downloads aktualisiert wird, erkennt die Software automatisch die neu hinzugefügten Seiten und lädt sie herunter, um sicherzustellen, dass Sie immer die aktuellste Version haben.
+<h2>Funktionen:</h2>
 
-Um Ihre heruntergeladenen Comics optimal zu schützen, erstellt ImHentai.xxx_Image_Downloader für jedes Comic ein Backup in Form einer Zip-Archiv-Datei. Dadurch können defekte Bilder schnell wiederhergestellt werden, ohne dass Sie sie erneut herunterladen müssen. Sie können sich also auf das Lesen und Genießen Ihrer Comics konzentrieren, ohne sich um Datenverlust sorgen zu müssen.
+<ul>
+  <li><strong>Portabel und ressourcensparend:</strong> Mit einem klaren Fokus auf Effizienz und Leistung habe ich mich bewusst fÃ¼r eine schlanke, textbasierte KonsolenoberflÃ¤che entschieden, um eine optimale Ressourcennutzung zu gewÃ¤hrleisten. Dies ermÃ¶glicht es der Software, selbst auf Low-End-Systemen reibungslos zu laufen, damit Sie sich vollstÃ¤ndig auf das Herunterladen und Organisieren Ihrer Lieblingsbilder und Comics konzentrieren kÃ¶nnen.</li>
+  <li><strong>Fortgeschrittene Funktionen:</strong> Der ImHentai.xxx_Image_Downloader verwendet eine Flatfile-Datenbank, um bereits heruntergeladene Comics intelligent zu erkennen und doppelte Downloads zu vermeiden. Im Falle einer Aktualisierung eines Comics erkennt die Software nach eingabe des Comic-Links automatisch die neu hinzugefÃ¼gten Seiten und lÃ¤dt sie herunter, um sicherzustellen, dass Sie immer die aktuellste Version des Comics haben. Dabei werden ausschlieÃŸlich die fehlenden Seiten heruntergeladen und nicht noch einmal der gesamte Comic. Damit sparen sie zusÃ¤tzlich Datenvolumen und Zeit. </li>
+  <li><strong>Datensicherung:</strong> Um Ihre heruntergeladenen Comics optimal zu schÃ¼tzen, erstellt der ImHentai.xxx_Image_Downloader fÃ¼r jedes Comic ein Backup in Form einer Zip-Archivdatei. Dadurch kÃ¶nnen beschÃ¤digte Bilder schnell wiederhergestellt werden, ohne dass Sie sie erneut herunterladen mÃ¼ssen.</li>
+  <li><strong>Mehrsprachige UnterstÃ¼tzung und Open-Source:</strong> <br>Der ImHentai.xxx_Image_Downloader ist nicht nur in Deutsch und Englisch verfÃ¼gbar, sondern bietet auch die einfache Integration weiterer Sprachen. Die Software ist Open-Source und auf GitHub zugÃ¤nglich, sodass die Entwicklergemeinschaft zur Verbesserung und Erweiterung beitragen kann und Sie jederzeit einsehen kÃ¶nnen, was im Hintergrund passiert.</li>
+</ul>
 
-ImHentai.xxx_Image_Downloader ist nicht nur auf Deutsch und Englisch verfügbar, sondern bietet auch die Möglichkeit zur einfachen Integration weiterer Sprachen. Die Software ist open-source und auf GitHub einsehbar, sodass die Entwicklergemeinschaft die Software verbessern und erweitern kann. Bringen Sie Ihre Ideen ein, finden Sie Lösungen und arbeiten Sie gemeinsam daran, ImHentai.xxx_Image_Downloader noch besser zu machen.
+<h2>Beschreibung:</h2>
 
-Erleben Sie die Zukunft des einfachen und effizienten Herunterladens und Sortierens von Bildern und Comics. Holen Sie sich noch heute ImHentai.xxx_Image_Downloader und entdecken Sie eine neue Art, Ihre Lieblingsinhalte zu genießen!
+<p>Erleben Sie die Zukunft des einfachen und effizienten Herunterladens und Organisierens von Bildern und Comics von ImHentai.xxx. Holen Sie sich noch heute den ImHentai.xxx_Image_Downloader und entdecken Sie eine ganz neue Art, Ihre Lieblingsinhalte zu organisieren!</p>
+
+<h2>Herunterladen der letzten Version:</h2>
+
+<p><a href="https://github.com/RaptorXilef/ImHentai.xxx_Image_Downloader/releases/tag/v.0.2.0.3">Letzte Version herunterladen</a></p>
+
+<h2>Verwendung:</h2>
+
+<ol>
+  <li>Laden Sie das Skript herunter.</li>
+  <li>Starten Sie es.</li>
+  <li>WÃ¤hlen Sie in der Console Ihre bevorzugte Sprache und den Speicherort fÃ¼r die Comics.</li>
+  <li>Geben Sie den Link zum Comic auf ImHentai.xxx oder die ComicID (Zahl aus dem Link) ein.</li>
+  <li>WÃ¤hlen Sie optional eine Kategorie des Comics.</li>
+  <li>Beantworten Sie die Fragen zum Comicnamen, Autoren usw. DafÃ¼r bietet das Skript bereits Vorauswahl, die Sie einfach bestÃ¤tigen oder individualisieren kÃ¶nnen.</li>
+  <li>Der Download startet.</li>
+  <li>Fertig.</li>
+  <li>PS: Sie kÃ¶nnen die Anwendung auch mehrfach starten, um Wartezeiten wÃ¤hrend des Downloads mit der Eingabe der nÃ¤chsten ComicID zu Ã¼berbrÃ¼cken.</li>
+</ol>
+
+<h2>Lizenz:</h2>
+
+<p>Das Minecraft Log Filter Script steht unter der GNU General Public License (GPL) Version 3.0. Weitere Informationen finden Sie in der mitgelieferten Lizenzdatei.</p>
 
 
+<h2>Kurz gesagt:</h2>
 
+<p>Sind Sie auf der Suche nach einer bequemen MÃ¶glichkeit, Ihre Lieblingsbilder und Comics von ImHentai.xxx herunterzuladen und zu organisieren? Suchen Sie nicht weiter! Mit dem ImHentai.xxx_Image_Downloader wird der gesamte Prozess automatisiert und vereinfacht. Vergessen Sie das mÃ¼hsame Herunterladen jedes einzelnen Bildes - diese Software erledigt das alles fÃ¼r Sie! Keine Installation erforderlich - nehmen Sie die portable Version auf Ihrem USB-Stick mit und verwenden Sie sie auf jedem Windows-Computer. Und das Beste daran? Der ImHentai.xxx_Image_Downloader lÃ¤uft sogar auf schwachen Systemen, dank seines ressourcensparenden Designs. Sie werden es lieben, wie einfach es ist, Ihre Comics zu durchsuchen und die neuesten Seiten herunterzuladen. Und falls einmal ein Bild defekt ist, haben Sie immer ein Backup zur Hand, um es schnell wiederherzustellen. Nehmen Sie das Herunterladen und Sortieren Ihrer Bilder und Comics in die eigene Hand - holen Sie sich noch heute den ImHentai.xxx_Image_Downloader und erleben Sie die ultimative Benutzerfreundlichkeit! VerfÃ¼gbar auf Deutsch und Englisch. Werden Sie Teil der wachsenden Entwicklergemeinschaft auf GitHub und helfen Sie sogar mit, die Software noch besser zu machen.</p>
 
+<h2>Wichtig:</h2>
 
-
-
-
-EN
-Short Description: Download all the images from an ImHentai.xxx gallery, sort them by themes, and receive instant notifications if you've already downloaded the images/comics.
-
-This application is a hobby project and is not affiliated with the operators of ImHentai.xxx in any way.
-
-
-Download last Version: https://github.com/RaptorXilef/ImHentai.xxx_Image_Downloader/releases/
-
-
-
-My Advertisement:
-Looking for a convenient way to download and organize your favorite images and comics from ImHentai.xxx? Look no further! With ImHentai.xxx_Image_Downloader, the entire process is automated and simplified. Say goodbye to the hassle of downloading each individual image - our software does it all for you! No installation required - take the portable version on your USB stick and use it on any Windows computer. And the best part? ImHentai.xxx_Image_Downloader even runs smoothly on low-end systems, thanks to its resource-efficient design. You'll love how easy it is to browse through your comics and download the latest pages. Plus, with the added backup feature, you can quickly restore any damaged images without having to download them again. Take control of your image and comic collection - get ImHentai.xxx_Image_Downloader today and experience ultimate user-friendliness! Available in German, English, and many more languages. Join our growing developer community on GitHub and help us make the software even better.
-
-
-
-Description:
-Welcome to "ImHentai.xxx_Image_Downloader" - the software that revolutionizes the process of downloading and organizing images and comics from the ImHentai.xxx website! This exclusive software, designed for the Windows operating system, allows you to bypass the tedious task of individually downloading each image and simplifies your comic collection process.
-
-ImHentai.xxx_Image_Downloader is not only portable but also resource-efficient. With a strong emphasis on efficiency and performance, we have intentionally opted for a streamlined, text-based console interface, avoiding graphical elements and animations. This design choice ensures optimal resource utilization, enabling the software to run smoothly even on low-end systems, so you can fully focus on downloading and organizing your favorite images and comics.
-
-Going beyond simple downloading, this innovative software incorporates advanced features. ImHentai.xxx_Image_Downloader utilizes a flatfile database, intelligently recognizing previously downloaded comics to prevent duplicate downloads. In the event that a comic is updated while being downloaded, the software automatically detects and retrieves the newly added pages, ensuring you always have the most up-to-date version.
-
-To safeguard your downloaded comics, ImHentai.xxx_Image_Downloader creates a backup in the form of a zip archive file for each comic. This enables quick restoration of any damaged images, eliminating the need for re-downloading. Now, you can focus on reading and enjoying your comics without worrying about potential data loss.
-
-ImHentai.xxx_Image_Downloader is not only available in German and English but also provides easy integration of additional languages. The software is open-source and accessible on GitHub, allowing the developer community to contribute to its improvement and expansion. Join the collaborative effort, share your ideas, find solutions, and work together to make ImHentai.xxx_Image_Downloader even better.
-
-Experience the future of easy and efficient downloading and organizing of images and comics. Get your hands on ImHentai.xxx_Image_Downloader today and discover a whole new way to enjoy your favorite content!
+<p>Diese Anwendung ist ein Hobbyprojekt und steht in keinerlei Verbindung zu den Betreibern von ImHentai.xxx.</p>
